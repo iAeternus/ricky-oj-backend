@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.ricky</groupId>
     <artifactId>ricky-oj-backend</artifactId>
-    <version>${project.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ricky-oj-backend</name>
     <description>ricky-oj-backend</description>

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Tag(name = "验证码相关接口")
-@RequestMapping(value = "/verification-codes")
+@RequestMapping(value = "/verification-code")
 public class VerificationController {
 
     private final VerificationCodeApplicationService verificationCodeApplicationService;

@@ -51,18 +51,7 @@ public class VerificationCodeApplicationService {
         return verificationCodeId;
     }
 
-    private String createVerificationCode(String mobileOrEmail, VerificationCodeTypeEnum type, String userId, UserContext userContext) {
-        Optional<VerificationCode> verificationCodeOptional = verificationCodeFactory.create(mobileOrEmail, type, userId, userContext);
-        if (verificationCodeOptional.isPresent()) {
-            VerificationCode code = verificationCodeOptional.get();
-            verificationCodeRepository.save(code);
-            verificationCodeSender.send(code);
-            return code.getId();
-        } else {
-            return VerificationCode.newVerificationCodeId();
-        }
-    }
-
+    @Transactional
     public String createVerificationCodeForLogin(CreateLoginVerificationCodeCommand command) {
         String mobileOrEmail = command.getMobileOrEmail();
         rateLimiter.applyFor("VerificationCode:Login:All", 100);
@@ -77,5 +66,17 @@ public class VerificationCodeApplicationService {
 
         log.info("Created verification code[{}] for login for [{}].", verificationCodeId, maskMobileOrEmail(command.getMobileOrEmail()));
         return verificationCodeId;
+    }
+
+    private String createVerificationCode(String mobileOrEmail, VerificationCodeTypeEnum type, String userId, UserContext userContext) {
+        Optional<VerificationCode> verificationCodeOptional = verificationCodeFactory.create(mobileOrEmail, type, userId, userContext);
+        if (verificationCodeOptional.isPresent()) {
+            VerificationCode code = verificationCodeOptional.get();
+            verificationCodeRepository.save(code);
+            verificationCodeSender.send(code);
+            return code.getId();
+        } else {
+            return VerificationCode.newVerificationCodeId();
+        }
     }
 }
