@@ -6,8 +6,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.ricky.common.properties.JwtProperties;
 import org.ricky.common.security.MyAuthenticationToken;
-import org.ricky.user.domain.User;
-import org.ricky.user.domain.UserRepository;
+import org.ricky.core.user.domain.User;
+import org.ricky.core.user.domain.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;

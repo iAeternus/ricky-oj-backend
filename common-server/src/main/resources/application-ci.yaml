@@ -27,4 +27,8 @@ my:
     domainEventStream: DomainEvent.LOCAL
     notificationStream: Notification.LOCAL
     webhookStream: Webhook.LOCAL
+  aliyun:
+    ak: your-aliyun-access-key
+    aks: your-aliyun-access-key-secret
+    role: your-aliyun-ram-role
 

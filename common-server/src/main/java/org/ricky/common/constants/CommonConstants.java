@@ -13,12 +13,14 @@ public interface CommonConstants {
     String AUTH_COOKIE_NAME = "roj_token";
     String AUTHORIZATION = "Authorization";
     String BEARER = "Bearer ";
+    String NO_USER_ID = "NO_USER_ID";
 
     String EVENT_COLLECTION = "event";
     String SHEDLOCK_COLLECTION = "shedlock";
     String PROBLEM_COLLECTION = "problem";
     String TAG_GROUP_COLLECTION = "tag_group";
     String USER_COLLECTION = "user";
+    String VERIFICATION_COLLECTION = "verification";
 
     String GROUP_ID_PREFIX = "GRP";
     String PROBLEM_ID_PREFIX = "PRO";

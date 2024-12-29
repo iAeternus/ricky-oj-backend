@@ -32,3 +32,14 @@ my:
     domainEventStream: DomainEvent.LOCAL
     notificationStream: Notification.LOCAL
     webhookStream: Webhook.LOCAL
+  email:
+    from-name: Ricky
+    from-email: 1049469060@qq.com
+  aliyun:
+    ak: your-aliyun-access-key
+    aks: your-aliyun-access-key-secret
+    role: your-aliyun-ram-role
+    sms:
+      sms-sign-name: notapplicable
+      sms-template-code: notapplicable
+
