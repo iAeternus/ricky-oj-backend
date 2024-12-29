@@ -22,7 +22,7 @@ public class TagIdValidator implements ConstraintValidator<TagId, String> {
 
     @Override
     public boolean isValid(String tagId, ConstraintValidatorContext constraintValidatorContext) {
-        if(isBlank(tagId)) {
+        if (isBlank(tagId)) {
             return true;
         }
         return isTagId(tagId);

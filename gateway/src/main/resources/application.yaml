@@ -25,8 +25,3 @@ logging:
   level:
     org:
       ansj: WARN
-
-management:
-  tracing:
-    sampling:
-      probability: 1.0

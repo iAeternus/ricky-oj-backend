@@ -25,6 +25,7 @@ public class GatewayConfigServiceConfiguration {
 
     private final GatewayRouteConfigProperties configProperties;
     private final NacosConfigProperties nacosConfigProperties;
+
     @Bean
     public ConfigService configService() throws NacosException {
         Properties properties = new Properties();

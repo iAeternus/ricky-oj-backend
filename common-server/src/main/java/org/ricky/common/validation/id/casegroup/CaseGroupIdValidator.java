@@ -22,7 +22,7 @@ public class CaseGroupIdValidator implements ConstraintValidator<CaseGroupId, St
 
     @Override
     public boolean isValid(String caseGroupId, ConstraintValidatorContext constraintValidatorContext) {
-        if(isBlank(caseGroupId)) {
+        if (isBlank(caseGroupId)) {
             return true;
         }
         return isCaseGroupId(caseGroupId);

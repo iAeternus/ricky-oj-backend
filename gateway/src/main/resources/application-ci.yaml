@@ -17,13 +17,3 @@ spring:
       timeout: 10000
   cache:
     type: redis
-
-my:
-  common:
-    httpsEnabled: false
-    baseDomainName: org.ricky
-    limitRate: false
-  redis:
-    domainEventStream: DomainEvent.LOCAL
-    notificationStream: Notification.LOCAL
-    webhookStream: Webhook.LOCAL

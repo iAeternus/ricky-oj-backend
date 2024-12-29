@@ -22,7 +22,7 @@ public class GroupIdValidator implements ConstraintValidator<GroupId, String> {
 
     @Override
     public boolean isValid(String groupId, ConstraintValidatorContext constraintValidatorContext) {
-        if(isBlank(groupId)) {
+        if (isBlank(groupId)) {
             return true;
         }
         return isGroupId(groupId);

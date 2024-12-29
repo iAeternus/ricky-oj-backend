@@ -4,7 +4,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
-import org.ricky.common.context.UserContext;
 import org.ricky.common.properties.JwtProperties;
 import org.ricky.common.security.MyAuthenticationToken;
 import org.ricky.user.domain.User;

@@ -54,9 +54,10 @@ public class GatewayRouteInitConfiguration {
                 public Executor getExecutor() {
                     return null;
                 }
+
                 @Override
                 public void receiveConfigInfo(String configInfo) {
-                    if(StringUtils.isBlank(configInfo)) {
+                    if (StringUtils.isBlank(configInfo)) {
                         log.warn("当前网关无动态路由相关配置");
                         return;
                     }

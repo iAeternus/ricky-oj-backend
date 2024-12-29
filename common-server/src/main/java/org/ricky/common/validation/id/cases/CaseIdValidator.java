@@ -22,7 +22,7 @@ public class CaseIdValidator implements ConstraintValidator<CaseId, String> {
 
     @Override
     public boolean isValid(String caseId, ConstraintValidatorContext constraintValidatorContext) {
-        if(isBlank(caseId)) {
+        if (isBlank(caseId)) {
             return true;
         }
         return isCaseId(caseId);
