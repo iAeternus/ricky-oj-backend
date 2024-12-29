@@ -7,14 +7,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Ricky
  * @version 1.0
  * @date 2024/12/29
- * @className GatewayApplication
+ * @className CommonApplication
  * @desc
  */
 @SpringBootApplication
-public class GatewayApplication {
+public class CommonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GatewayApplication.class, args);
+        SpringApplication.run(CommonApplication.class, args);
     }
 
 }

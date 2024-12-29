@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: common-server
+  profiles:
+    active: ci
+  cloud:
+    nacos:
+      server-addr: 192.168.137.128:8848
+      discovery:
+        namespace: 180000d9-9d4b-4485-a0e9-d46e9ae59a64
+      config:
+        file-extension: yaml
