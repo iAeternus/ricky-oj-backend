@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 8001
 
 spring:
   servlet:
@@ -19,6 +19,11 @@ spring:
     type: redis
 
 my:
+  jwt:
+    issuer: my-local-issuer
+    secret: EHnbNd1KxkXceo9v
+    expire: 720
+    aheadAutoRefresh: 60
   common:
     httpsEnabled: false
     baseDomainName: org.ricky

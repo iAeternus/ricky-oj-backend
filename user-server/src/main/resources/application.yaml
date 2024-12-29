@@ -1,0 +1,32 @@
+buildTime: ${buildTime}
+gitRevision: ${gitRevision}
+gitBranch: ${gitBranch}
+
+server:
+  shutdown: graceful
+  tomcat:
+    accept-count: 100
+    max-swallow-size: 50
+    max-keep-alive-requests: 200
+    threads:
+      max: 500
+
+spring:
+  banner:
+    location: classpath:banner.txt
+  task:
+    scheduling:
+      pool:
+        size: 5
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{traceId:-},%X{spanId:-}]"
+  level:
+    org:
+      ansj: WARN
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

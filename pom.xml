@@ -18,6 +18,7 @@
     <modules>
         <module>gateway</module>
         <module>common-server</module>
+        <module>user-server</module>
     </modules>
 
     <properties>

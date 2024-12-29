@@ -1,6 +1,6 @@
 spring:
   application:
-    name: gateway
+    name: user-server
   profiles:
     active: ci
   cloud:
@@ -11,10 +11,3 @@ spring:
       config:
         file-extension: yaml
 
-my:
-  gateway:
-    routes:
-      config:
-        data-id: user-server
-        group: ROJ
-        namespace: 180000d9-9d4b-4485-a0e9-d46e9ae59a64
