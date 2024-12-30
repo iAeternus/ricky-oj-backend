@@ -31,6 +31,7 @@ public interface CommonConstants {
     String USER_ID_PREFIX = "USR";
     String ACCEPTED_PROBLEM_ID_PREDIX = "ACP";
     String SUBMIT_ID_PREFIX = "SMT";
+    String VERIFICATION_ID_PREFIX = "VRC";
 
     String INCORRECT_ID_MESSAGE = " ID format is incorrect.";
 
@@ -38,6 +39,7 @@ public interface CommonConstants {
 
     int MAX_URL_LENGTH = 1024;
     int MAX_CASES_SIZE = 64;
+    int MAX_GENERIC_NAME_LENGTH = 50;
 
     String REDIS_DOMAIN_EVENT_CONSUMER_GROUP = "domain.event.group";
     String REDIS_WEBHOOK_CONSUMER_GROUP = "webhook.group";

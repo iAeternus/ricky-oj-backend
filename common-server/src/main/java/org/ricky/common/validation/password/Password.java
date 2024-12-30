@@ -1,4 +1,4 @@
-package org.ricky.common.validation.id;
+package org.ricky.common.validation.password;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -9,24 +9,21 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
-import static org.ricky.common.validation.id.IdValidator.DEFAULT_MESSAGE;
 
 /**
  * @author Ricky
  * @version 1.0
- * @date 2024/12/28
- * @className Id
- * @desc
+ * @date 2024/9/24
+ * @className Password
+ * @desc 密码
  */
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = IdValidator.class)
+@Constraint(validatedBy = PasswordValidator.class)
 @Documented
-public @interface Id {
+public @interface Password {
 
-    String prefix();
-
-    String message() default DEFAULT_MESSAGE;
+    String message() default "Password format is incorrect.";
 
     Class<?>[] groups() default {};
 

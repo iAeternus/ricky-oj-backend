@@ -26,18 +26,24 @@ public class AcceptedProblem implements Identified {
 
     @NotBlank
     @Schema(name = "ID")
-    @Id(prefix = ACCEPTED_PROBLEM_ID_PREDIX, message = "Accepted Problem" + INCORRECT_ID_MESSAGE)
+    @Id(prefix = ACCEPTED_PROBLEM_ID_PREDIX)
     String id;
 
     @NotBlank
     @Schema(name = "题目ID")
-    @Id(prefix = PROBLEM_ID_PREFIX, message = "Problem" + INCORRECT_ID_MESSAGE)
+    @Id(prefix = PROBLEM_ID_PREFIX)
     String problemId;
 
     @NotBlank
     @Schema(name = "提交ID")
-    @Id(prefix = SUBMIT_ID_PREFIX, message = "Submit" + INCORRECT_ID_MESSAGE)
+    @Id(prefix = SUBMIT_ID_PREFIX)
     String submitId;
+
+    public AcceptedProblem(String problemId, String submitId) {
+        this.id = newAcceptedProblemId();
+        this.problemId = problemId;
+        this.submitId = submitId;
+    }
 
     public static String newAcceptedProblemId() {
         return ACCEPTED_PROBLEM_ID_PREDIX + newSnowflakeId();

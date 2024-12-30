@@ -4,16 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.exception.MyException;
-import org.ricky.core.user.domain.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.ricky.common.exception.ErrorCodeEnum.TOO_MANY_VERIFICATION_CODE_FOR_TODAY;
 import static org.ricky.common.exception.ErrorCodeEnum.VERIFICATION_CODE_ALREADY_SENT;
 import static org.ricky.common.utils.CollectionUtils.mapOf;
-import static org.ricky.core.common.utils.MobileOrEmailUtils.isMobileNumber;
 import static org.ricky.core.common.utils.MobileOrEmailUtils.maskMobileOrEmail;
 
 /**

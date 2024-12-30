@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.ricky.common.context.RoleEnum;
 import org.ricky.common.properties.JwtProperties;
 import org.ricky.common.security.MyAuthenticationToken;
 import org.ricky.core.user.domain.User;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+import static org.ricky.common.context.RoleEnum.USER;
 import static org.ricky.common.context.UserContext.createUser;
 
 /**
@@ -51,7 +53,7 @@ public class JwtService {
         String userId = claims.getSubject();
         User user = userRepository.cachedById(userId);
         long expiration = claims.getExpiration().getTime();
-        return new MyAuthenticationToken(createUser(userId, user.getNickname(), user.getRole()), expiration);
+        return new MyAuthenticationToken(createUser(userId, user.getNickname(), USER), expiration);
     }
 
 }

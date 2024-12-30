@@ -50,4 +50,9 @@ public class MongoUserRepository extends MongoBaseRepository<User> implements Us
         criteria.orOperator(where("mobile").is(mobileOrEmail), where("email").is(mobileOrEmail));
         return ofNullable(mongoTemplate.findOne(query(criteria), User.class));
     }
+
+    @Override
+    public void save(User user) {
+        super.save(user);
+    }
 }

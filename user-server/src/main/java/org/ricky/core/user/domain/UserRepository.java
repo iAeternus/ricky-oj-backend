@@ -1,7 +1,5 @@
 package org.ricky.core.user.domain;
 
-import com.google.common.io.Files;
-
 import java.util.Optional;
 
 /**
@@ -17,4 +15,6 @@ public interface UserRepository {
     boolean existsByMobileOrEmail(String mobileOrEmail);
 
     Optional<User> byMobileOrEmailOptional(String mobileOrEmail);
+
+    void save(User user);
 }

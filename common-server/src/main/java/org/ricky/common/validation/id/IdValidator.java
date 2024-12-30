@@ -14,19 +14,32 @@ import static org.ricky.common.utils.ValidationUtils.isBlank;
  */
 public class IdValidator implements ConstraintValidator<Id, String> {
 
+    static final String DEFAULT_MESSAGE = "ID format is incorrect.";
+
     private String prefix;
+    private String message;
 
     @Override
     public void initialize(Id id) {
         this.prefix = id.prefix();
+        this.message = id.message();
     }
 
     @Override
-    public boolean isValid(String id, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(String id, ConstraintValidatorContext context) {
         if (isBlank(id)) {
             return true;
         }
-        return isId(id, prefix);
+
+        boolean isValid = isId(id, prefix);
+        if (!isValid) {
+            String customMessage = isBlank(message) ? DEFAULT_MESSAGE : message;
+            String finalMessage = prefix + " " + customMessage;
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate(finalMessage).addConstraintViolation();
+        }
+
+        return isValid;
     }
 
     public static boolean isId(String id, String prefix) {

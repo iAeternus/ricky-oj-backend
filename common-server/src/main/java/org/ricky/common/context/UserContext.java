@@ -7,7 +7,8 @@ import org.ricky.common.exception.MyException;
 import org.ricky.common.utils.ValidationUtils;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.ricky.common.context.RoleEnum.*;
+import static org.ricky.common.context.RoleEnum.SYSTEM_ADMIN;
+import static org.ricky.common.context.RoleEnum.USER;
 import static org.ricky.common.exception.ErrorCodeEnum.WRONG_USER;
 import static org.ricky.common.exception.MyException.authenticationException;
 import static org.ricky.common.utils.CollectionUtils.mapOf;
@@ -68,18 +69,11 @@ public class UserContext {
         return internalIsRole(SYSTEM_ADMIN);
     }
 
-    public boolean isTeacher() {
+    public boolean isUser() {
         if (!internalIsLoggedIn()) {
             return false;
         }
-        return internalIsRole(TEACHER);
-    }
-
-    public boolean isStudent() {
-        if (!internalIsLoggedIn()) {
-            return false;
-        }
-        return internalIsRole(STUDENT);
+        return internalIsRole(USER);
     }
 
     public void checkIsLoggedIn() {
@@ -91,14 +85,9 @@ public class UserContext {
         internalCheckRole(SYSTEM_ADMIN);
     }
 
-    public void checkIsTeacher() {
+    public void checkIsUser() {
         internalCheckLoggedIn();
-        internalCheckRole(TEACHER);
-    }
-
-    public void checkIsStudent() {
-        internalCheckLoggedIn();
-        internalCheckRole(STUDENT);
+        internalCheckRole(USER);
     }
 
     public boolean isLoggedInFor(String userId) {
@@ -107,34 +96,25 @@ public class UserContext {
         if (!internalIsLoggedIn()) {
             return false;
         }
-        return isUserFor(userId);
+        return internalIsUserFor(userId);
     }
 
     public boolean isSystemAdminFor(String userId) {
         requireNonBlank(userId, "User ID must not be blank.");
 
-        if (!internalIsLoggedIn() || isWrongUserFor(userId)) {
+        if (!internalIsLoggedIn() || internalIsWrongUserFor(userId)) {
             return false;
         }
         return internalIsRole(SYSTEM_ADMIN);
     }
 
-    public boolean isTeacherFor(String userId) {
+    public boolean isUserFor(String userId) {
         requireNonBlank(userId, "User ID must not be blank.");
 
-        if (!internalIsLoggedIn() || isWrongUserFor(userId)) {
+        if (!internalIsLoggedIn() || internalIsWrongUserFor(userId)) {
             return false;
         }
-        return internalIsRole(TEACHER);
-    }
-
-    public boolean isStudentFor(String userId) {
-        requireNonBlank(userId, "User ID must not be blank.");
-
-        if (!internalIsLoggedIn() || isWrongUserFor(userId)) {
-            return false;
-        }
-        return internalIsRole(STUDENT);
+        return internalIsRole(USER);
     }
 
     public void checkIsLoggedInFor(String userId) {
@@ -152,20 +132,12 @@ public class UserContext {
         internalCheckRole(SYSTEM_ADMIN);
     }
 
-    public void checkIsTeacherFor(String userId) {
+    public void checkIsUserFor(String userId) {
         requireNonBlank(userId, "User ID must not be blank.");
 
         internalCheckLoggedIn();
         internalCheckUserFor(userId);
-        internalCheckRole(TEACHER);
-    }
-
-    public void checkIsStudentFor(String userId) {
-        requireNonBlank(userId, "User ID must not be blank.");
-
-        internalCheckLoggedIn();
-        internalCheckUserFor(userId);
-        internalCheckRole(STUDENT);
+        internalCheckRole(USER);
     }
 
     private boolean internalIsLoggedIn() {
@@ -188,16 +160,16 @@ public class UserContext {
         }
     }
 
-    private boolean isUserFor(String userId) {
+    private boolean internalIsUserFor(String userId) {
         return ValidationUtils.equals(this.userId, userId);
     }
 
-    private boolean isWrongUserFor(String userId) {
+    private boolean internalIsWrongUserFor(String userId) {
         return notEquals(this.userId, userId);
     }
 
     private void internalCheckUserFor(String userId) {
-        if (isWrongUserFor(userId)) {
+        if (internalIsWrongUserFor(userId)) {
             throw new MyException(WRONG_USER, "Wrong user.",
                     mapOf("Expected User ID", this.getUserId(), "Actual User ID", userId));
         }

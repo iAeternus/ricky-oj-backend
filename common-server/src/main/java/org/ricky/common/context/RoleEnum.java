@@ -13,11 +13,10 @@ import lombok.Getter;
 public enum RoleEnum {
 
     SYSTEM_ADMIN("系统管理员"),
-    TEACHER("教师"),
-    STUDENT("学生"),
+    USER("用户"),
     ;
 
-    private final String roleName;
+    final String roleName;
 
     RoleEnum(String roleName) {
         this.roleName = roleName;

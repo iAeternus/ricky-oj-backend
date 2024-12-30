@@ -69,7 +69,7 @@ public class GlobalExceptionHandler {
                     return isBlank(message) ? "无错误提示。" : message;
                 }, (field1, field2) -> field1 + "|" + field2));
 
-        log.error("Method argument validation myError[{}]: {}", ex.getParameter().getParameterType().getName(), error);
+        log.error("Method argument validation Error[{}]: {}", ex.getParameter().getParameterType().getName(), error);
         MyException exception = requestValidationException(error);
         return createErrorResponse(exception, request.getRequestURI());
     }
@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({ServletRequestBindingException.class, HttpMessageNotReadableException.class, ConstraintViolationException.class})
     public ResponseEntity<QErrorResponse> handleServletRequestBindingException(Exception ex, HttpServletRequest request) {
         MyException exception = requestValidationException("message", "请求验证失败。");
-        log.error("Request processing myError: {}", ex.getMessage());
+        log.error("Request processing Error: {}", ex.getMessage());
         return createErrorResponse(exception, request.getRequestURI());
     }
 

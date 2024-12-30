@@ -3,9 +3,7 @@ package org.ricky.core.user.domain.data;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.ricky.common.validation.collection.NoNullElement;
 import org.ricky.core.user.domain.data.accepted.AcceptedProblem;
 
@@ -32,5 +30,20 @@ public class UserData {
     List<AcceptedProblem> acceptedProblems;
 
     // TODO 后期迭代：统计用户每天刷了多少道题
+
+    public static UserData defaultStudentData() {
+        UserData userData = new UserData();
+        userData.rating = 0; // 未获取默认为0
+        userData.acceptedProblems = List.of();
+        return userData;
+    }
+
+    public void setCfInfo(int rating) {
+        this.rating = rating;
+    }
+
+    public void addAccepted(String problemId, String submitId) {
+        acceptedProblems.add(new AcceptedProblem(problemId, submitId));
+    }
 
 }
