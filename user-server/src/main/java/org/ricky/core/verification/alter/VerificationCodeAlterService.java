@@ -16,6 +16,7 @@ import java.util.Optional;
 import static org.ricky.common.context.UserContext.NOUSER;
 import static org.ricky.common.ratelimit.TPSConstants.*;
 import static org.ricky.core.common.utils.MobileOrEmailUtils.maskMobileOrEmail;
+import static org.ricky.core.verification.domain.VerificationCodeTypeEnum.REGISTER;
 
 
 /**
@@ -47,7 +48,7 @@ public class VerificationCodeAlterService {
             return VerificationCode.newVerificationCodeId();
         }
 
-        String verificationCodeId = createVerificationCode(mobileOrEmail, VerificationCodeTypeEnum.REGISTER, null, NOUSER);
+        String verificationCodeId = createVerificationCode(mobileOrEmail, REGISTER, null, NOUSER);
         log.info("Created verification code[{}] for register for [{}].", verificationCodeId, maskMobileOrEmail(command.getMobileOrEmail()));
         return verificationCodeId;
     }

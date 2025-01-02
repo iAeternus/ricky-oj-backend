@@ -19,6 +19,8 @@
         <module>gateway</module>
         <module>common-server</module>
         <module>user-server</module>
+        <module>api-test</module>
+        <module>judge-server</module>
     </modules>
 
     <properties>

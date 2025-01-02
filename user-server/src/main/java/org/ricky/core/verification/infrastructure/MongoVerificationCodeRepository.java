@@ -79,4 +79,9 @@ public class MongoVerificationCodeRepository extends MongoBaseRepository<Verific
     public VerificationCode byId(String id) {
         return super.byId(id);
     }
+
+    @Override
+    public boolean exists(String arId) {
+        return super.exists(arId);
+    }
 }

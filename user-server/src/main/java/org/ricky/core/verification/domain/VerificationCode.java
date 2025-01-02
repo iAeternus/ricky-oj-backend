@@ -51,7 +51,7 @@ public class VerificationCode extends AggregateRoot {
     private int usedCount;
 
     public VerificationCode(String mobileOrEmail, VerificationCodeTypeEnum type, String userId, UserContext userContext) {
-        super(newVerificationCodeId(), ValidationUtils.isNotBlank(userId) ? userId : NO_USER_ID, userContext);
+        super(newVerificationCodeId(), isNotBlank(userId) ? userId : NO_USER_ID, userContext);
         this.mobileOrEmail = mobileOrEmail;
         this.code = randomNumeric(6);
         this.type = type;

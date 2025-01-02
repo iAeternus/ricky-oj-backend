@@ -14,4 +14,8 @@ public class SystemManager {
     public static final String ADMIN_INIT_MOBILE = "15111111111";
     public static final String ADMIN_INIT_PASSWORD = "11111111";
 
+    public static String baseId(String prefix) {
+        return prefix + "000000000000000001";
+    }
+
 }

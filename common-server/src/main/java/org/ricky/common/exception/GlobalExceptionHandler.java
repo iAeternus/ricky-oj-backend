@@ -50,19 +50,19 @@ public class GlobalExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler({AccessDeniedException.class})
-    public ResponseEntity<QErrorResponse> handleAccessDinedException(HttpServletRequest request) {
+    public ResponseEntity<ErrorResponse> handleAccessDinedException(HttpServletRequest request) {
         return createErrorResponse(accessDeniedException(), request.getRequestURI());
     }
 
     @ResponseBody
     @ExceptionHandler({AuthenticationException.class})
-    public ResponseEntity<QErrorResponse> handleAuthenticationFailedException(HttpServletRequest request) {
+    public ResponseEntity<ErrorResponse> handleAuthenticationFailedException(HttpServletRequest request) {
         return createErrorResponse(authenticationException(), request.getRequestURI());
     }
 
     @ResponseBody
     @ExceptionHandler({MethodArgumentNotValidException.class})
-    public ResponseEntity<QErrorResponse> handleInvalidRequest(MethodArgumentNotValidException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponse> handleInvalidRequest(MethodArgumentNotValidException ex, HttpServletRequest request) {
         Map<String, Object> error = ex.getBindingResult().getFieldErrors().stream()
                 .collect(toImmutableMap(FieldError::getField, fieldError -> {
                     String message = fieldError.getDefaultMessage();
@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler({ServletRequestBindingException.class, HttpMessageNotReadableException.class, ConstraintViolationException.class})
-    public ResponseEntity<QErrorResponse> handleServletRequestBindingException(Exception ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponse> handleServletRequestBindingException(Exception ex, HttpServletRequest request) {
         MyException exception = requestValidationException("message", "请求验证失败。");
         log.error("Request processing Error: {}", ex.getMessage());
         return createErrorResponse(exception, request.getRequestURI());
@@ -93,10 +93,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(myError.toErrorResponse(), new HttpHeaders(), HttpStatus.valueOf(SYSTEM_ERROR.getStatus()));
     }
 
-    private ResponseEntity<QErrorResponse> createErrorResponse(MyException exception, String path) {
+    private ResponseEntity<ErrorResponse> createErrorResponse(MyException exception, String path) {
         String traceId = tracingService.currentTraceId();
         MyError myError = new MyError(exception, path, traceId);
-        QErrorResponse representation = myError.toErrorResponse();
+        ErrorResponse representation = myError.toErrorResponse();
         return new ResponseEntity<>(representation, new HttpHeaders(), valueOf(representation.getError().getStatus()));
     }
 

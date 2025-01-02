@@ -19,4 +19,6 @@ public interface VerificationCodeRepository {
     long totalCodeCountOfTodayFor(String mobileOrEmail);
 
     VerificationCode byId(String id);
+
+    boolean exists(String id);
 }

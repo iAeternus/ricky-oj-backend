@@ -10,13 +10,13 @@ import org.ricky.common.domain.marker.Response;
  * @author Ricky
  * @version 1.0
  * @date 2024/9/25
- * @className QErrorResponse
+ * @className ErrorResponse
  * @desc
  */
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class QErrorResponse implements Response {
+public class ErrorResponse implements Response {
 
     MyError error;
 
