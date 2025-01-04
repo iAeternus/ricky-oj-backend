@@ -10,36 +10,38 @@ package org.ricky.common.constants;
 public interface CommonConstants {
 
     String CHINA_TIME_ZONE = "Asia/Shanghai";
-    String AUTH_COOKIE_NAME = "roj_token";
+    String AUTH_COOKIE_NAME = "ROJToken";
     String AUTHORIZATION = "Authorization";
     String BEARER = "Bearer ";
     String NO_USER_ID = "NO_USER_ID";
 
     String EVENT_COLLECTION = "event";
     String SHEDLOCK_COLLECTION = "shedlock";
-    String PROBLEM_COLLECTION = "problem";
-    String TAG_GROUP_COLLECTION = "tag_group";
     String USER_COLLECTION = "user";
     String VERIFICATION_COLLECTION = "verification";
+    String TAG_COLLECTION = "tag";
+    String GROUP_COLLECTION = "group";
+    String PROBLEM_COLLECTION = "problem";
 
-    String GROUP_ID_PREFIX = "GRP";
-    String PROBLEM_ID_PREFIX = "PRO";
     String CASE_ID_PREFIX = "CAS";
     String CASE_GROUP_ID_PREFIX = "CSG";
-    String TAG_GROUP_ID_PREFIX = "TGG";
-    String TAG_ID_PREFIX = "TAG";
     String USER_ID_PREFIX = "USR";
     String ACCEPTED_PROBLEM_ID_PREDIX = "ACP";
     String SUBMIT_ID_PREFIX = "SMT";
     String VERIFICATION_ID_PREFIX = "VRC";
+    String TAG_ID_PREFIX = "TAG";
+    String GROUP_ID_PREFIX = "GRP";
+    String PROBLEM_ID_PREFIX = "PRO";
 
     String INCORRECT_ID_MESSAGE = " ID format is incorrect.";
 
     String USER_CACHE = "USER";
+    String PROBLEMS_CACHE = "PROBLEMS";
 
     int MAX_URL_LENGTH = 1024;
     int MAX_CASES_SIZE = 64;
     int MAX_GENERIC_NAME_LENGTH = 50;
+    int MAX_GENERIC_TEXT_LENGTH = 1024;
 
     String REDIS_DOMAIN_EVENT_CONSUMER_GROUP = "domain.event.group";
     String REDIS_WEBHOOK_CONSUMER_GROUP = "webhook.group";

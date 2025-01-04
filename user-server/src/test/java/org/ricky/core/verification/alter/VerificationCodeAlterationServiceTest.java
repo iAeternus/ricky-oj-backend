@@ -3,15 +3,10 @@ package org.ricky.core.verification.alter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
-import org.ricky.common.context.UserContext;
 import org.ricky.common.ratelimit.RateLimiter;
 import org.ricky.core.user.domain.UserRepository;
 import org.ricky.core.verification.alter.dto.command.CreateRegisterVerificationCodeCommand;
 import org.ricky.core.verification.domain.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -25,13 +20,13 @@ import static org.ricky.core.verification.domain.VerificationCodeTypeEnum.REGIST
  * @author Ricky
  * @version 1.0
  * @date 2024/12/31
- * @className VerificationCodeAlterServiceTest
+ * @className VerificationCodeAlterationServiceTest
  * @desc
  */
-class VerificationCodeAlterServiceTest {
+class VerificationCodeAlterationServiceTest {
 
     @InjectMocks
-    private VerificationCodeAlterService verificationCodeAlterService;
+    private VerificationCodeAlterationService verificationCodeAlterationService;
 
     @Mock
     private VerificationCodeRepository verificationCodeRepository;
@@ -64,7 +59,7 @@ class VerificationCodeAlterServiceTest {
         when(verificationCodeRepository.totalCodeCountOfTodayFor(mobile)).thenReturn(1L);
 
         // When
-        String verificationCodeId = verificationCodeAlterService.createVerificationCodeForRegister(command);
+        String verificationCodeId = verificationCodeAlterationService.createVerificationCodeForRegister(command);
 
         // Then
         verify(verificationCodeSender, times(1)).send(any());

@@ -1,10 +1,10 @@
-package org.ricky.core.verification.query;
+package org.ricky.core.verification.fetch;
 
 import lombok.RequiredArgsConstructor;
 import org.ricky.common.ratelimit.RateLimiter;
 import org.ricky.core.verification.domain.VerificationCode;
 import org.ricky.core.verification.domain.VerificationCodeRepository;
-import org.ricky.core.verification.query.dto.response.FetchByIdResponse;
+import org.ricky.core.verification.fetch.dto.response.FetchByIdResponse;
 import org.springframework.stereotype.Service;
 
 import static org.ricky.common.ratelimit.TPSConstants.NORMAL_TPS;
@@ -13,12 +13,12 @@ import static org.ricky.common.ratelimit.TPSConstants.NORMAL_TPS;
  * @author Ricky
  * @version 1.0
  * @date 2024/12/30
- * @className VerificationCodeQueryService
+ * @className VerificationCodeFetchService
  * @desc
  */
 @Service
 @RequiredArgsConstructor
-public class VerificationCodeQueryService {
+public class VerificationCodeFetchService {
 
     private final RateLimiter rateLimiter;
     private final VerificationCodeRepository verificationCodeRepository;

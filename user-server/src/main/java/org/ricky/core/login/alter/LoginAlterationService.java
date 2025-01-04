@@ -21,13 +21,13 @@ import static org.ricky.core.common.utils.MobileOrEmailUtils.maskMobileOrEmail;
  * @author Ricky
  * @version 1.0
  * @date 2024/12/30
- * @className LoginAlterService
+ * @className LoginAlterationService
  * @desc
  */
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class LoginAlterService {
+public class LoginAlterationService {
 
     private final RateLimiter rateLimiter;
     private final LoginDomainService loginDomainService;

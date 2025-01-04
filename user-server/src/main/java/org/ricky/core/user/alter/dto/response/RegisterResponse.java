@@ -19,7 +19,7 @@ import org.ricky.common.domain.marker.Response;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class RegisterResponse implements Response {
 
-    @Schema(name = "学生ID")
-    String studentId;
+    @Schema(name = "用户ID")
+    String userId;
 
 }

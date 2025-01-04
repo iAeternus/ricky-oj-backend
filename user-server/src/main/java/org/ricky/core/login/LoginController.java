@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.security.IpJwtCookieUpdater;
 import org.ricky.common.security.jwt.JwtCookieFactory;
-import org.ricky.core.login.alter.LoginAlterService;
+import org.ricky.core.login.alter.LoginAlterationService;
 import org.ricky.core.login.alter.dto.command.MobileOrEmailLoginCommand;
 import org.ricky.core.login.alter.dto.command.VerificationCodeLoginCommand;
 import org.ricky.core.login.alter.dto.response.JwtTokenResponse;
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "登录相关接口")
 public class LoginController {
 
-    private final LoginAlterService loginAlterService;
+    private final LoginAlterationService loginAlterationService;
     private final IpJwtCookieUpdater ipJwtCookieUpdater;
     private final JwtCookieFactory jwtCookieFactory;
 
@@ -41,7 +41,7 @@ public class LoginController {
     public JwtTokenResponse loginWithMobileOrEmail(HttpServletRequest request,
                                                    HttpServletResponse response,
                                                    @RequestBody @Valid MobileOrEmailLoginCommand command) {
-        String jwt = loginAlterService.loginWithMobileOrEmail(command);
+        String jwt = loginAlterationService.loginWithMobileOrEmail(command);
         response.addCookie(ipJwtCookieUpdater.updateCookie(jwtCookieFactory.newJwtCookie(jwt), request));
         return JwtTokenResponse.builder().token(jwt).build();
     }
@@ -51,7 +51,7 @@ public class LoginController {
     public JwtTokenResponse loginWithVerificationCode(HttpServletRequest request,
                                                       HttpServletResponse response,
                                                       @RequestBody @Valid VerificationCodeLoginCommand command) {
-        String jwt = loginAlterService.loginWithVerificationCode(command);
+        String jwt = loginAlterationService.loginWithVerificationCode(command);
         response.addCookie(ipJwtCookieUpdater.updateCookie(jwtCookieFactory.newJwtCookie(jwt), request));
         return JwtTokenResponse.builder().token(jwt).build();
     }
@@ -72,7 +72,7 @@ public class LoginController {
     public JwtTokenResponse refreshToken(HttpServletRequest request,
                                          HttpServletResponse response,
                                          @AuthenticationPrincipal UserContext userContext) {
-        String jwt = loginAlterService.refreshToken(userContext);
+        String jwt = loginAlterationService.refreshToken(userContext);
         response.addCookie(ipJwtCookieUpdater.updateCookie(jwtCookieFactory.newJwtCookie(jwt), request));
         return JwtTokenResponse.builder().token(jwt).build();
     }

@@ -6,6 +6,8 @@ import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Collection;
 
+import static org.apache.commons.lang3.ObjectUtils.isEmpty;
+
 /**
  * @author Ricky
  * @version 1.0
@@ -13,13 +15,16 @@ import java.util.Collection;
  * @className NoNullElementValidator
  * @desc 列表没有空元素校验器
  */
+@SuppressWarnings("rawtypes")
 public class NoNullElementValidator implements ConstraintValidator<NoNullElement, Collection> {
+
     @Override
     public boolean isValid(Collection collection, ConstraintValidatorContext constraintValidatorContext) {
-        if (ObjectUtils.isEmpty(collection)) {
+        if (isEmpty(collection)) {
             return true;
         }
 
         return !collection.contains(null);
     }
+
 }

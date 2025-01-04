@@ -28,7 +28,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
  * @version 1.0
  * @date 2024/9/10
  * @className MongoBaseRepository
- * @desc 数据仓库抽象基类<br>
+ * @desc 数据仓库抽象基类 <br>
  * 关于BaseRepository及其子类的约定：<br>
  * 1. 后缀为byXXX的方法，不会做checkUserShip检查，在没找到资源时将抛出异常<br>
  * 2. 后缀为byXxxOptional的方法，不会做checkUserShip检查，在没找到资源时返回empty()<br>

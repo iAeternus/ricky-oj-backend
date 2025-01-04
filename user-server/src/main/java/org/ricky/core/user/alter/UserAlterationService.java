@@ -20,13 +20,13 @@ import static org.ricky.core.verification.domain.VerificationCodeTypeEnum.REGIST
  * @author Ricky
  * @version 1.0
  * @date 2024/12/30
- * @className UserAlterService
+ * @className UserAlterationService
  * @desc
  */
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UserAlterService {
+public class UserAlterationService {
 
     private final RateLimiter rateLimiter;
     private final UserDomainService userDomainService;
@@ -46,7 +46,7 @@ public class UserAlterService {
         log.info("User[{}] registered.", user.getId());
 
         return RegisterResponse.builder()
-                .studentId(user.getId())
+                .userId(user.getId())
                 .build();
     }
 }

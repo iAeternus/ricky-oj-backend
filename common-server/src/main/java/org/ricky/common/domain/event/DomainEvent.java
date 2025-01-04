@@ -1,6 +1,5 @@
 package org.ricky.common.domain.event;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,18 +20,15 @@ import static org.ricky.common.constants.CommonConstants.EVENT_COLLECTION;
  * @version 1.0
  * @date 2024/9/5
  * @className DomainEvent
- * @desc 领域事件<br>
+ * @desc 领域事件 <br>
  * 这里ar代指AggregateRoot
  * DomainEvent既要保证能支持MongoDB的序列化/反序列化，有要能够通过Jackson序列化/反序列化（因为要发送到Redis）<br>
+ * @see org.ricky.common.json.JsonTypeDefine 其子类必须加@JsonTypeDefine注解才可正常序列化<br>
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
-@JsonSubTypes(value = {
-        // @JsonSubTypes.Type(value = AppAttributesCreatedEvent.class, name = "ATTRIBUTES_CREATED"),
-})
-
 @Getter
 @Document(EVENT_COLLECTION)
 @NoArgsConstructor(access = PROTECTED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
 public abstract class DomainEvent {
 
     /**

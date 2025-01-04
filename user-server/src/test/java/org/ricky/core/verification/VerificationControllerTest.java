@@ -5,24 +5,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.ricky.common.constants.CommonConstants;
-import org.ricky.common.ratelimit.RateLimiter;
-import org.ricky.core.MockMvcUtils;
 import org.ricky.core.common.domain.ReturnId;
-import org.ricky.core.user.domain.UserRepository;
-import org.ricky.core.verification.alter.VerificationCodeAlterService;
+import org.ricky.core.verification.alter.VerificationCodeAlterationService;
 import org.ricky.core.verification.alter.dto.command.CreateRegisterVerificationCodeCommand;
-import org.ricky.core.verification.domain.VerificationCodeFactory;
-import org.ricky.core.verification.domain.VerificationCodeRepository;
-import org.ricky.core.verification.domain.VerificationCodeSender;
-import org.ricky.core.verification.query.VerificationCodeQueryService;
+import org.ricky.core.verification.fetch.VerificationCodeFetchService;
 import org.ricky.management.SystemManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -30,7 +18,6 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 import static org.ricky.common.constants.CommonConstants.VERIFICATION_ID_PREFIX;
 import static org.ricky.common.utils.RandomTestFixture.rMobile;
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 /**
  * @author Ricky
@@ -47,10 +34,10 @@ class VerificationControllerTest {
     private VerificationController verificationController;
 
     @Mock
-    private VerificationCodeAlterService verificationCodeAlterService;
+    private VerificationCodeAlterationService verificationCodeAlterationService;
 
     @Mock
-    private VerificationCodeQueryService verificationCodeQueryService;
+    private VerificationCodeFetchService verificationCodeFetchService;
 
     private static final String ROOT_URL = "/verification-code";
 
@@ -74,7 +61,7 @@ class VerificationControllerTest {
                 .mobileOrEmail(mobile)
                 .build();
 
-        when(verificationCodeAlterService.createVerificationCodeForRegister(command)).thenReturn(verificationId);
+        when(verificationCodeAlterationService.createVerificationCodeForRegister(command)).thenReturn(verificationId);
 
         // When
         ReturnId returnId = verificationController.createVerificationCodeForRegister(command);

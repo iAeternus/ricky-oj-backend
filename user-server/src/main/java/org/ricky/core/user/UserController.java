@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.ricky.core.user.alter.UserAlterService;
+import org.ricky.core.user.alter.UserAlterationService;
 import org.ricky.core.user.alter.dto.command.RegisterCommand;
 import org.ricky.core.user.alter.dto.response.RegisterResponse;
 import org.springframework.http.HttpStatus;
@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/user")
 public class UserController {
 
-    private final UserAlterService userAlterService;
+    private final UserAlterationService userAlterationService;
 
     @PostMapping("/registration")
     @Operation(summary = "注册")
     @ResponseStatus(HttpStatus.CREATED)
     public RegisterResponse register(@RequestBody @Valid RegisterCommand command) {
-        return userAlterService.register(command);
+        return userAlterationService.register(command);
     }
 
 }

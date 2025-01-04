@@ -95,7 +95,7 @@ public abstract class AggregateRoot implements Identified {
     protected AggregateRoot(String id, UserContext userContext) {
         requireNonBlank(id, "ID must not be blank.");
         requireNonNull(userContext, "UserContext must not be null.");
-        requireNonBlank(userContext.getUserId(), "UID must not be blank.");
+        requireNonBlank(userContext.getUserId(), "User ID must not be blank.");
 
         this.id = id;
         this.userId = userContext.getUserId();

@@ -1,7 +1,6 @@
 package org.ricky.core.user;
 
-import org.junit.jupiter.api.Test;
-import org.ricky.core.user.alter.UserAlterService;
+import org.ricky.core.user.alter.UserAlterationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -21,6 +20,6 @@ class UserControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private UserAlterService userAlterService;
+    private UserAlterationService userAlterationService;
 
 }

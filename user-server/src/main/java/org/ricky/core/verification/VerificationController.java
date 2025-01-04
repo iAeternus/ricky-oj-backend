@@ -6,11 +6,11 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.ricky.common.validation.id.Id;
 import org.ricky.core.common.domain.ReturnId;
-import org.ricky.core.verification.alter.VerificationCodeAlterService;
+import org.ricky.core.verification.alter.VerificationCodeAlterationService;
 import org.ricky.core.verification.alter.dto.command.CreateLoginVerificationCodeCommand;
 import org.ricky.core.verification.alter.dto.command.CreateRegisterVerificationCodeCommand;
-import org.ricky.core.verification.query.VerificationCodeQueryService;
-import org.ricky.core.verification.query.dto.response.FetchByIdResponse;
+import org.ricky.core.verification.fetch.VerificationCodeFetchService;
+import org.ricky.core.verification.fetch.dto.response.FetchByIdResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -31,14 +31,14 @@ import static org.ricky.common.constants.CommonConstants.VERIFICATION_ID_PREFIX;
 @RequestMapping(value = "/verification-code")
 public class VerificationController {
 
-    private final VerificationCodeAlterService verificationCodeAlterService;
-    private final VerificationCodeQueryService verificationCodeQueryService;
+    private final VerificationCodeAlterationService verificationCodeAlterationService;
+    private final VerificationCodeFetchService verificationCodeFetchService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "为注册生成验证码")
     @PostMapping(value = "/for-register")
     public ReturnId createVerificationCodeForRegister(@RequestBody @Valid CreateRegisterVerificationCodeCommand command) {
-        String verificationCodeId = verificationCodeAlterService.createVerificationCodeForRegister(command);
+        String verificationCodeId = verificationCodeAlterationService.createVerificationCodeForRegister(command);
         return ReturnId.returnId(verificationCodeId);
     }
 
@@ -46,7 +46,7 @@ public class VerificationController {
     @Operation(summary = "为登录生成验证码")
     @PostMapping(value = "/for-login")
     public ReturnId createVerificationCodeForLogin(@RequestBody @Valid CreateLoginVerificationCodeCommand command) {
-        String verificationCodeId = verificationCodeAlterService.createVerificationCodeForLogin(command);
+        String verificationCodeId = verificationCodeAlterationService.createVerificationCodeForLogin(command);
         return ReturnId.returnId(verificationCodeId);
     }
 
@@ -54,7 +54,7 @@ public class VerificationController {
     @GetMapping("/fetch/{verificationCodeId}")
     public FetchByIdResponse fetchById(@PathVariable("verificationCodeId")
                                        @Id(prefix = VERIFICATION_ID_PREFIX) String verificationCodeId) {
-        return verificationCodeQueryService.fetchById(verificationCodeId);
+        return verificationCodeFetchService.fetchById(verificationCodeId);
     }
 
 }

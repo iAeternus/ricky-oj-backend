@@ -17,4 +17,6 @@ public interface UserRepository {
     Optional<User> byMobileOrEmailOptional(String mobileOrEmail);
 
     void save(User user);
+
+    User cachedByApiKey(String apiKey);
 }

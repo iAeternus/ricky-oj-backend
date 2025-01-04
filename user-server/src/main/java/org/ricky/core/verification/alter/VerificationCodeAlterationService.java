@@ -23,13 +23,13 @@ import static org.ricky.core.verification.domain.VerificationCodeTypeEnum.REGIST
  * @author Ricky
  * @version 1.0
  * @date 2024/9/24
- * @className VerificationCodeAlterService
+ * @className VerificationCodeAlterationService
  * @desc
  */
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class VerificationCodeAlterService {
+public class VerificationCodeAlterationService {
 
     private final VerificationCodeRepository verificationCodeRepository;
     private final VerificationCodeFactory verificationCodeFactory;

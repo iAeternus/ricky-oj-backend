@@ -55,4 +55,9 @@ public class MongoUserRepository extends MongoBaseRepository<User> implements Us
     public void save(User user) {
         super.save(user);
     }
+
+    @Override
+    public User cachedByApiKey(String apiKey) {
+        return null;
+    }
 }

@@ -1,5 +1,6 @@
-package org.ricky.core.verification.query.dto.response;
+package org.ricky.core.problem.alter.dto.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,15 +10,16 @@ import org.ricky.common.domain.marker.Response;
 /**
  * @author Ricky
  * @version 1.0
- * @date 2024/12/30
- * @className FetchByIdResponse
+ * @date 2025/1/2
+ * @className CreateProblemResponse
  * @desc
  */
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class FetchByIdResponse implements Response {
+public class CreateProblemResponse implements Response {
 
-    String code;
+    @Schema(name = "题目ID")
+    String problemId;
 
 }
