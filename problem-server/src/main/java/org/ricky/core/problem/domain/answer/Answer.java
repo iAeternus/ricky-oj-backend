@@ -20,13 +20,19 @@ import org.ricky.core.problem.domain.LanguageEnum;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Answer implements ValueObject {
 
-    @Schema(name = "语言")
+    /**
+     * 语言
+     */
     LanguageEnum language;
 
-    @Schema(name = "代码")
+    /**
+     * 代码
+     */
     String code;
 
-    @Schema(name = "是否启用")
+    /**
+     * 是否启用
+     */
     boolean enable;
 
 }

@@ -2,10 +2,7 @@ package org.ricky.core.user.domain.data.accepted;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 import org.ricky.common.domain.marker.Identified;
 import org.ricky.common.validation.id.Id;
 
@@ -19,25 +16,32 @@ import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
  * @className AcceptedProblem
  * @desc AC的题目
  */
-@Value
+@Getter
 @Builder
+@EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class AcceptedProblem implements Identified {
 
+    /**
+     * ID
+     */
     @NotBlank
-    @Schema(name = "ID")
     @Id(prefix = ACCEPTED_PROBLEM_ID_PREDIX)
-    String id;
+    private final String id;
 
+    /**
+     * 题目ID
+     */
     @NotBlank
-    @Schema(name = "题目ID")
     @Id(prefix = PROBLEM_ID_PREFIX)
-    String problemId;
+    private final String problemId;
 
+    /**
+     * 提交ID
+     */
     @NotBlank
-    @Schema(name = "提交ID")
     @Id(prefix = SUBMIT_ID_PREFIX)
-    String submitId;
+    private final String submitId;
 
     public AcceptedProblem(String problemId, String submitId) {
         this.id = newAcceptedProblemId();

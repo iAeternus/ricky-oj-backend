@@ -82,13 +82,4 @@ public class CollectionUtils {
         return map;
     }
 
-    public static boolean isEmpty(Map<?, ?> map) {
-        return org.apache.commons.collections4.MapUtils.isEmpty(map);
-    }
-
-    public static boolean isNotEmpty(Map<?, ?> map) {
-        return org.apache.commons.collections4.MapUtils.isNotEmpty(map);
-    }
-
-
 }

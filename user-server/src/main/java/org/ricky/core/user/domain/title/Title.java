@@ -21,11 +21,15 @@ import org.ricky.common.validation.color.Color;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Title implements ValueObject {
 
-    @Schema(name = "头衔、称号")
+    /**
+     * 头衔、称号
+     */
     String name;
 
+    /**
+     * 头衔、称号的颜色
+     */
     @Color
-    @Schema(name = "头衔、称号的颜色")
     String color;
 
 }

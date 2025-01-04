@@ -8,5 +8,10 @@ package org.ricky.common.domain.event;
  * @desc 领域事件类型枚举
  */
 public enum DomainEventTypeEnum {
+
+    CASE_GROUPS_DELETED,
+    CASES_DELETED,
+
     // TODO add here...
+
 }

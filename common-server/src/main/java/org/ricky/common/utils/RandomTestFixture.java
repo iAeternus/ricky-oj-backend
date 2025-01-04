@@ -13,7 +13,7 @@ import java.util.Random;
 import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.apache.commons.lang3.RandomUtils.*;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ricky.common.utils.UUIDGenerator.newShortUuid;
+import static org.ricky.common.utils.UUIDGenerator.newShortUUID;
 
 public class RandomTestFixture {
 
@@ -92,7 +92,7 @@ public class RandomTestFixture {
     // }
 
     public static String rCustomId() {
-        return newShortUuid();
+        return newShortUUID();
     }
 
     public static boolean rBool() {

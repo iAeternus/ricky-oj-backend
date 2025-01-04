@@ -407,7 +407,7 @@ public abstract class MongoBaseRepository<AR extends AggregateRoot> {
         requireNonNull(userContext, "UserContext must not be null.");
 
         if (!ValidationUtils.equals(ar.getUserId(), userContext.getUserId())) {
-            throw new MyException(AR_NOT_FOUND, "未找到资源。", mapOf("id", ar.getId(), "UID", ar.getUserId()));
+            throw new MyException(AR_NOT_FOUND, "未找到资源。", mapOf("id", ar.getId(), "User ID", ar.getUserId()));
         }
     }
 

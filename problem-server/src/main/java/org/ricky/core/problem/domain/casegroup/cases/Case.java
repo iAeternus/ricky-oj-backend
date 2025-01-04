@@ -16,30 +16,40 @@ import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
  * @className Case
  * @desc 测试用例
  */
-@Value
+@Getter
 @Builder
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Case implements Identified {
 
+    /**
+     * ID
+     */
     @NotBlank
-    @Schema(name = "ID")
     @Id(prefix = CASE_ID_PREFIX)
-    String id;
+    private final String id;
 
+    /**
+     * 测试用例的输入
+     */
     @NotBlank
-    @Schema(name = "测试用例的输入")
-    String input;
+    private String input;
 
+    /**
+     * 测试用例的输出
+     */
     @NotBlank
-    @Schema(name = "测试用例的输出")
-    String output;
+    private String output;
 
-    @Schema(name = "该测试样例的OI得分")
-    Integer oiScore;
+    /**
+     * 该测试样例的OI得分
+     */
+    private Integer oiScore;
 
-    @Schema(name = "排序")
-    int seq;
+    /**
+     * 排序
+     */
+    private int seq;
 
     public static String newCaseId() {
         return CASE_ID_PREFIX + newSnowflakeId();

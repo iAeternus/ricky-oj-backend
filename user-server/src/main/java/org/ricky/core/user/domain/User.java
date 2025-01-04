@@ -37,64 +37,104 @@ import static org.ricky.core.user.domain.data.UserData.defaultStudentData;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class User extends AggregateRoot {
 
-    @Schema(name = "昵称")
+    /**
+     * 昵称
+     */
     private String nickname;
 
-    @Schema(name = "密码")
+    /**
+     * 密码
+     */
     private String password;
 
-    @Schema(name = "邮箱")
+    /**
+     * 邮箱
+     */
     private String email;
 
-    @Schema(name = "手机号")
+    /**
+     * 手机号
+     */
     private String mobile;
 
-    @Schema(name = "用户状态")
+    /**
+     * 用户状态
+     */
     private UserStatusEnum status;
 
-    @Schema(name = "用户数据")
+    /**
+     * 用户数据
+     */
     private UserData userData;
 
-    @Schema(name = "是否能创建题目")
+    /**
+     * 是否能创建题目
+     */
     private boolean canCreateProblem;
 
-    @Schema(name = "是否能创建比赛")
+    /**
+     * 是否能创建比赛
+     */
     private boolean canCreateContest;
 
-    @Schema(name = "学校")
+    /**
+     * 学校
+     */
     private String school;
 
-    @Schema(name = "专业")
+    /**
+     * 专业
+     */
     private String course;
 
-    @Schema(name = "学号")
+    /**
+     * 学号
+     */
     private String idNumber;
 
-    @Schema(name = "性别")
+    /**
+     * 性别
+     */
     private GenderEnum gender;
 
-    @Schema(name = "真实姓名")
+    /**
+     * 真实姓名
+     */
     private String realName;
 
-    @Schema(name = "头像")
+    /**
+     * 头像
+     */
     private UploadedFile avatar;
 
-    @Schema(name = "个性介绍")
+    /**
+     * 个性介绍
+     */
     private String signature;
 
-    @Schema(name = "头衔、称号")
+    /**
+     * 头衔、称号
+     */
     private Title title;
 
-    @Schema(name = "cf的username")
+    /**
+     * cf的username
+     */
     private String cfUsername;
 
-    @Schema(name = "github地址")
+    /**
+     * github地址
+     */
     private String github;
 
-    @Schema(name = "博客地址")
+    /**
+     * 博客地址
+     */
     private String blog;
 
-    @Schema(name = "登录失败次数")
+    /**
+     * 登录失败次数
+     */
     private FailedLoginCount failedLoginCount; // TODO NPE
 
     public User(String nickname, String password, String email, String mobile, UserContext userContext) {

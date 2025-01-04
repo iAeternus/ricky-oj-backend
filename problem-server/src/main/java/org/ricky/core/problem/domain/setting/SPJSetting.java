@@ -18,18 +18,26 @@ import org.ricky.core.problem.domain.LanguageEnum;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class SPJSetting {
 
-    @Schema(name = "特判程序或交互程序的代码")
+    /**
+     * 特判程序或交互程序的代码
+     */
     private String spjCode;
 
-    @Schema(name = "特判程序或交互程序的语言")
+    /**
+     * 特判程序或交互程序的语言
+     */
     private LanguageEnum spjLanguage;
 
+    /**
+     * 特判程序或交互程序的额外文件
+     */
     @Setter
-    @Schema(name = "特判程序或交互程序的额外文件")
     private UploadedFile userExtraFile;
 
+    /**
+     * 特判程序或交互程序的额外文件
+     */
     @Setter
-    @Schema(name = "特判程序或交互程序的额外文件")
     private UploadedFile judgeExtraFile;
 
     public static SPJSetting defaultSPJSetting() {

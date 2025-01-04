@@ -20,13 +20,17 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserData {
 
-    @Schema(name = "cf得分")
+    /**
+     * cf得分
+     */
     Integer rating;
 
+    /**
+     * AC的题目集合
+     */
     @Valid
     @NotNull
     @NoNullElement
-    @Schema(name = "AC的题目集合")
     List<AcceptedProblem> acceptedProblems;
 
     // TODO 后期迭代：统计用户每天刷了多少道题

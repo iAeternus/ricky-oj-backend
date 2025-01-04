@@ -23,10 +23,14 @@ import static org.ricky.common.utils.ValidationUtils.isNotBlank;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class VJSetting implements ValueObject {
 
-    @Schema(name = "是否为vj判题")
+    /**
+     * 是否为vj判题
+     */
     private boolean isRemote;
 
-    @Schema(name = "题目来源（例如vj判题时HDU-1000的链接）")
+    /**
+     * 题目来源（例如vj判题时HDU-1000的链接）
+     */
     private String source;
 
     public static VJSetting defaultVJSetting() {

@@ -27,19 +27,27 @@ import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Tag extends AggregateRoot {
 
+    /**
+     * 名称
+     */
     @NotBlank
-    @Schema(name = "名称")
     private String name;
 
+    /**
+     * 颜色
+     */
     @Color
-    @Schema(name = "颜色")
     private String color;
 
-    @Schema(name = "所属OJ")
+    /**
+     * 所属OJ
+     */
     private String oj;
 
+    /**
+     * 团队ID
+     */
     @NotBlank
-    @Schema(name = "团队ID")
     @Id(prefix = GROUP_ID_PREFIX)
     private String groupId;
 

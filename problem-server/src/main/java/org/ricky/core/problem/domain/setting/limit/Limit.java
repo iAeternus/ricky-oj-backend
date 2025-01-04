@@ -19,15 +19,21 @@ import static java.lang.Double.compare;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Limit implements ValueObject {
 
+    /**
+     * 时间限制 ms
+     */
     @FloatNumber(min = 0)
-    @Schema(name = "时间限制 ms")
     double timeLimit;
 
+    /**
+     * 内存空间限制 MB
+     */
     @FloatNumber(min = 0)
-    @Schema(name = "内存空间限制 MB")
     double memoryLimit;
 
-    @Schema(name = "栈空间限制 MB")
+    /**
+     * 栈空间限制 MB
+     */
     @FloatNumber(min = 0, max = 8)
     double stackLimit;
 

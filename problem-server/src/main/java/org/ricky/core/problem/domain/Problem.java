@@ -6,18 +6,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.domain.AggregateRoot;
-import org.ricky.core.problem.domain.answer.Answer;
+import org.ricky.common.exception.MyException;
+import org.ricky.common.utils.ValidationUtils;
+import org.ricky.core.problem.domain.casegroup.CaseGroupInfo;
+import org.ricky.core.problem.domain.casegroup.cases.CaseInfo;
+import org.ricky.core.problem.domain.event.ProblemCaseDeletedEvent;
+import org.ricky.core.problem.domain.event.ProblemCaseGroupDeletedEvent;
 import org.ricky.core.problem.domain.setting.ProblemSetting;
-import org.ricky.core.problem.domain.casegroup.CaseGroup;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.Set;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static org.ricky.common.constants.CommonConstants.PROBLEM_COLLECTION;
 import static org.ricky.common.constants.CommonConstants.PROBLEM_ID_PREFIX;
+import static org.ricky.common.exception.ErrorCodeEnum.PROBLEM_ALREADY_UPDATED;
 import static org.ricky.common.utils.CollectionUtils.mapOf;
 import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
+import static org.ricky.common.utils.ValidationUtils.isNotEmpty;
 import static org.ricky.core.problem.domain.setting.ProblemSetting.defaultProblemSetting;
 
 
@@ -34,53 +42,70 @@ import static org.ricky.core.problem.domain.setting.ProblemSetting.defaultProble
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Problem extends AggregateRoot {
 
-    @Schema(name = "题目的自定义ID 例如（HOJ-1000）")
+    /**
+     * 题目的自定义ID 例如（HOJ-1000）
+     */
     private String customId;
 
-    @Schema(name = "标题")
+    /**
+     * 标题
+     */
     private String title;
 
-    @Schema(name = "作者")
+    /**
+     * 作者"
+     */
     private String author;
 
-    @Schema(name = "题目描述")
+    /**
+     * 题目描述
+     */
     private String description;
 
-    @Schema(name = "输入格式")
+    /**
+     * 输入格式
+     */
     private String inputFormat;
 
-    @Schema(name = "输出格式")
+    /**
+     * 输出格式
+     */
     private String outputFormat;
 
-    @Schema(name = "输入样例")
+    /**
+     * 输入样例
+     */
     private List<String> inputCases;
 
-    @Schema(name = "输出样例")
+    /**
+     * 输出样例
+     */
     private List<String> outputCases;
 
-    @Schema(name = "备注")
+    /**
+     * 备注
+     */
     private String hint;
 
-    @Schema(name = "题目设置")
+    /**
+     * 题目设置
+     */
     private ProblemSetting setting;
 
-    @Schema(name = "测试用例组集合")
-    private List<CaseGroup> caseGroups;
+    /**
+     * 题目设置的版本号，用于实现乐观锁
+     */
+    private String version;
 
-    @Schema(name = "题目标签组ID集合")
+    /**
+     * 题目标签组ID集合
+     */
     private List<String> tagGroups;
-
-    @Schema(name = "答案集合")
-    private List<Answer> answers;
-
-    @Schema(name = "题目测试数据的版本号，用于实现乐观锁")
-    private String caseVersion;
 
     public Problem(String customId, String title, String author, String description, String inputFormat, String outputFormat,
                    List<String> inputCases, List<String> outputCases, String hint, UserContext userContext) {
         super(newProblemId(), userContext);
-        init(customId, title, author, description, inputFormat, outputFormat, inputCases, outputCases, hint);
-        correctAndValidate();
+        init(customId, title, author, description, inputFormat, outputFormat, inputCases, outputCases, hint, defaultProblemSetting());
         addOpsLog("新建题目", userContext);
     }
 
@@ -88,8 +113,23 @@ public class Problem extends AggregateRoot {
         return PROBLEM_ID_PREFIX + newSnowflakeId();
     }
 
+    public void updateSetting(ProblemSetting newSetting, String version, UserContext userContext) {
+        if (!ValidationUtils.equals(this.getVersion(), version)) {
+            throw new MyException(PROBLEM_ALREADY_UPDATED, "更新失败，题目已经在别处被更新，请刷新页面后重新编辑。", mapOf("problemId", this.getId()));
+        }
+
+        ProblemSettingContext newContext = newSetting.context();
+        correctAndValidate(newContext);
+        ProblemSettingContext oldContext = setting.context();
+
+        checkCaseGroupsAndCasesDeletion(oldContext, newContext, userContext);
+
+        doUpdateSetting(newSetting);
+        addOpsLog("变更题目设置", userContext);
+    }
+
     private void init(String problemId, String title, String author, String description, String inputFormat, String outputFormat,
-                      List<String> inputCases, List<String> outputCases, String hint) {
+                      List<String> inputCases, List<String> outputCases, String hint, ProblemSetting setting) {
         this.customId = problemId;
         this.title = title;
         this.author = author;
@@ -99,19 +139,40 @@ public class Problem extends AggregateRoot {
         this.inputCases = inputCases;
         this.outputCases = outputCases;
         this.hint = hint;
-        this.setting = defaultProblemSetting();
-        this.caseGroups = List.of();
+        correctAndValidate(setting.context());
+        doUpdateSetting(setting);
         this.tagGroups = List.of();
-        this.answers = List.of();
-        this.caseVersion = newCaseVersion();
     }
 
-    private String newCaseVersion() {
+    private String newVersion() {
         return String.valueOf(System.currentTimeMillis());
     }
 
-    private void correctAndValidate() {
-        setting.correctAndValidate();
+    private void correctAndValidate(ProblemSettingContext context) {
+        try {
+            context.correctAndValidate();
+        } catch (MyException ex) {
+            ex.addData("problemId", this.getId());
+            throw ex;
+        }
+    }
+
+    private void doUpdateSetting(ProblemSetting newSetting) {
+        this.setting = newSetting;
+        this.version = newVersion();
+    }
+
+    private void checkCaseGroupsAndCasesDeletion(ProblemSettingContext oldContext, ProblemSettingContext newContext, UserContext userContext) {
+        Set<CaseGroupInfo> deletedCaseGroups = oldContext.calculateDeletedCaseGroups(newContext);
+        Set<String> deletedCaseGroupIds = deletedCaseGroups.stream().map(CaseGroupInfo::getCaseGroupId).collect(toImmutableSet());
+        if (isNotEmpty(deletedCaseGroupIds)) {
+            raiseEvent(new ProblemCaseGroupDeletedEvent(getId(), deletedCaseGroups, userContext));
+        }
+
+        Set<CaseInfo> deletedCaseInfos = oldContext.calculateDeletedCaseInfos(newContext, deletedCaseGroupIds);
+        if(isNotEmpty(deletedCaseInfos)) {
+            raiseEvent(new ProblemCaseDeletedEvent(getId(), deletedCaseInfos, userContext));
+        }
     }
 
 }

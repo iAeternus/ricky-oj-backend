@@ -1,5 +1,9 @@
 package org.ricky.management;
 
+import org.ricky.common.utils.SnowflakeIdGenerator;
+
+import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
+
 /**
  * @author Ricky
  * @version 1.0
@@ -16,6 +20,10 @@ public class SystemManager {
 
     public static String baseId(String prefix) {
         return prefix + "000000000000000001";
+    }
+
+    public static String newId(String prefix) {
+        return prefix + newSnowflakeId();
     }
 
 }

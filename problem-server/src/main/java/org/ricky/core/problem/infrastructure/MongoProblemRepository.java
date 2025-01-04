@@ -1,6 +1,7 @@
 package org.ricky.core.problem.infrastructure;
 
 import lombok.RequiredArgsConstructor;
+import org.ricky.common.context.UserContext;
 import org.ricky.common.mongo.MongoBaseRepository;
 import org.ricky.common.utils.ValidationUtils;
 import org.ricky.core.problem.domain.ProblemRepository;
@@ -34,6 +35,11 @@ public class MongoProblemRepository extends MongoBaseRepository<Problem> impleme
     public void save(Problem problem) {
         super.save(problem);
         cachedProblemRepository.evictProblemsCache();
+    }
+
+    @Override
+    public Problem byIdAndCheckUserShip(String id, UserContext userContext) {
+        return super.byIdAndCheckUserShip(id, userContext);
     }
 
 }

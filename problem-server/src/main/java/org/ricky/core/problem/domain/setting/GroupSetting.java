@@ -26,10 +26,14 @@ import static org.ricky.common.utils.ValidationUtils.isNotBlank;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class GroupSetting implements ValueObject {
 
-    @Schema(name = "是否为团队内的题目")
+    /**
+     * 是否为团队内的题目
+     */
     boolean isGroup;
 
-    @Schema(name = "团队ID")
+    /**
+     * 团队ID
+     */
     @Id(prefix = GROUP_ID_PREFIX)
     String teamId;
 

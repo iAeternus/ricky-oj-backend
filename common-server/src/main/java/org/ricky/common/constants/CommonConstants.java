@@ -38,6 +38,9 @@ public interface CommonConstants {
     String USER_CACHE = "USER";
     String PROBLEMS_CACHE = "PROBLEMS";
 
+    String CASE_GROUPS_DELETED_EVENT = "CASE_GROUPS_DELETED_EVENT";
+    String CASES_DELETED_EVENT = "CASES_DELETED_EVENT";
+
     int MAX_URL_LENGTH = 1024;
     int MAX_CASES_SIZE = 64;
     int MAX_GENERIC_NAME_LENGTH = 50;

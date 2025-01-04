@@ -1,4 +1,4 @@
-package org.ricky.core.login.alter.dto.response;
+package org.ricky.core.problem.alter.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
@@ -10,15 +10,16 @@ import org.ricky.common.domain.marker.Response;
 /**
  * @author Ricky
  * @version 1.0
- * @date 2024/12/30
- * @className JwtTokenResponse
+ * @date 2025/1/4
+ * @className UpdateProblemResponse
  * @desc
  */
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class JwtTokenResponse implements Response {
+public class UpdateProblemResponse implements Response {
 
-    String token;
+    @Schema(name = "题目设置版本号")
+    String version;
 
 }

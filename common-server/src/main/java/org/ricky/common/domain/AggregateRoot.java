@@ -129,7 +129,7 @@ public abstract class AggregateRoot implements Identified {
 
         OpsLog log = OpsLog.builder()
                 .note(note)
-                .optAt(Instant.now())
+                .optAt(now())
                 .optBy(userContext.getUserId())
                 .obn(userContext.getNickname())
                 .build();
@@ -141,7 +141,7 @@ public abstract class AggregateRoot implements Identified {
             this.opsLogs.remove();
         }
 
-        this.updatedAt = Instant.now();
+        this.updatedAt = now();
         this.updatedBy = userContext.getUserId();
         this.updater = userContext.getNickname();
     }

@@ -1,5 +1,6 @@
 package org.ricky.core.problem.domain.casegroup;
 
+import com.google.common.collect.ImmutableSet;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -10,9 +11,12 @@ import org.ricky.common.domain.marker.Identified;
 import org.ricky.common.validation.collection.NoNullElement;
 import org.ricky.common.validation.id.Id;
 import org.ricky.core.problem.domain.casegroup.cases.Case;
+import org.ricky.core.problem.domain.casegroup.cases.CaseInfo;
 
 import java.util.List;
+import java.util.Set;
 
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static org.ricky.common.constants.CommonConstants.*;
 import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
 
@@ -23,29 +27,37 @@ import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
  * @className CaseGroup
  * @desc 测试用例组
  */
-@Value
+@Getter
 @Builder
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class CaseGroup implements Identified {
 
+    /**
+     * ID
+     */
     @NotBlank
-    @Schema(name = "ID")
     @Id(prefix = CASE_GROUP_ID_PREFIX)
-    String id;
+    private final String id;
 
-    @Schema(name = "组名")
-    String name;
+    /**
+     * 组名
+     */
+    private final String name;
 
-    @Schema(name = "组计分模式")
-    CaseGroupModeEnum mode;
+    /**
+     * 组计分模式
+     */
+    private CaseGroupModeEnum mode;
 
+    /**
+     * 测试用例集合
+     */
     @Valid
     @NotNull
     @NoNullElement
     @Size(max = MAX_CASES_SIZE)
-    @Schema(name = "测试用例集合")
-    List<Case> cases;
+    private List<Case> cases;
 
     public static String newCaseGroupId() {
         return CASE_GROUP_ID_PREFIX + newSnowflakeId();
@@ -55,4 +67,19 @@ public class CaseGroup implements Identified {
     public String getIdentifier() {
         return id;
     }
+
+    public CaseGroupInfo toCaseGroupInfo() {
+        Set<CaseInfo> caseInfos = cases.stream()
+                .map(caze -> CaseInfo.builder()
+                        .caseGroupId(getId())
+                        .caseId(caze.getId())
+                        .build())
+                .collect(toImmutableSet());
+
+        return CaseGroupInfo.builder()
+                .caseGroupId(getId())
+                .caseInfos(caseInfos)
+                .build();
+    }
+
 }

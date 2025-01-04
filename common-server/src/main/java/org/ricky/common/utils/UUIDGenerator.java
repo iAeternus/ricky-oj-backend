@@ -23,7 +23,7 @@ public class UUIDGenerator {
      *
      * @return UUID
      */
-    public static String newShortUuid() {
+    public static String newShortUUID() {
         UUID uuid = UUID.randomUUID();
         byte[] src = ByteBuffer.wrap(new byte[16])
                 .putLong(uuid.getMostSignificantBits())
