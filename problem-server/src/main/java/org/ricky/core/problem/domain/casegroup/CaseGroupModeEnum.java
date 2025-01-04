@@ -7,6 +7,7 @@ package org.ricky.core.problem.domain.casegroup;
  * @className CaseGroupModeEnum
  * @desc 组计分模式
  */
+@Deprecated
 public enum CaseGroupModeEnum {
 
     DEFAULT,

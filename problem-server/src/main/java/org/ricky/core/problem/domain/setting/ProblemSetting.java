@@ -1,27 +1,23 @@
 package org.ricky.core.problem.domain.setting;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.ricky.common.exception.MyException;
 import org.ricky.common.validation.collection.NoNullElement;
+import org.ricky.core.problem.domain.LanguageEnum;
 import org.ricky.core.problem.domain.ProblemSettingContext;
 import org.ricky.core.problem.domain.answer.Answer;
 import org.ricky.core.problem.domain.casegroup.CaseGroup;
 import org.ricky.core.problem.domain.setting.limit.Limit;
-import org.ricky.core.problem.domain.LanguageEnum;
 
 import java.util.List;
 
-import static org.ricky.common.exception.ErrorCodeEnum.ACM_FORMAT_DOES_NOT_NEED_SCORE;
 import static org.ricky.core.problem.domain.LanguageEnum.*;
 import static org.ricky.core.problem.domain.setting.ApplyPublicProgressEnum.NOT_APPLIED_YET;
 import static org.ricky.core.problem.domain.setting.GroupSetting.defaultGroupSetting;
 import static org.ricky.core.problem.domain.setting.ProblemDifficultyEnum.EASY;
 import static org.ricky.core.problem.domain.setting.ProblemStatusEnum.PRIVATE;
 import static org.ricky.core.problem.domain.setting.ProblemTypeEnum.ACM;
-import static org.ricky.core.problem.domain.setting.ProblemTypeEnum.OI;
 import static org.ricky.core.problem.domain.setting.SPJSetting.defaultSPJSetting;
 
 /**
@@ -37,55 +33,50 @@ import static org.ricky.core.problem.domain.setting.SPJSetting.defaultSPJSetting
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProblemSetting {
 
-    public static final List<LanguageEnum> ALL = List.of(C_11, CPP_17, CPP_20, CPP_23, GOLANG, JAVA_8, JAVA_21, PYTHON_2, PYTHON_3, RUST);
+    public static final List<LanguageEnum> ALL_LANGUAGES = List.of(C_11, CPP_17, CPP_20, CPP_23, GOLANG, JAVA_8, JAVA_21, PYTHON_2, PYTHON_3, RUST);
 
     /**
      * 题目类型
      */
     @NotNull
-    ProblemTypeEnum type;
+    private ProblemTypeEnum type;
 
     /**
      * 评测模式
      */
     @NotNull
-    JudgeModeEnum judgeMode;
+    private JudgeModeEnum judgeMode;
 
     /**
      * 评测样例模式
      */
     @NotNull
-    JudgeCaseModeEnum judgeCaseMode;
+    private JudgeCaseModeEnum judgeCaseMode;
 
     /**
      * 题目难度
      */
     @NotNull
-    ProblemDifficultyEnum difficulty;
+    private ProblemDifficultyEnum difficulty;
 
     /**
      * 题目状态
      */
     @NotNull
-    ProblemStatusEnum status;
+    private ProblemStatusEnum status;
 
     /**
      * 限制
      */
     @Valid
-    Limit limit;
+    private Limit limit;
 
     /**
      * 允许的作答语言集合
      */
     @NotNull
     @NoNullElement
-    List<LanguageEnum> languages;
-
-    /**
-     * 当题目类型为OI时的分数
-     */
-    private Integer oiScore;
+    private List<LanguageEnum> languages;
 
     /**
      * 是否开启该题目的测试样例结果查看
@@ -95,25 +86,25 @@ public class ProblemSetting {
     /**
      * 团队设置
      */
-    GroupSetting groupSetting;
+    private GroupSetting groupSetting;
 
     /**
      * 申请公开的进度
      */
     @NotNull
-    ApplyPublicProgressEnum applyPublicProgress;
+    private ApplyPublicProgressEnum applyPublicProgress;
 
     /**
      * 远程评测设置
      */
     @Valid
-    VJSetting vjSetting;
+    private VJSetting vjSetting;
 
     /**
      * 特判程序或交互程序的设置
      */
     @Valid
-    SPJSetting spjSetting;
+    private SPJSetting spjSetting;
 
     /**
      * 测试用例组集合
@@ -137,8 +128,7 @@ public class ProblemSetting {
                 .difficulty(EASY)
                 .status(PRIVATE)
                 .limit(Limit.defaultLimit())
-                .languages(ALL)
-                .oiScore(0)
+                .languages(ALL_LANGUAGES)
                 .openCaseResult(false)
                 .groupSetting(defaultGroupSetting())
                 .applyPublicProgress(NOT_APPLIED_YET)
@@ -149,18 +139,8 @@ public class ProblemSetting {
                 .build();
     }
 
-    public void setScore(int score) {
-        if (isOIFormat()) {
-            this.oiScore = score;
-        }
-    }
-
     public boolean isACMFormat() {
         return type == ACM;
-    }
-
-    public boolean isOIFormat() {
-        return type == OI;
     }
 
 }

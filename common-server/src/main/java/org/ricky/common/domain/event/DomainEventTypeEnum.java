@@ -11,6 +11,7 @@ public enum DomainEventTypeEnum {
 
     CASE_GROUPS_DELETED,
     CASES_DELETED,
+    USER_CREATED,
 
     // TODO add here...
 

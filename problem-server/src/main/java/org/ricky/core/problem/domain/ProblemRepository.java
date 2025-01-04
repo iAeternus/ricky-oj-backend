@@ -15,4 +15,7 @@ public interface ProblemRepository {
     void save(Problem problem);
 
     Problem byIdAndCheckUserShip(String problemId, UserContext userContext);
+
+    Problem byId(String problemId);
+
 }

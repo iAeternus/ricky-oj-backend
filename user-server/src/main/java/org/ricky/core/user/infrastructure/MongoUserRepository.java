@@ -60,4 +60,10 @@ public class MongoUserRepository extends MongoBaseRepository<User> implements Us
     public User cachedByApiKey(String apiKey) {
         return null;
     }
+
+    @Override
+    public User byId(String id) {
+        return super.byId(id);
+    }
+
 }

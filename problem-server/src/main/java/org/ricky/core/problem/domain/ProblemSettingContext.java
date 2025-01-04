@@ -60,10 +60,10 @@ public class ProblemSettingContext {
         problemSetting.getVjSetting().correct();
 
         validateCaseGroupIdsNoDuplication();
-        validateScore();
 
         problemSetting.getGroupSetting().validate();
         problemSetting.getVjSetting().validate();
+        problemSetting.getCaseGroups().forEach(CaseGroup::validate);
     }
 
     public Set<CaseGroupInfo> calculateDeletedCaseGroups(ProblemSettingContext newContext) {
@@ -83,12 +83,6 @@ public class ProblemSettingContext {
     private void validateCaseGroupIdsNoDuplication() {
         if (allCaseGroupIds.size() != problemSetting.getCaseGroups().size()) {
             throw new MyException(CASE_GROUP_ID_DUPLICATED, "题目下所有测试用例组名不能重复");
-        }
-    }
-
-    private void validateScore() {
-        if (problemSetting.isACMFormat() && problemSetting.getOiScore() != 0) {
-            throw new MyException(ACM_FORMAT_DOES_NOT_NEED_SCORE, "The ACM format does not require score");
         }
     }
 

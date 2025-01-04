@@ -42,4 +42,8 @@ public class MongoProblemRepository extends MongoBaseRepository<Problem> impleme
         return super.byIdAndCheckUserShip(id, userContext);
     }
 
+    @Override
+    public Problem byId(String id) {
+        return super.byId(id);
+    }
 }

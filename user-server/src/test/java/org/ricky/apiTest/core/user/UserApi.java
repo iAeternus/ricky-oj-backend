@@ -4,11 +4,12 @@ import io.restassured.response.Response;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.core.user.alter.dto.command.RegisterCommand;
 import org.ricky.core.user.alter.dto.response.RegisterResponse;
+import org.ricky.core.user.fetch.dto.response.UserInfoResponse;
 
 /**
  * @author Ricky
  * @version 1.0
- * @date 2024/12/30
+ * @date 2025/1/4
  * @className UserApi
  * @desc
  */
@@ -29,6 +30,16 @@ public class UserApi {
                 .statusCode(201)
                 .extract()
                 .as(RegisterResponse.class);
+    }
+
+    public static UserInfoResponse fetchMyUserInfo(String jwt) {
+        return BaseApiTest.given(jwt)
+                .when()
+                .get(ROOT_URL + "/my/info")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(UserInfoResponse.class);
     }
 
 }

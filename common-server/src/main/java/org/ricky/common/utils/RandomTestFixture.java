@@ -8,8 +8,12 @@ import org.apache.commons.lang3.RandomStringUtils;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.function.Supplier;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.apache.commons.lang3.RandomUtils.*;
 import static org.apache.commons.lang3.StringUtils.isBlank;
@@ -126,6 +130,10 @@ public class RandomTestFixture {
         return nextInt(minInclusive, maxInclusive + 1);
     }
 
+    public static double rDouble(double minInclusive, double maxExclusive) {
+        return nextDouble(minInclusive, maxExclusive);
+    }
+
     public static String rUrl() {
         return "https://www." + randomAlphanumeric(10) + ".com";
     }
@@ -150,4 +158,44 @@ public class RandomTestFixture {
         // 最近5年
         return Instant.now().minusSeconds(rInt(0, 5 * 365 * 24 * 3600));
     }
+
+    public static String rInputCase(int t) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(t).append('\n');
+        for (int i = 0; i < t; ++i) {
+            int n = rInt(1, 10); // 数组长度为 n
+            stringBuilder.append(n).append('\n');
+            for (int j = 0; j < n; ++j) {
+                stringBuilder.append(rInt(1, (int) 1e9)).append(' '); // n 个数
+            }
+            stringBuilder.append('\n');
+        }
+        return stringBuilder.toString();
+    }
+
+    public static String rOutputCase(int t) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < t; ++i) {
+            stringBuilder.append(rInt(1, 1000)).append('\n');
+        }
+        return stringBuilder.toString();
+    }
+
+    public static <T> List<T> rList(int size, Supplier<T> randomConstructor) {
+        List<T> list = new ArrayList<>();
+        for(int i = 0; i < size; ++i) {
+            list.add(randomConstructor.get());
+        }
+        return list;
+    }
+
+    public static <T> List<T> rDistinctList(int size, Supplier<T> randomConstructor) {
+        return rList(size, randomConstructor).stream().distinct().collect(toImmutableList());
+    }
+
+    public static void main(String[] args) {
+        System.out.println(rInputCase(1));
+        System.out.println(rOutputCase(1));
+    }
+
 }

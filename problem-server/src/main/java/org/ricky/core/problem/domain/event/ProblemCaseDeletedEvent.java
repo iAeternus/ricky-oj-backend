@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.domain.event.DomainEventTypeEnum;
+import org.ricky.common.json.JsonTypeDefine;
 import org.ricky.core.problem.domain.casegroup.cases.CaseInfo;
 import org.springframework.data.annotation.TypeAlias;
 
@@ -22,6 +23,7 @@ import static org.ricky.common.domain.event.DomainEventTypeEnum.CASES_DELETED;
  */
 @Getter
 @TypeAlias(CASES_DELETED_EVENT)
+@JsonTypeDefine(CASES_DELETED_EVENT)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProblemCaseDeletedEvent extends ProblemAwareDomainEvent {
 

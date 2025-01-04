@@ -10,7 +10,8 @@ package org.ricky.core.problem.domain.setting;
 public enum ProblemTypeEnum {
 
     ACM,
-    OI,
+    // 暂不支持OI赛制
+    // OI,
     ;
 
 }

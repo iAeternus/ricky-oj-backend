@@ -19,4 +19,7 @@ public interface UserRepository {
     void save(User user);
 
     User cachedByApiKey(String apiKey);
+
+    User byId(String userId);
+
 }

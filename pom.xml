@@ -19,7 +19,6 @@
         <module>gateway</module>
         <module>common-server</module>
         <module>user-server</module>
-        <module>api-test</module>
         <module>judge-server</module>
         <module>problem-server</module>
     </modules>

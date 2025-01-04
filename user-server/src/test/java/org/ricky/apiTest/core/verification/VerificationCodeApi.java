@@ -1,25 +1,27 @@
 package org.ricky.apiTest.core.verification;
 
-import io.restassured.response.Response;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.core.common.domain.ReturnId;
 import org.ricky.core.verification.alter.dto.command.CreateLoginVerificationCodeCommand;
 import org.ricky.core.verification.alter.dto.command.CreateRegisterVerificationCodeCommand;
+import io.restassured.response.Response;
 
 /**
  * @author Ricky
  * @version 1.0
- * @date 2024/12/30
+ * @date 2025/1/4
  * @className VerificationCodeApi
  * @desc
  */
 public class VerificationCodeApi {
 
+    private static final String ROOT_URL = "/verification-code";
+
     public static Response createVerificationCodeForRegisterRaw(CreateRegisterVerificationCodeCommand command) {
         return BaseApiTest.given()
                 .body(command)
                 .when()
-                .post("/verification-code/for-register");
+                .post(ROOT_URL + "/for-register");
     }
 
     public static String createVerificationCodeForRegister(CreateRegisterVerificationCodeCommand command) {
@@ -39,7 +41,7 @@ public class VerificationCodeApi {
         return BaseApiTest.given()
                 .body(command)
                 .when()
-                .post("/verification-code/for-login");
+                .post(ROOT_URL + "/for-login");
     }
 
     public static String createVerificationCodeForLogin(CreateLoginVerificationCodeCommand command) {

@@ -42,11 +42,6 @@ public class Case implements Identified {
     private String output;
 
     /**
-     * 该测试样例的OI得分
-     */
-    private Integer oiScore;
-
-    /**
      * 排序
      */
     private int seq;

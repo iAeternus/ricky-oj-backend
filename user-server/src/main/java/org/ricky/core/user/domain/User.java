@@ -7,6 +7,7 @@ import org.ricky.common.domain.AggregateRoot;
 import org.ricky.common.domain.UploadedFile;
 import org.ricky.common.exception.MyException;
 import org.ricky.core.user.domain.data.UserData;
+import org.ricky.core.user.domain.event.UserCreatedEvent;
 import org.ricky.core.user.domain.title.Title;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -140,6 +141,7 @@ public class User extends AggregateRoot {
     public User(String nickname, String password, String email, String mobile, UserContext userContext) {
         super(newStudentId(), userContext);
         init(nickname, password, email, mobile);
+        raiseEvent(new UserCreatedEvent(getId(), userContext));
         addOpsLog("新建学生", userContext);
     }
 

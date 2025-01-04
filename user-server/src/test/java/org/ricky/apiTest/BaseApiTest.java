@@ -10,16 +10,13 @@ import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.parallel.Execution;
 import org.ricky.apiTest.utils.SetupApi;
+import org.ricky.common.domain.event.DomainEventDao;
 import org.ricky.common.exception.ErrorCodeEnum;
-import org.ricky.common.exception.MyError;
 import org.ricky.common.exception.ErrorResponse;
+import org.ricky.common.exception.MyError;
 import org.ricky.common.password.MyPasswordEncoder;
 import org.ricky.common.security.jwt.JwtService;
 import org.ricky.common.utils.MyObjectMapper;
@@ -37,6 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 import static org.ricky.common.constants.CommonConstants.AUTHORIZATION;
 import static org.ricky.common.constants.CommonConstants.AUTH_COOKIE_NAME;
+import static org.ricky.common.utils.ValidationUtils.isNotBlank;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 /**
@@ -68,6 +66,9 @@ public class BaseApiTest {
     protected MyPasswordEncoder passwordEncoder;
 
     @Autowired
+    protected DomainEventDao domainEventDao;
+
+    @Autowired
     protected VerificationCodeRepository verificationCodeRepository;
 
     @Autowired
@@ -87,7 +88,7 @@ public class BaseApiTest {
     }
 
     public static RequestSpecification given(String jwt) {
-        if (StringUtils.isNotBlank(jwt)) {
+        if (isNotBlank(jwt)) {
             return given().cookie(AUTH_COOKIE_NAME, jwt);
         }
 
@@ -95,7 +96,7 @@ public class BaseApiTest {
     }
 
     public static RequestSpecification givenBearer(String jwt) {
-        if (StringUtils.isNotBlank(jwt)) {
+        if (isNotBlank(jwt)) {
             return given().header(AUTHORIZATION, String.format("Bearer %s", jwt));
         }
 
@@ -123,7 +124,7 @@ public class BaseApiTest {
 
     public static void assertError(Supplier<Response> apiCall, ErrorCodeEnum expectedCode) {
         MyError error = apiCall.get().then().statusCode(expectedCode.getStatus()).extract().as(ErrorResponse.class).getError();
-        assertEquals(expectedCode, error.getCode());
+        Assertions.assertEquals(expectedCode, error.getCode());
     }
 
 }

@@ -44,7 +44,7 @@ public class ProblemController {
         return problemAlterationService.createProblem(command, userContext);
     }
 
-    @PutMapping("{problemId}/setting")
+    @PutMapping("/{problemId}/setting")
     @Operation(summary = "更新设置")
     public UpdateProblemResponse updateProblemSetting(@PathVariable("problemId") @Id(prefix = PROBLEM_ID_PREFIX) String problemId,
                                                       @RequestBody @Valid UpdateProblemSettingCommand command,
@@ -54,5 +54,7 @@ public class ProblemController {
                 .version(version)
                 .build();
     }
+
+    // TODO 更新题目标签，删除题目，修改题目，各种查询...
 
 }

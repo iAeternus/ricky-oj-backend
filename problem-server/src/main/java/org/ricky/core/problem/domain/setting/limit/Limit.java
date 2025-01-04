@@ -6,6 +6,7 @@ import org.ricky.common.domain.marker.ValueObject;
 import org.ricky.common.validation.number.FloatNumber;
 
 import static java.lang.Double.compare;
+import static org.ricky.common.utils.RandomTestFixture.rInt;
 
 /**
  * @author Ricky
