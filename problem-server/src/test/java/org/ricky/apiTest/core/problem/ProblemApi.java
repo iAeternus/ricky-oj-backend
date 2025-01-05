@@ -4,8 +4,10 @@ import io.restassured.response.Response;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.core.problem.alter.dto.command.CreateProblemCommand;
 import org.ricky.core.problem.alter.dto.command.UpdateProblemSettingCommand;
+import org.ricky.core.problem.alter.dto.command.UpdateProblemTagsCommand;
 import org.ricky.core.problem.alter.dto.response.CreateProblemResponse;
 import org.ricky.core.problem.alter.dto.response.UpdateProblemResponse;
+import org.ricky.core.problem.alter.dto.response.UpdateProblemTagsResponse;
 
 /**
  * @author Ricky
@@ -46,6 +48,21 @@ public class ProblemApi {
                 .statusCode(200)
                 .extract()
                 .as(UpdateProblemResponse.class);
+    }
+
+    public static Response updateProblemTagsRaw(String jwt, String problemId, UpdateProblemTagsCommand command) {
+        return BaseApiTest.given(jwt)
+                .body(command)
+                .when()
+                .put(ROOT_URL + "/{problemId}/tags", problemId);
+    }
+
+    public static UpdateProblemTagsResponse updateProblemTags(String jwt, String problemId, UpdateProblemTagsCommand command) {
+        return updateProblemTagsRaw(jwt, problemId, command)
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(UpdateProblemTagsResponse.class);
     }
 
 }

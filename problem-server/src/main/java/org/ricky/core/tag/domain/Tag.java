@@ -47,7 +47,6 @@ public class Tag extends AggregateRoot {
     /**
      * 团队ID
      */
-    @NotBlank
     @Id(prefix = GROUP_ID_PREFIX)
     private String groupId;
 

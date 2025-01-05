@@ -1,6 +1,5 @@
 package org.ricky.core.problem.domain;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,10 +14,13 @@ import org.ricky.core.problem.domain.event.ProblemCaseGroupDeletedEvent;
 import org.ricky.core.problem.domain.setting.ProblemSetting;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.util.Pair;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.google.common.collect.ImmutableList.toImmutableList;
 import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static org.ricky.common.constants.CommonConstants.PROBLEM_COLLECTION;
 import static org.ricky.common.constants.CommonConstants.PROBLEM_ID_PREFIX;
@@ -98,9 +100,9 @@ public class Problem extends AggregateRoot {
     private String version;
 
     /**
-     * 题目标签组ID集合
+     * 题目标签ID集合
      */
-    private List<String> tagGroups;
+    private List<String> tags;
 
     public Problem(String customId, String title, String author, String description, String inputFormat, String outputFormat,
                    List<String> inputCases, List<String> outputCases, String hint, UserContext userContext) {
@@ -128,6 +130,19 @@ public class Problem extends AggregateRoot {
         addOpsLog("变更题目设置", userContext);
     }
 
+    /**
+     * @return first-addedTags second->deletedTags
+     */
+    public Pair<List<String>, List<String>> updateTags(List<String> newTags, UserContext userContext) {
+        Set<String> oldTags = new HashSet<>(tags);
+        Set<String> newlyTags = new HashSet<>(newTags);
+        newTags.forEach(oldTags::remove); // deleted
+        tags.forEach(newlyTags::remove); // added
+        doUpdateTags(newTags);
+        addOpsLog("变更题目标签", userContext);
+        return Pair.of(newlyTags.stream().collect(toImmutableList()), oldTags.stream().collect(toImmutableList()));
+    }
+
     private void init(String problemId, String title, String author, String description, String inputFormat, String outputFormat,
                       List<String> inputCases, List<String> outputCases, String hint, ProblemSetting setting) {
         this.customId = problemId;
@@ -141,7 +156,7 @@ public class Problem extends AggregateRoot {
         this.hint = hint;
         correctAndValidate(setting.context());
         doUpdateSetting(setting);
-        this.tagGroups = List.of();
+        this.tags = List.of();
     }
 
     private String newVersion() {
@@ -160,6 +175,10 @@ public class Problem extends AggregateRoot {
     private void doUpdateSetting(ProblemSetting newSetting) {
         this.setting = newSetting;
         this.version = newVersion();
+    }
+
+    private void doUpdateTags(List<String> newTags) {
+        this.tags = newTags;
     }
 
     private void checkCaseGroupsAndCasesDeletion(ProblemSettingContext oldContext, ProblemSettingContext newContext, UserContext userContext) {

@@ -2,23 +2,27 @@ package org.ricky.apiTest.core.problem;
 
 import org.junit.jupiter.api.Test;
 import org.ricky.apiTest.BaseApiTest;
+import org.ricky.apiTest.core.tag.TagApi;
 import org.ricky.common.domain.LoginResponse;
+import org.ricky.common.utils.ValidationUtils;
 import org.ricky.core.problem.alter.dto.command.CreateProblemCommand;
 import org.ricky.core.problem.alter.dto.command.UpdateProblemSettingCommand;
+import org.ricky.core.problem.alter.dto.command.UpdateProblemTagsCommand;
 import org.ricky.core.problem.alter.dto.response.CreateProblemResponse;
 import org.ricky.core.problem.alter.dto.response.UpdateProblemResponse;
+import org.ricky.core.problem.alter.dto.response.UpdateProblemTagsResponse;
 import org.ricky.core.problem.domain.Problem;
 import org.ricky.core.problem.domain.setting.ProblemSetting;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.ricky.apiTest.utils.ProblemRandomTestFixture.rCreateProblemCommand;
-import static org.ricky.apiTest.utils.ProblemRandomTestFixture.rProblemSetting;
+import static org.ricky.apiTest.utils.ProblemRandomTestFixture.*;
 import static org.ricky.common.constants.CommonConstants.MAX_GENERIC_NAME_LENGTH;
 import static org.ricky.common.constants.CommonConstants.MAX_GENERIC_TEXT_LENGTH;
 import static org.ricky.common.exception.ErrorCodeEnum.PROBLEM_WITH_CUSTOM_ID_ALREADY_EXISTS;
 import static org.ricky.common.utils.RandomTestFixture.*;
+import static org.ricky.common.utils.ValidationUtils.isEmpty;
 import static org.ricky.core.problem.domain.setting.ProblemSetting.defaultProblemSetting;
 
 /**
@@ -100,6 +104,51 @@ public class ProblemControllerApiTest extends BaseApiTest {
 
         // Then
         assertEquals(problem.getVersion(), response.getVersion());
+    }
+
+    @Test
+    public void should_update_problem_tags() {
+        // Given
+        LoginResponse operator = setupApi.registerWithLogin();
+        String problemId = ProblemApi.createProblem(operator.getJwt(), rCreateProblemCommand()).getProblemId();
+        String tagId = TagApi.createProblemTag(operator.getJwt(), rCreateProblemTagCommand()).getTagId();
+        UpdateProblemTagsCommand command = UpdateProblemTagsCommand.builder()
+                .tags(List.of(tagId))
+                .build();
+
+        // When
+        UpdateProblemTagsResponse response = ProblemApi.updateProblemTags(operator.getJwt(), problemId, command);
+
+        // Then
+        assertEquals(List.of(tagId), response.getAdded());
+        assertTrue(isEmpty(response.getDeleted()));
+
+        // When
+        UpdateProblemTagsResponse response2 = ProblemApi.updateProblemTags(operator.getJwt(), problemId,
+                UpdateProblemTagsCommand.builder().tags(List.of()).build());
+
+        // Then
+        assertTrue(isEmpty(response2.getAdded()));
+        assertEquals(List.of(tagId), response2.getDeleted());
+    }
+
+    @Test
+    public void should_update_problem_tags_if_no_change() {
+        // Given
+        LoginResponse operator = setupApi.registerWithLogin();
+        String problemId = ProblemApi.createProblem(operator.getJwt(), rCreateProblemCommand()).getProblemId();
+        String tagId = TagApi.createProblemTag(operator.getJwt(), rCreateProblemTagCommand()).getTagId();
+        UpdateProblemTagsCommand command = UpdateProblemTagsCommand.builder()
+                .tags(List.of(tagId))
+                .build();
+        ProblemApi.updateProblemTags(operator.getJwt(), problemId, command); // 先更新一次
+
+        // When
+        UpdateProblemTagsResponse response = ProblemApi.updateProblemTags(operator.getJwt(), problemId, command);
+
+        // Then
+        assertTrue(isEmpty(response.getAdded()));
+        assertTrue(isEmpty(response.getDeleted()));
     }
 
 }

@@ -1,6 +1,11 @@
 package org.ricky.common.utils;
 
+import org.checkerframework.checker.units.qual.K;
+import org.springframework.security.core.parameters.P;
+
 import java.util.*;
+
+import static org.ricky.common.utils.ValidationUtils.*;
 
 /**
  * @author Ricky
@@ -42,6 +47,26 @@ public class CollectionUtils {
 
     public static <T> String listToString(List<T> list) {
         return listToString(list, "[", "]", ",");
+    }
+
+    public static <T> int listSize(List<T> list) {
+        return isNull(list) ? 0 : list.size();
+    }
+
+    public static <T> boolean listEquals(List<T> aList, List<T> bList) {
+        if(isNull(aList) && isNull(bList)) {
+            return true;
+        }
+        if(isNull(aList) || isNull(bList) || listSize(aList) != listSize(bList)) {
+            return false;
+        }
+        int size = aList.size();
+        for(int i = 0; i < size; ++i) {
+            if(notEquals(aList.get(i), bList.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     // Map

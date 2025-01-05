@@ -21,6 +21,7 @@ import org.ricky.common.password.MyPasswordEncoder;
 import org.ricky.common.security.jwt.JwtService;
 import org.ricky.common.utils.MyObjectMapper;
 import org.ricky.core.problem.domain.ProblemRepository;
+import org.ricky.core.tag.domain.TagRepository;
 import org.ricky.core.user.domain.UserRepository;
 import org.ricky.core.verification.domain.VerificationCodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,9 @@ public class BaseApiTest {
 
     @Autowired
     protected ProblemRepository problemRepository;
+
+    @Autowired
+    protected TagRepository tagRepository;
 
     // TODO add repository here...
 

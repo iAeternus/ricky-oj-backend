@@ -37,6 +37,7 @@ public interface CommonConstants {
 
     String USER_CACHE = "USER";
     String PROBLEMS_CACHE = "PROBLEMS";
+    String TAGS_CACHE = "TAGS";
 
     String CASE_GROUPS_DELETED_EVENT = "CASE_GROUPS_DELETED_EVENT";
     String CASES_DELETED_EVENT = "CASES_DELETED_EVENT";
