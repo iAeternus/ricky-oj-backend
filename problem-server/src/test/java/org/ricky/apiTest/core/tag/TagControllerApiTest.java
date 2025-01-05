@@ -3,7 +3,6 @@ package org.ricky.apiTest.core.tag;
 import org.junit.jupiter.api.Test;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.apiTest.core.problem.ProblemApi;
-import org.ricky.common.constants.CommonConstants;
 import org.ricky.common.domain.LoginResponse;
 import org.ricky.core.problem.alter.dto.command.UpdateProblemTagsCommand;
 import org.ricky.core.problem.domain.Problem;
@@ -16,11 +15,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.ricky.apiTest.utils.ProblemRandomTestFixture.*;
-import static org.ricky.common.constants.CommonConstants.GROUP_ID_PREFIX;
 import static org.ricky.common.constants.CommonConstants.TAG_ID_PREFIX;
 import static org.ricky.common.exception.ErrorCodeEnum.AR_NOT_FOUND;
 import static org.ricky.common.exception.ErrorCodeEnum.TAG_WITH_NAME_ALREADY_EXISTS;
-import static org.ricky.common.utils.RandomTestFixture.*;
 import static org.ricky.management.SystemManager.newId;
 
 /**

@@ -1,11 +1,11 @@
 package org.ricky.core.tag.domain;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.domain.AggregateRoot;
-import org.ricky.common.domain.marker.Identified;
 import org.ricky.common.validation.color.Color;
 import org.ricky.common.validation.id.Id;
 import org.ricky.core.tag.domain.event.TagDeletedEvent;

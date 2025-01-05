@@ -9,7 +9,6 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 import static java.time.Duration.ofDays;
 import static org.ricky.common.cache.CacheConfiguration.CACHE_PREFIX;
-import static org.ricky.common.constants.CommonConstants.PROBLEMS_CACHE;
 import static org.ricky.common.constants.CommonConstants.USER_CACHE;
 import static org.springframework.data.redis.cache.RedisCacheConfiguration.defaultCacheConfig;
 import static org.springframework.data.redis.serializer.RedisSerializationContext.SerializationPair.fromSerializer;

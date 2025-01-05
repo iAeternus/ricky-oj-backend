@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.domain.AggregateRoot;
 import org.ricky.common.exception.MyException;
-import org.ricky.common.utils.ValidationUtils;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 

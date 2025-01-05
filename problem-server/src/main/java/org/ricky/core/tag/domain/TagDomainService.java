@@ -22,7 +22,7 @@ public class TagDomainService {
     private final TagRepository tagRepository;
 
     public void checkNameDuplication(String name) {
-        if(isNotBlank(name) && tagRepository.existsByName(name)) {
+        if (isNotBlank(name) && tagRepository.existsByName(name)) {
             throw new MyException(TAG_WITH_NAME_ALREADY_EXISTS, "The tag name is occupied.", mapOf("name", name));
         }
     }

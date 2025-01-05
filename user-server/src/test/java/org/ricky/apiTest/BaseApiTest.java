@@ -30,7 +30,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.function.Supplier;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 import static org.ricky.common.constants.CommonConstants.AUTHORIZATION;
 import static org.ricky.common.constants.CommonConstants.AUTH_COOKIE_NAME;

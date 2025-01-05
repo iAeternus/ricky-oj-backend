@@ -3,10 +3,8 @@ package org.ricky.common.domain;
 import lombok.Getter;
 import org.ricky.common.utils.ValidationUtils;
 import org.springframework.lang.Nullable;
-import org.springframework.util.ObjectUtils;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 

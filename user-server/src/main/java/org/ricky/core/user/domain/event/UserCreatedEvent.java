@@ -1,6 +1,8 @@
 package org.ricky.core.user.domain.event;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.domain.event.DomainEvent;
 import org.ricky.common.json.JsonTypeDefine;

@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.google.common.collect.ImmutableSet.toImmutableSet;
-import static org.ricky.common.exception.ErrorCodeEnum.ACM_FORMAT_DOES_NOT_NEED_SCORE;
 import static org.ricky.common.exception.ErrorCodeEnum.CASE_GROUP_ID_DUPLICATED;
 
 /**

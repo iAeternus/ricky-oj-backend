@@ -10,7 +10,6 @@ import lombok.Value;
 import org.ricky.common.domain.marker.Command;
 import org.ricky.common.exception.MyException;
 import org.ricky.common.validation.collection.NoNullElement;
-import org.ricky.common.validation.id.Id;
 
 import java.util.List;
 
@@ -69,7 +68,7 @@ public class CreateProblemCommand implements Command {
 
     @Override
     public void correctAndValidate() {
-        if(inputCases.size() != outputCases.size()) {
+        if (inputCases.size() != outputCases.size()) {
             throw new MyException(INPUT_OUTPUT_NOT_MATCH, "The input does not match the number of outputs.",
                     mapOf("inputSize", inputCases.size(), "outputSize", outputCases.size()));
         }

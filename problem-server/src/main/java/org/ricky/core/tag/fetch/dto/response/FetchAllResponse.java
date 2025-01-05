@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Value;
 import org.ricky.common.domain.marker.Response;
 import org.ricky.core.tag.domain.CachedTag;
-import org.ricky.core.tag.domain.Tag;
 
 import java.util.List;
 

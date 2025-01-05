@@ -22,7 +22,7 @@ public class ProblemDomainService {
     private final ProblemRepository problemRepository;
 
     public void checkCustomIdDuplication(String customId) {
-        if(isNotBlank(customId) && problemRepository.cachedExistsByCustomId(customId)) {
+        if (isNotBlank(customId) && problemRepository.cachedExistsByCustomId(customId)) {
             throw new MyException(PROBLEM_WITH_CUSTOM_ID_ALREADY_EXISTS, "The custom number is occupied.",
                     mapOf("customId", customId));
         }

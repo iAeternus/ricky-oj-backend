@@ -9,11 +9,9 @@ import org.ricky.core.tag.domain.Tag;
 import org.ricky.core.tag.domain.TagRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.ricky.common.utils.ValidationUtils.requireNonBlank;
-import static org.springframework.data.mongodb.core.query.Query.query;
 
 /**
  * @author Ricky

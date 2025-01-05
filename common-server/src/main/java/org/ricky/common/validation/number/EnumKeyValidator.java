@@ -25,7 +25,7 @@ public class EnumKeyValidator implements ConstraintValidator<EnumKey, Short> {
 
     @Override
     public boolean isValid(Short key, ConstraintValidatorContext constraintValidatorContext) {
-        if(isNull(key)) {
+        if (isNull(key)) {
             return true;
         }
         return key >= min && key <= max;

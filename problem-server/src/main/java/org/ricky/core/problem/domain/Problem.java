@@ -193,7 +193,7 @@ public class Problem extends AggregateRoot {
         }
 
         Set<CaseInfo> deletedCaseInfos = oldContext.calculateDeletedCaseInfos(newContext, deletedCaseGroupIds);
-        if(isNotEmpty(deletedCaseInfos)) {
+        if (isNotEmpty(deletedCaseInfos)) {
             raiseEvent(new ProblemCaseDeletedEvent(getId(), deletedCaseInfos, userContext));
         }
     }

@@ -1,11 +1,11 @@
 package org.ricky.core.problem.domain.setting;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.ricky.common.domain.marker.ValueObject;
 import org.ricky.common.exception.MyException;
 
-import static org.ricky.common.exception.ErrorCodeEnum.*;
+import static org.ricky.common.exception.ErrorCodeEnum.DO_NOT_SUPPORT_REMOTE;
+import static org.ricky.common.exception.ErrorCodeEnum.LACK_OF_PROBLEM_SOURCE;
 import static org.ricky.common.utils.CollectionUtils.mapOf;
 import static org.ricky.common.utils.ValidationUtils.isBlank;
 import static org.ricky.common.utils.ValidationUtils.isNotBlank;

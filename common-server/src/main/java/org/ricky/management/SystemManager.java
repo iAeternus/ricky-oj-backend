@@ -1,7 +1,5 @@
 package org.ricky.management;
 
-import org.ricky.common.utils.SnowflakeIdGenerator;
-
 import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
 
 /**

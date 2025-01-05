@@ -29,7 +29,7 @@
   @AllArgsConstructor(access = AccessLevel.PRIVATE)
   public class AcceptedProblem implements Identified {}
   ```
-  
+
 * 对于可变对象
 
   ```java

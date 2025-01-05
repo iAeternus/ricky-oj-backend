@@ -183,7 +183,7 @@ public class RandomTestFixture {
 
     public static <T> List<T> rList(int size, Supplier<T> randomConstructor) {
         List<T> list = new ArrayList<>();
-        for(int i = 0; i < size; ++i) {
+        for (int i = 0; i < size; ++i) {
             list.add(randomConstructor.get());
         }
         return list;

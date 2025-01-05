@@ -8,8 +8,6 @@
 
 ### login 登录
 
-
-
 ## judge-server 评测服务
 
 ### judge 评测
@@ -22,35 +20,21 @@
 
 ### language 语言
 
-
-
 ## problem-server 题目服务
 
 ### problem 题目
 
 ### category 分类
 
-
-
 ## training-server 训练服务
-
-
 
 ## group-server 团队服务
 
-
-
 ## discussion-server 讨论服务
-
-
 
 ## contest-server 比赛服务
 
-
-
 ## common-server 通用服务
-
-
 
 ## plugins-server 插件服务（optional）
 

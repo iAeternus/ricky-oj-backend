@@ -2,7 +2,6 @@ package org.ricky.common.validation.collection;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.Collection;
 

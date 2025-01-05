@@ -1,6 +1,5 @@
 package org.ricky.core.tag.alter.dto.command;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

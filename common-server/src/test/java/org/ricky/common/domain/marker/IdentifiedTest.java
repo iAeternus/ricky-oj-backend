@@ -1,6 +1,5 @@
 package org.ricky.common.domain.marker;
 
-import lombok.*;
 import org.junit.jupiter.api.Test;
 import org.ricky.BaseUnitTest;
 

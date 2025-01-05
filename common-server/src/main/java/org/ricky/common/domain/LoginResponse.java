@@ -1,6 +1,5 @@
 package org.ricky.common.domain;
 
-import lombok.Getter;
 import lombok.Value;
 import org.ricky.common.domain.marker.Response;
 

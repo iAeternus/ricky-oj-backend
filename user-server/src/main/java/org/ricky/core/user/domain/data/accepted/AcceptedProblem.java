@@ -1,6 +1,5 @@
 package org.ricky.core.user.domain.data.accepted;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.ricky.common.domain.marker.Identified;

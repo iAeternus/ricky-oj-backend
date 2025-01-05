@@ -1,9 +1,10 @@
 package org.ricky.core.user.domain.data;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.ricky.common.validation.collection.NoNullElement;
 import org.ricky.core.user.domain.data.accepted.AcceptedProblem;
 

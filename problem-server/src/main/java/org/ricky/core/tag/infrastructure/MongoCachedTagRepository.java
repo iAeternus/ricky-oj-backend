@@ -2,7 +2,6 @@ package org.ricky.core.tag.infrastructure;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ricky.common.mongo.MongoBaseRepository;
-import org.ricky.core.problem.domain.CachedProblem;
 import org.ricky.core.tag.domain.CachedTag;
 import org.ricky.core.tag.domain.Tag;
 import org.springframework.cache.annotation.CacheEvict;
@@ -13,7 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
-import static org.ricky.common.constants.CommonConstants.*;
+import static org.ricky.common.constants.CommonConstants.TAGS_CACHE;
+import static org.ricky.common.constants.CommonConstants.TAG_COLLECTION;
 
 /**
  * @author Ricky

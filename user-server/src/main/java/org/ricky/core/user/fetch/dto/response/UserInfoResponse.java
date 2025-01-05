@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Value;
 import org.ricky.common.domain.marker.Response;
 import org.ricky.core.user.domain.GenderEnum;
-import org.ricky.core.user.domain.UserStatusEnum;
 import org.ricky.core.user.domain.data.UserData;
 import org.ricky.core.user.domain.title.Title;
 

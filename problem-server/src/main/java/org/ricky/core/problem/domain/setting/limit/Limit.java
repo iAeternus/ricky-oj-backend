@@ -1,12 +1,13 @@
 package org.ricky.core.problem.domain.setting.limit;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
 import org.ricky.common.domain.marker.ValueObject;
 import org.ricky.common.validation.number.FloatNumber;
 
 import static java.lang.Double.compare;
-import static org.ricky.common.utils.RandomTestFixture.rInt;
 
 /**
  * @author Ricky

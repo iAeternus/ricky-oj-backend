@@ -9,12 +9,10 @@ import org.ricky.core.problem.domain.setting.*;
 import org.ricky.core.problem.domain.setting.limit.Limit;
 import org.ricky.core.tag.alter.dto.command.CreateProblemTagCommand;
 import org.ricky.core.tag.alter.dto.command.UpdateTagInfoCommand;
-import org.ricky.core.tag.domain.Tag;
 
 import java.util.List;
 
 import static org.ricky.common.constants.CommonConstants.*;
-import static org.ricky.common.constants.CommonConstants.MAX_GENERIC_TEXT_LENGTH;
 import static org.ricky.core.problem.domain.LanguageEnum.CPP_23;
 import static org.ricky.core.problem.domain.casegroup.CaseGroup.newCaseGroupId;
 import static org.ricky.core.problem.domain.casegroup.cases.Case.newCaseId;

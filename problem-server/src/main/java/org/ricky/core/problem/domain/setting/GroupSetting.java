@@ -1,6 +1,5 @@
 package org.ricky.core.problem.domain.setting;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.ricky.common.domain.marker.ValueObject;
 import org.ricky.common.exception.MyException;
