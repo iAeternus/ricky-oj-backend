@@ -40,10 +40,9 @@
   public class ProblemSetting {}
   ```
 
-## **聚合根校验与维护正确性规范**
+## **校验与正确性规范**
 
-* 聚合根具有私有correctAndValidate，调用设置的correctAndValidate并处理其他逻辑，校验并满足对象正确性，在初始化和变更设置时调用
-* 聚合根setting具有公有correctAndValidate，校验并满足对象正确性
+* 聚合根设置的校验和正确性可以通过一个上下文完成
 * VO（不可变对象）具有correct和validate，分别满足正确情况和校验
 * 可变对象具有correct和validate，分别满足正确情况和校验
 
