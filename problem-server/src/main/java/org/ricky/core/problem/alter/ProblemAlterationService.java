@@ -47,6 +47,7 @@ public class ProblemAlterationService {
         problemDomainService.checkCustomIdDuplication(command.getCustomId());
         Problem problem = problemFactory.create(command, userContext);
         problemRepository.save(problem);
+        log.info("Create problem[{}]", problem.getId());
 
         return CreateProblemResponse.builder()
                 .problemId(problem.getId())
@@ -83,6 +84,7 @@ public class ProblemAlterationService {
 
         var updateTags = problem.updateTags(command.getTags(), userContext);
         problemRepository.save(problem);
+        log.info("Update tags for problem[{}]", problemId);
 
         return UpdateProblemTagsResponse.builder()
                 .added(updateTags.getFirst())

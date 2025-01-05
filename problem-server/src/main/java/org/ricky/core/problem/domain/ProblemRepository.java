@@ -2,6 +2,8 @@ package org.ricky.core.problem.domain;
 
 import org.ricky.common.context.UserContext;
 
+import java.util.List;
+
 /**
  * @author Ricky
  * @version 1.0
@@ -18,4 +20,9 @@ public interface ProblemRepository {
 
     Problem byId(String problemId);
 
+    List<Problem> findByTagId(String tagId);
+
+    void insert(List<Problem> problems);
+
+    void updateProblemTags(List<Problem> problems);
 }

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Profile;
  * @className ProblemApplication
  * @desc
  */
-// @SpringBootApplication
+@SpringBootApplication
 public class ProblemApplication {
 
     public static void main(String[] args) {

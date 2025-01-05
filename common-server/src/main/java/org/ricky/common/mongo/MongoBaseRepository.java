@@ -8,8 +8,10 @@ import org.ricky.common.event.publish.interception.ThreadLocalDomainEventIdHolde
 import org.ricky.common.exception.MyException;
 import org.ricky.common.utils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.BulkOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.ParameterizedType;

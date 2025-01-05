@@ -143,6 +143,10 @@ public class Problem extends AggregateRoot {
         return Pair.of(newlyTags.stream().collect(toImmutableList()), oldTags.stream().collect(toImmutableList()));
     }
 
+    public void deleteTag(String tagId) {
+        tags.remove(tagId);
+    }
+
     private void init(String problemId, String title, String author, String description, String inputFormat, String outputFormat,
                       List<String> inputCases, List<String> outputCases, String hint, ProblemSetting setting) {
         this.customId = problemId;

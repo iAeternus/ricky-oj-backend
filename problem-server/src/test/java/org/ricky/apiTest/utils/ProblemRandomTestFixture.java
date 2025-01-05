@@ -8,6 +8,7 @@ import org.ricky.core.problem.domain.casegroup.cases.Case;
 import org.ricky.core.problem.domain.setting.*;
 import org.ricky.core.problem.domain.setting.limit.Limit;
 import org.ricky.core.tag.alter.dto.command.CreateProblemTagCommand;
+import org.ricky.core.tag.alter.dto.command.UpdateTagInfoCommand;
 import org.ricky.core.tag.domain.Tag;
 
 import java.util.List;
@@ -151,6 +152,19 @@ public class ProblemRandomTestFixture extends RandomTestFixture {
 
     public static CreateProblemTagCommand rCreateProblemTagCommand() {
         return rCreateProblemTagCommand(rSentence(6));
+    }
+
+    public static UpdateTagInfoCommand rUpdateTagInfoCommand(String name) {
+        return UpdateTagInfoCommand.builder()
+                .name(name)
+                .color(rColor())
+                .oj(rUrl())
+                .groupId(newId(GROUP_ID_PREFIX))
+                .build();
+    }
+
+    public static UpdateTagInfoCommand rUpdateTagInfoCommand() {
+        return rUpdateTagInfoCommand(rSentence(6));
     }
 
     public static void main(String[] args) {

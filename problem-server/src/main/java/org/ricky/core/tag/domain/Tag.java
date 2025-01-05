@@ -8,6 +8,7 @@ import org.ricky.common.domain.AggregateRoot;
 import org.ricky.common.domain.marker.Identified;
 import org.ricky.common.validation.color.Color;
 import org.ricky.common.validation.id.Id;
+import org.ricky.core.tag.domain.event.TagDeletedEvent;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -61,6 +62,18 @@ public class Tag extends AggregateRoot {
 
     public static String newTagId() {
         return TAG_ID_PREFIX + newSnowflakeId();
+    }
+
+    public void onDelete(UserContext userContext) {
+        raiseEvent(new TagDeletedEvent(getId(), userContext));
+    }
+
+    public void update(String name, String color, String oj, String groupId, UserContext userContext) {
+        this.name = name;
+        this.color = color;
+        this.oj = oj;
+        this.groupId = groupId;
+        addOpsLog("修改标签信息", userContext);
     }
 
 }
