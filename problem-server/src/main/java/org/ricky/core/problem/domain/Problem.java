@@ -11,6 +11,7 @@ import org.ricky.core.problem.domain.casegroup.CaseGroupInfo;
 import org.ricky.core.problem.domain.casegroup.cases.CaseInfo;
 import org.ricky.core.problem.domain.event.ProblemCaseDeletedEvent;
 import org.ricky.core.problem.domain.event.ProblemCaseGroupDeletedEvent;
+import org.ricky.core.problem.domain.event.ProblemDeletedEvent;
 import org.ricky.core.problem.domain.setting.ProblemSetting;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -55,7 +56,7 @@ public class Problem extends AggregateRoot {
     private String title;
 
     /**
-     * 作者"
+     * 作者
      */
     private String author;
 
@@ -145,6 +146,10 @@ public class Problem extends AggregateRoot {
 
     public void deleteTag(String tagId) {
         tags.remove(tagId);
+    }
+
+    public void onDelete(UserContext userContext) {
+        raiseEvent(new ProblemDeletedEvent(getId(), userContext));
     }
 
     private void init(String problemId, String title, String author, String description, String inputFormat, String outputFormat,

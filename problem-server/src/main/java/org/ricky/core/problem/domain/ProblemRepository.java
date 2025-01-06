@@ -25,4 +25,6 @@ public interface ProblemRepository {
     void insert(List<Problem> problems);
 
     void updateProblemTags(List<Problem> problems);
+
+    void delete(Problem problem);
 }

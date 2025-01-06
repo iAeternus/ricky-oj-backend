@@ -92,4 +92,14 @@ public class ProblemAlterationService {
                 .build();
     }
 
+    public void removeProblem(String problemId, UserContext userContext) {
+        rateLimiter.applyFor(userContext.getUserId(), "Problem:RemoveProblem", EXTREMELY_LOW_TPS);
+
+        // TODO 查询对应的category，如果category下无problem，删除category
+
+        Problem problem = problemRepository.byIdAndCheckUserShip(problemId, userContext);
+        problem.onDelete(userContext);
+        problemRepository.delete(problem);
+        log.info("Delete problem[{}]", problemId);
+    }
 }

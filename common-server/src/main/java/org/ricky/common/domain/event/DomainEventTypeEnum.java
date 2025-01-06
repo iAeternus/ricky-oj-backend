@@ -13,6 +13,7 @@ public enum DomainEventTypeEnum {
     CASES_DELETED,
     USER_CREATED,
     TAG_DELETED,
+    PROBLEM_DELETED,
 
     // TODO add here...
 

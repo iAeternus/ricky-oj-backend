@@ -65,4 +65,16 @@ public class ProblemApi {
                 .as(UpdateProblemTagsResponse.class);
     }
 
+    public static Response removeProblemRaw(String jwt, String problemId) {
+        return BaseApiTest.given(jwt)
+                .when()
+                .delete(ROOT_URL + "/{problemId}/remove", problemId);
+    }
+
+    public static void removeProblem(String jwt, String problemId) {
+        removeProblemRaw(jwt, problemId)
+                .then()
+                .statusCode(200);
+    }
+
 }

@@ -84,4 +84,10 @@ public class MongoProblemRepository extends MongoBaseRepository<Problem> impleme
         });
         bulkOps.execute();
     }
+
+    @Override
+    public void delete(Problem problem) {
+        super.delete(problem);
+        cachedProblemRepository.evictProblemsCache();
+    }
 }

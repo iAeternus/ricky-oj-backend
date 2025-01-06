@@ -65,6 +65,13 @@ public class ProblemController {
         return problemAlterationService.updateProblemTags(problemId, command, userContext);
     }
 
-    // TODO 删除题目，修改题目，各种查询...
+    @DeleteMapping("/{problemId}/remove")
+    @Operation(summary = "删除题目")
+    public void removeProblem(@PathVariable("problemId") @Id(prefix = PROBLEM_ID_PREFIX) String problemId,
+                              @AuthenticationPrincipal UserContext userContext) {
+        problemAlterationService.removeProblem(problemId, userContext);
+    }
+
+    // TODO 批量变更测试用例组，变更答案集合，修改题目，各种查询...
 
 }

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.apiTest.core.tag.TagApi;
 import org.ricky.common.domain.LoginResponse;
+import org.ricky.common.domain.event.DomainEventTypeEnum;
+import org.ricky.common.exception.MyException;
 import org.ricky.core.problem.alter.dto.command.CreateProblemCommand;
 import org.ricky.core.problem.alter.dto.command.UpdateProblemSettingCommand;
 import org.ricky.core.problem.alter.dto.command.UpdateProblemTagsCommand;
@@ -11,16 +13,19 @@ import org.ricky.core.problem.alter.dto.response.CreateProblemResponse;
 import org.ricky.core.problem.alter.dto.response.UpdateProblemResponse;
 import org.ricky.core.problem.alter.dto.response.UpdateProblemTagsResponse;
 import org.ricky.core.problem.domain.Problem;
+import org.ricky.core.problem.domain.event.ProblemDeletedEvent;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.ricky.apiTest.utils.ProblemRandomTestFixture.*;
-import static org.ricky.common.constants.CommonConstants.MAX_GENERIC_NAME_LENGTH;
-import static org.ricky.common.constants.CommonConstants.MAX_GENERIC_TEXT_LENGTH;
+import static org.ricky.common.constants.CommonConstants.*;
+import static org.ricky.common.domain.event.DomainEventTypeEnum.PROBLEM_DELETED;
+import static org.ricky.common.exception.ErrorCodeEnum.AR_NOT_FOUND;
 import static org.ricky.common.exception.ErrorCodeEnum.PROBLEM_WITH_CUSTOM_ID_ALREADY_EXISTS;
 import static org.ricky.common.utils.ValidationUtils.isEmpty;
 import static org.ricky.core.problem.domain.setting.ProblemSetting.defaultProblemSetting;
+import static org.ricky.management.SystemManager.newId;
 
 /**
  * @author Ricky
@@ -146,6 +151,42 @@ public class ProblemControllerApiTest extends BaseApiTest {
         // Then
         assertTrue(isEmpty(response.getAdded()));
         assertTrue(isEmpty(response.getDeleted()));
+    }
+
+    @Test
+    public void should_remove_problem() {
+        // Given
+        LoginResponse operator = setupApi.registerWithLogin();
+        String problemId = ProblemApi.createProblem(operator.getJwt(), rCreateProblemCommand()).getProblemId();
+
+        // When
+        ProblemApi.removeProblem(operator.getJwt(), problemId);
+
+        // Then
+        assertThrows(MyException.class, () -> problemRepository.byId(problemId));
+    }
+
+    @Test
+    public void should_fail_to_remove_if_problem_not_exists() {
+        // Given
+        LoginResponse operator = setupApi.registerWithLogin();
+
+        // When & Then
+        assertError(() -> ProblemApi.removeProblemRaw(operator.getJwt(), newId(PROBLEM_ID_PREFIX)), AR_NOT_FOUND);
+    }
+
+    @Test
+    public void should_raise_problem_deleted_event_after_remove() {
+        // Given
+        LoginResponse operator = setupApi.registerWithLogin();
+        String problemId = ProblemApi.createProblem(operator.getJwt(), rCreateProblemCommand()).getProblemId();
+
+        // When
+        ProblemApi.removeProblem(operator.getJwt(), problemId);
+
+        // Then
+        ProblemDeletedEvent theEvent = domainEventDao.latestEventFor(problemId, PROBLEM_DELETED, ProblemDeletedEvent.class);
+        assertEquals(problemId, theEvent.getProblemId());
     }
 
 }
