@@ -1,28 +1,28 @@
-package org.ricky.core.problem.domain.answer;
+package org.ricky.core.submit.domain.program;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
-import org.ricky.common.domain.marker.ValueObject;
 import org.ricky.common.domain.LanguageEnum;
+import org.ricky.common.domain.marker.ValueObject;
 
 /**
  * @author Ricky
  * @version 1.0
- * @date 2025/1/2
- * @className Answer
- * @desc 答案
+ * @date 2025/1/6
+ * @className Program
+ * @desc 程序
  */
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Answer implements ValueObject {
+public class Program implements ValueObject {
 
     /**
-     * 语言
+     * 代码长度
      */
-    LanguageEnum language;
+    int length;
 
     /**
      * 代码
@@ -30,8 +30,8 @@ public class Answer implements ValueObject {
     String code;
 
     /**
-     * 是否启用
+     * 语言
      */
-    boolean enable;
+    LanguageEnum language;
 
 }

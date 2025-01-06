@@ -22,16 +22,19 @@ public interface CommonConstants {
     String TAG_COLLECTION = "tag";
     String GROUP_COLLECTION = "group";
     String PROBLEM_COLLECTION = "problem";
+    String SUBMIT_COLLECTION = "submit";
+    String JUDGER_COLLECTION = "judger";
 
     String CASE_ID_PREFIX = "CAS";
     String CASE_GROUP_ID_PREFIX = "CSG";
     String USER_ID_PREFIX = "USR";
     String ACCEPTED_PROBLEM_ID_PREDIX = "ACP";
-    String SUBMIT_ID_PREFIX = "SMT";
     String VERIFICATION_ID_PREFIX = "VRC";
     String TAG_ID_PREFIX = "TAG";
     String GROUP_ID_PREFIX = "GRP";
     String PROBLEM_ID_PREFIX = "PRO";
+    String SUBMIT_ID_PREFIX = "SMT";
+    String JUDGER_ID_PREFIX = "JDG";
 
     String INCORRECT_ID_MESSAGE = " ID format is incorrect.";
 

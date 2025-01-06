@@ -19,6 +19,11 @@ spring:
     type: redis
 
 my:
+  jwt:
+    issuer: my-local-issuer
+    secret: EHnbNd1KxkXceo9v
+    expire: 720
+    aheadAutoRefresh: 60
   common:
     httpsEnabled: false
     baseDomainName: org.ricky
@@ -27,6 +32,9 @@ my:
     domainEventStream: DomainEvent.LOCAL
     notificationStream: Notification.LOCAL
     webhookStream: Webhook.LOCAL
+  email:
+    from-name: Ricky
+    from-email: 1049469060@qq.com
   aliyun:
     ak: your-aliyun-access-key
     aks: your-aliyun-access-key-secret
@@ -34,4 +42,5 @@ my:
     sms:
       sms-sign-name: notapplicable
       sms-template-code: notapplicable
+
 

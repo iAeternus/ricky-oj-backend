@@ -1,4 +1,4 @@
-package org.ricky.core.problem.domain;
+package org.ricky.common.domain;
 
 import lombok.Getter;
 

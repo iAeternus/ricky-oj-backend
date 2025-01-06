@@ -31,4 +31,12 @@ my:
     ak: your-aliyun-access-key
     aks: your-aliyun-access-key-secret
     role: your-aliyun-ram-role
+  roj-judger-server:
+    max-task-count: -1
+    ip: localhost
+    port: 8088
+    name: roj-judger-1
+    remote-judge:
+      enabled: false
+      max-remote-task-count: -1
 

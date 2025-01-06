@@ -23,5 +23,6 @@ public interface CommonRegexConstants {
     String HEX_COLOR_PATTERN = "^#[0-9a-f]{3}([0-9a-f]{3})?$";
     String RGB_COLOR_PATTERN = "^rgb\\(\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])%?\\s*,\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])%?\\s*,\\s*(0|[1-9]\\d?|1\\d\\d?|2[0-4]\\d|25[0-5])%?\\s*\\)$";
     String SUBDOMAIN_PATTERN = "^[a-zA-Z0-9][a-zA-Z0-9-]{0,20}[a-zA-Z0-9]$";
+    String IP_PATTERN = "^(?:localhost|(?:(?:\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5])\\.){3}(?:\\d|[1-9]\\d|1\\d\\d|2[0-4]\\d|25[0-5]))$";
 
 }

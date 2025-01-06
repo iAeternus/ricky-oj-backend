@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.ricky.common.validation.collection.NoNullElement;
-import org.ricky.core.problem.domain.LanguageEnum;
+import org.ricky.common.domain.LanguageEnum;
 import org.ricky.core.problem.domain.ProblemSettingContext;
 import org.ricky.core.problem.domain.answer.Answer;
 import org.ricky.core.problem.domain.casegroup.CaseGroup;
@@ -12,7 +12,7 @@ import org.ricky.core.problem.domain.setting.limit.Limit;
 
 import java.util.List;
 
-import static org.ricky.core.problem.domain.LanguageEnum.*;
+import static org.ricky.common.domain.LanguageEnum.*;
 import static org.ricky.core.problem.domain.setting.ApplyPublicProgressEnum.NOT_APPLIED_YET;
 import static org.ricky.core.problem.domain.setting.GroupSetting.defaultGroupSetting;
 import static org.ricky.core.problem.domain.setting.ProblemDifficultyEnum.EASY;

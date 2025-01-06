@@ -2,7 +2,7 @@ package org.ricky.core.problem.domain.setting;
 
 import lombok.*;
 import org.ricky.common.domain.UploadedFile;
-import org.ricky.core.problem.domain.LanguageEnum;
+import org.ricky.common.domain.LanguageEnum;
 
 /**
  * @author Ricky
