@@ -77,8 +77,8 @@ public class IPUtils {
         while (true) {
             assert ifaces != null;
             if (!ifaces.hasMoreElements()) break;
-            NetworkInterface iface = ifaces.nextElement();
-            Enumeration<InetAddress> addresses = iface.getInetAddresses();
+            NetworkInterface networkInterface = ifaces.nextElement();
+            Enumeration<InetAddress> addresses = networkInterface.getInetAddresses();
             while (addresses.hasMoreElements()) {
                 InetAddress addr = addresses.nextElement();
                 String hostAddress = addr.getHostAddress();

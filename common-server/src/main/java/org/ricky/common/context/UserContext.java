@@ -13,6 +13,8 @@ import static org.ricky.common.exception.ErrorCodeEnum.WRONG_USER;
 import static org.ricky.common.exception.MyException.authenticationException;
 import static org.ricky.common.utils.CollectionUtils.mapOf;
 import static org.ricky.common.utils.ValidationUtils.*;
+import static org.ricky.management.SystemManager.ADMIN_NICKNAME;
+import static org.ricky.management.SystemManager.ROJ_USER_UID;
 
 /**
  * @author Ricky
@@ -34,6 +36,11 @@ public class UserContext {
      * 匿名用户
      */
     public static final UserContext ANONYMOUS_USER = NOUSER;
+
+    /**
+     * 系统管理员用户
+     */
+    public static final UserContext ADMIN_USER = new UserContext(ROJ_USER_UID, ADMIN_NICKNAME, SYSTEM_ADMIN);
 
     @Schema(name = "用户ID")
     private final String userId;

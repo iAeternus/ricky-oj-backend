@@ -42,5 +42,13 @@ my:
     sms:
       sms-sign-name: notapplicable
       sms-template-code: notapplicable
+  roj-judger-server:
+    max-task-count: -1
+    ip: localhost
+    port: 8088
+    name: roj-judger-1
+    remote-judge:
+      enabled: false
+      max-remote-task-count: -1
 
 

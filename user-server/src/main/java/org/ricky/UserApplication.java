@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @className UserApplication
  * @desc
  */
-@SpringBootApplication
+// @SpringBootApplication
 public class UserApplication {
 
     public static void main(String[] args) {

@@ -8,6 +8,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.ricky.common.utils.IPUtils.getLocalIpv4Address;
+import static org.ricky.common.utils.IPUtils.getServiceIp;
+
 /**
  * @author Ricky
  * @version 1.0
@@ -53,6 +61,27 @@ public class JudgerProperties {
     @NotBlank
     private String name;
 
+    public int correctMaxTaskCount() {
+        if (maxTaskCount == -1) {
+            return CPU_COUNT + 1;
+        }
+        return maxTaskCount;
+    }
+
+    public String correctIpv4() {
+        if ("localhost".equalsIgnoreCase(ip)) {
+            return getLocalIpv4Address();
+        }
+        return ip;
+    }
+
+    public String correctServiceIp() {
+        if ("localhost".equalsIgnoreCase(ip)) {
+            return getServiceIp();
+        }
+        return ip;
+    }
+
     @Data
     @Component
     @Validated
@@ -71,6 +100,13 @@ public class JudgerProperties {
          */
         @NotNull
         private Integer maxRemoteTaskCount;
+
+        public int correctMaxRemoteTaskCount() {
+            if(maxRemoteTaskCount == -1) {
+                return CPU_COUNT * 2 + 1;
+            }
+            return maxRemoteTaskCount;
+        }
 
     }
 

@@ -55,6 +55,10 @@ public class ValidationUtils {
         return CollectionUtils.isNotEmpty(coll);
     }
 
+    public static boolean isNotEmpty(Map<?, ?> map) {
+        return map != null && !map.isEmpty();
+    }
+
     public static <T> Collection<T> requireNotEmpty(Collection<T> coll, String message) {
         if (isEmpty(coll)) {
             throw new IllegalArgumentException(message);

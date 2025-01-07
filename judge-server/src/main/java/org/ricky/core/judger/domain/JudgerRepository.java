@@ -8,4 +8,8 @@ package org.ricky.core.judger.domain;
  * @desc
  */
 public interface JudgerRepository {
+
+    Judger byUrl(String ip, Integer port);
+
+    void save(Judger judger);
 }

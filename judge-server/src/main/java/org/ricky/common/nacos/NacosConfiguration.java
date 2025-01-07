@@ -31,14 +31,9 @@ public class NacosConfiguration {
     @Primary
     public NacosDiscoveryProperties nacosProperties() {
         NacosDiscoveryProperties nacosDiscoveryProperties = new NacosDiscoveryProperties();
-        nacosDiscoveryProperties.setIp(getServiceIp());
-        Map<String, String> meta = getMetaData();
-        nacosDiscoveryProperties.setMetadata(meta);
-        if (!"localhost".equals(judgerProperties.getIp())) {
-            nacosDiscoveryProperties.setIp(judgerProperties.getIp());
-        }
+        nacosDiscoveryProperties.setIp(judgerProperties.correctServiceIp());
+        nacosDiscoveryProperties.setMetadata(getMetaData());
         nacosDiscoveryProperties.setPort(judgerProperties.getPort());
-
         nacosDiscoveryProperties.setService("roj-judge-server");
         return nacosDiscoveryProperties;
     }
