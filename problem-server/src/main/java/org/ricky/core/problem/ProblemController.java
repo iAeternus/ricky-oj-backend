@@ -14,6 +14,8 @@ import org.ricky.core.problem.alter.dto.response.CreateProblemResponse;
 import org.ricky.core.problem.alter.dto.response.UpdateProblemResponse;
 import org.ricky.core.problem.alter.dto.response.UpdateProblemTagsResponse;
 import org.ricky.core.problem.fetch.ProblemFetchService;
+import org.ricky.core.problem.fetch.response.FetchProblemByIdResponse;
+import org.ricky.core.problem.fetch.response.FetchSettingByIdResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
@@ -73,5 +75,19 @@ public class ProblemController {
     }
 
     // TODO 批量变更测试用例组，变更答案集合，修改题目，各种查询...
+
+    @GetMapping("/{problemId}")
+    @Operation(summary = "根据ID获取题目")
+    public FetchProblemByIdResponse fetchById(@PathVariable("problemId") @Id(prefix = PROBLEM_ID_PREFIX) String problemId,
+                                              @AuthenticationPrincipal UserContext userContext) {
+        return problemFetchService.fetchById(problemId, userContext);
+    }
+
+    @GetMapping("/{problemId}/setting")
+    @Operation(summary = "根据ID获取题目设置")
+    public FetchSettingByIdResponse fetchSettingById(@PathVariable("problemId") @Id(prefix = PROBLEM_ID_PREFIX) String problemId,
+                                                     @AuthenticationPrincipal UserContext userContext) {
+        return problemFetchService.fetchSettingById(problemId, userContext);
+    }
 
 }

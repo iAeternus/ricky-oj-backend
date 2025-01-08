@@ -13,5 +13,6 @@ public enum ProblemDifficultyEnum {
     MEDIUM,
     HARD,
     IMPOSSIBLE,
+    ;
 
 }

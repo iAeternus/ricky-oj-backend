@@ -48,6 +48,7 @@ public class DomainEventConsumer {
                 }
             } catch (Throwable t) {
                 hasError = true;
+                handler.handleFailure(domainEvent, taskRunner);
                 log.error("MyError while handle domain event[{}:{}] by [{}].",
                         domainEvent.getType(), domainEvent.getId(), handler.getClass().getSimpleName(), t);
             }

@@ -17,6 +17,7 @@
 
     <modules>
         <module>gateway</module>
+        <module>rest-api</module>
         <module>common-server</module>
         <module>user-server</module>
         <module>judge-server</module>

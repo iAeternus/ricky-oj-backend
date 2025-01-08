@@ -1,10 +1,12 @@
 package org.ricky.core.tag.alter.dto.command;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 import org.ricky.common.domain.marker.Command;
+import org.ricky.common.validation.color.Color;
 
 /**
  * @author Ricky
@@ -18,9 +20,13 @@ import org.ricky.common.domain.marker.Command;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UpdateTagInfoCommand implements Command {
 
+    @NotBlank
     String name;
+
+    @Color
     String color;
+
     String oj;
-    String groupId;
+    String teamId;
 
 }

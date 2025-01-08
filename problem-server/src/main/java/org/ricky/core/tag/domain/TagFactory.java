@@ -14,6 +14,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class TagFactory {
     public Tag create(CreateProblemTagCommand command, UserContext userContext) {
-        return new Tag(command.getName(), command.getColor(), command.getOj(), command.getGroupId(), userContext);
+        return new Tag(command.getName(), command.getColor(), command.getOj(), command.getTeamId(), userContext);
     }
 }

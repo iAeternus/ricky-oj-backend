@@ -1,7 +1,9 @@
 package org.ricky;
 
+import org.ricky.config.OpenFeignConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author Ricky
@@ -11,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @desc
  */
 @SpringBootApplication
+@EnableFeignClients(basePackages = "org.ricky.client", defaultConfiguration = OpenFeignConfiguration.class)
 public class JudgeApplication {
 
     public static void main(String[] args) {

@@ -10,7 +10,7 @@ import org.ricky.core.verification.alter.VerificationCodeAlterationService;
 import org.ricky.core.verification.alter.dto.command.CreateLoginVerificationCodeCommand;
 import org.ricky.core.verification.alter.dto.command.CreateRegisterVerificationCodeCommand;
 import org.ricky.core.verification.fetch.VerificationCodeFetchService;
-import org.ricky.core.verification.fetch.dto.response.FetchByIdResponse;
+import org.ricky.core.verification.fetch.dto.response.FetchVerificationByIdResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +52,7 @@ public class VerificationController {
 
     @Operation(summary = "根据ID获取验证码")
     @GetMapping("/fetch/{verificationCodeId}")
-    public FetchByIdResponse fetchById(@PathVariable("verificationCodeId")
+    public FetchVerificationByIdResponse fetchById(@PathVariable("verificationCodeId")
                                        @Id(prefix = VERIFICATION_ID_PREFIX) String verificationCodeId) {
         return verificationCodeFetchService.fetchById(verificationCodeId);
     }

@@ -28,6 +28,6 @@ public class CreateProblemTagCommand implements Command {
 
     String oj;
 
-    String groupId;
+    String teamId;
 
 }

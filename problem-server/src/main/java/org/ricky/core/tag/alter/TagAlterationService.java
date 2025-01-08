@@ -79,7 +79,7 @@ public class TagAlterationService {
         rateLimiter.applyFor(userContext.getUserId(), "Tag:UpdateProblemTag", EXTREMELY_LOW_TPS);
 
         Tag tag = tagRepository.byId(tagId);
-        tag.update(command.getName(), command.getColor(), command.getOj(), command.getGroupId(), userContext);
+        tag.update(command.getName(), command.getColor(), command.getOj(), command.getTeamId(), userContext);
         tagRepository.save(tag);
         log.info("Update tag[{}]", tagId);
     }

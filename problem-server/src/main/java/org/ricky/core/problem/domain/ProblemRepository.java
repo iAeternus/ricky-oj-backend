@@ -27,4 +27,6 @@ public interface ProblemRepository {
     void updateProblemTags(List<Problem> problems);
 
     void delete(Problem problem);
+
+    Problem cachedById(String problemId);
 }

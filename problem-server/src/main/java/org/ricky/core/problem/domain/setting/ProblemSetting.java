@@ -2,9 +2,10 @@ package org.ricky.core.problem.domain.setting;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.ricky.common.validation.collection.NoNullElement;
 import org.ricky.common.domain.LanguageEnum;
+import org.ricky.common.validation.collection.NoNullElement;
 import org.ricky.core.problem.domain.ProblemSettingContext;
 import org.ricky.core.problem.domain.answer.Answer;
 import org.ricky.core.problem.domain.casegroup.CaseGroup;
@@ -12,9 +13,10 @@ import org.ricky.core.problem.domain.setting.limit.Limit;
 
 import java.util.List;
 
+import static org.ricky.common.constants.CommonConstants.MAX_ANSWER_COUNT;
+import static org.ricky.common.constants.CommonConstants.MAX_CASES_SIZE;
 import static org.ricky.common.domain.LanguageEnum.*;
 import static org.ricky.core.problem.domain.setting.ApplyPublicProgressEnum.NOT_APPLIED_YET;
-import static org.ricky.core.problem.domain.setting.GroupSetting.defaultGroupSetting;
 import static org.ricky.core.problem.domain.setting.ProblemDifficultyEnum.EASY;
 import static org.ricky.core.problem.domain.setting.ProblemStatusEnum.PRIVATE;
 import static org.ricky.core.problem.domain.setting.ProblemTypeEnum.ACM;
@@ -69,6 +71,7 @@ public class ProblemSetting {
      * 限制
      */
     @Valid
+    @NotNull
     private Limit limit;
 
     /**
@@ -82,11 +85,6 @@ public class ProblemSetting {
      * 是否开启该题目的测试样例结果查看
      */
     boolean openCaseResult;
-
-    /**
-     * 团队设置
-     */
-    private GroupSetting groupSetting;
 
     /**
      * 申请公开的进度
@@ -109,11 +107,17 @@ public class ProblemSetting {
     /**
      * 测试用例组集合
      */
+    @NotNull
+    @NoNullElement
+    @Size(max = MAX_CASES_SIZE)
     private List<CaseGroup> caseGroups;
 
     /**
      * 答案集合
      */
+    @NotNull
+    @NoNullElement
+    @Size(max = MAX_ANSWER_COUNT)
     private List<Answer> answers;
 
     public ProblemSettingContext context() {
@@ -130,7 +134,6 @@ public class ProblemSetting {
                 .limit(Limit.defaultLimit())
                 .languages(ALL_LANGUAGES)
                 .openCaseResult(false)
-                .groupSetting(defaultGroupSetting())
                 .applyPublicProgress(NOT_APPLIED_YET)
                 .vjSetting(VJSetting.defaultVJSetting())
                 .spjSetting(defaultSPJSetting())

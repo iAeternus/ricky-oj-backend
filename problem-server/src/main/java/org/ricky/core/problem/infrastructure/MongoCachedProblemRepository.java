@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
-import static org.ricky.common.constants.CommonConstants.PROBLEMS_CACHE;
-import static org.ricky.common.constants.CommonConstants.PROBLEM_COLLECTION;
+import static org.ricky.common.constants.CommonConstants.*;
+import static org.ricky.common.utils.ValidationUtils.requireNonBlank;
 
 /**
  * @author Ricky
@@ -40,6 +40,20 @@ public class MongoCachedProblemRepository extends MongoBaseRepository<Problem> {
     @Caching(evict = {@CacheEvict(value = PROBLEMS_CACHE)})
     public void evictProblemsCache() {
         log.info("Evicted all problems cache.");
+    }
+
+    @Cacheable(value = PROBLEM_CACHE, key = "#problemId")
+    public Problem cachedById(String problemId) {
+        requireNonBlank(problemId, "Problem ID must not be blank.");
+
+        return super.byId(problemId);
+    }
+
+    @Caching(evict = {@CacheEvict(value = PROBLEM_CACHE, key = "#problemId")})
+    public void evictProblemCache(String problemId) {
+        requireNonBlank(problemId, "Problem ID must not be blank.");
+
+        log.info("Evicted cache for problem[{}].", problemId);
     }
 
 }

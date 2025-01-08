@@ -55,12 +55,10 @@ public class ProblemSettingContext {
     }
 
     public void correctAndValidate() {
-        problemSetting.getGroupSetting().correct();
         problemSetting.getVjSetting().correct();
 
         validateCaseGroupIdsNoDuplication();
 
-        problemSetting.getGroupSetting().validate();
         problemSetting.getVjSetting().validate();
         problemSetting.getCaseGroups().forEach(CaseGroup::validate);
     }

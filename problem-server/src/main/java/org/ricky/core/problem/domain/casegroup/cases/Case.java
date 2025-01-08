@@ -1,7 +1,9 @@
 package org.ricky.core.problem.domain.casegroup.cases;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.ricky.common.domain.UploadedFile;
 import org.ricky.common.domain.marker.Identified;
 import org.ricky.common.validation.id.Id;
 
@@ -29,21 +31,22 @@ public class Case implements Identified {
     private final String id;
 
     /**
-     * 测试用例的输入
+     * 测试用例的输入文件
      */
     @NotBlank
-    private String input;
+    private UploadedFile input;
 
     /**
-     * 测试用例的输出
+     * 测试用例的输出文件
      */
     @NotBlank
-    private String output;
+    private UploadedFile output;
 
     /**
      * 排序
      */
-    private int seq;
+    @NotNull
+    private Integer seq;
 
     public static String newCaseId() {
         return CASE_ID_PREFIX + newSnowflakeId();

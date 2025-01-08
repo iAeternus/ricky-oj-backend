@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Value;
 import org.ricky.common.domain.marker.ValueObject;
 import org.ricky.common.domain.LanguageEnum;
+import org.ricky.common.domain.program.Program;
 
 /**
  * @author Ricky
@@ -20,18 +21,13 @@ import org.ricky.common.domain.LanguageEnum;
 public class Answer implements ValueObject {
 
     /**
-     * 语言
-     */
-    LanguageEnum language;
-
-    /**
-     * 代码
-     */
-    String code;
-
-    /**
      * 是否启用
      */
-    boolean enable;
+    Boolean enable;
+
+    /**
+     * 程序
+     */
+    Program program;
 
 }

@@ -1,5 +1,6 @@
 package org.ricky.apiTest.utils;
 
+import org.ricky.common.domain.program.Program;
 import org.ricky.common.utils.RandomTestFixture;
 import org.ricky.core.problem.alter.dto.command.CreateProblemCommand;
 import org.ricky.core.problem.domain.answer.Answer;
@@ -54,14 +55,6 @@ public class ProblemRandomTestFixture extends RandomTestFixture {
                 .build();
     }
 
-    public static GroupSetting rGroupSetting() {
-        boolean isGroup = rBool();
-        return GroupSetting.builder()
-                .isGroup(isGroup)
-                .teamId(isGroup ? newId(GROUP_ID_PREFIX) : null)
-                .build();
-    }
-
     public static VJSetting rVJSetting() {
         return VJSetting.builder().build();
     }
@@ -73,8 +66,8 @@ public class ProblemRandomTestFixture extends RandomTestFixture {
     public static Case rCase() {
         return Case.builder()
                 .id(newCaseId())
-                .input(rInputCase(5))
-                .output(rOutputCase(5))
+                .input(rUploadedFile())
+                .output(rUploadedFile())
                 .seq(rInt(1, Integer.MAX_VALUE - 1))
                 .build();
     }
@@ -113,9 +106,12 @@ public class ProblemRandomTestFixture extends RandomTestFixture {
                 }
                 """;
         return Answer.builder()
-                .language(CPP_23)
-                .code(code)
                 .enable(rBool())
+                .program(Program.builder()
+                        .length(code.length())
+                        .code(code)
+                        .language(CPP_23)
+                        .build())
                 .build();
     }
 
@@ -130,7 +126,6 @@ public class ProblemRandomTestFixture extends RandomTestFixture {
                 .limit(rLimit())
                 .languages(ALL_LANGUAGES)
                 .openCaseResult(rBool())
-                .groupSetting(rGroupSetting())
                 .applyPublicProgress(rEnumOf(ApplyPublicProgressEnum.class))
                 .vjSetting(rVJSetting())
                 .spjSetting(rSPJSetting())
@@ -144,7 +139,7 @@ public class ProblemRandomTestFixture extends RandomTestFixture {
                 .name(name)
                 .color(rColor())
                 .oj(rUrl())
-                .groupId(newId(GROUP_ID_PREFIX))
+                .teamId(newId(TEAM_ID_PREFIX))
                 .build();
     }
 
@@ -157,16 +152,12 @@ public class ProblemRandomTestFixture extends RandomTestFixture {
                 .name(name)
                 .color(rColor())
                 .oj(rUrl())
-                .groupId(newId(GROUP_ID_PREFIX))
+                .teamId(newId(TEAM_ID_PREFIX))
                 .build();
     }
 
     public static UpdateTagInfoCommand rUpdateTagInfoCommand() {
         return rUpdateTagInfoCommand(rSentence(6));
-    }
-
-    public static void main(String[] args) {
-        System.out.println(rAnswer().getCode());
     }
 
 }

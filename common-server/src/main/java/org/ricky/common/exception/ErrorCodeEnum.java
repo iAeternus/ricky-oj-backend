@@ -24,6 +24,7 @@ public enum ErrorCodeEnum {
     REQUEST_VALIDATION_FAILED(400),
     INVALID_EPS(400),
     INVALID_ENUM_KEY(400),
+    INVALID_SUBMIT_TYPE(400),
 
     // 401
     AUTHENTICATION_FAILED(401),
@@ -31,6 +32,7 @@ public enum ErrorCodeEnum {
     // 403
     ACCESS_DENIED(403),
     WRONG_USER(403),
+    PROBLEM_STATUS_FORBIDDEN(403),
 
     // 404
     NOT_FOUND(404),

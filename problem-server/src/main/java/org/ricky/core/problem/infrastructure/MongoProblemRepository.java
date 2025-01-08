@@ -45,6 +45,7 @@ public class MongoProblemRepository extends MongoBaseRepository<Problem> impleme
     public void save(Problem problem) {
         super.save(problem);
         cachedProblemRepository.evictProblemsCache();
+        cachedProblemRepository.evictProblemCache(problem.getId());
     }
 
     @Override
@@ -59,6 +60,8 @@ public class MongoProblemRepository extends MongoBaseRepository<Problem> impleme
 
     @Override
     public List<Problem> findByTagId(String tagId) {
+        requireNonBlank(tagId, "Tag ID must not be blank.");
+
         Query query = query(where("tags").is(tagId));
         return mongoTemplate.find(query, Problem.class);
     }
@@ -89,5 +92,13 @@ public class MongoProblemRepository extends MongoBaseRepository<Problem> impleme
     public void delete(Problem problem) {
         super.delete(problem);
         cachedProblemRepository.evictProblemsCache();
+        cachedProblemRepository.evictProblemCache(problem.getId());
+    }
+
+    @Override
+    public Problem cachedById(String problemId) {
+        requireNonBlank(problemId, "Problem ID must not be blank.");
+
+        return cachedProblemRepository.cachedById(problemId);
     }
 }

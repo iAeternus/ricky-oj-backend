@@ -4,6 +4,7 @@ import com.apifan.common.random.source.AreaSource;
 import com.apifan.common.random.source.OtherSource;
 import com.apifan.common.random.source.PersonInfoSource;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.ricky.common.domain.UploadedFile;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -157,6 +158,19 @@ public class RandomTestFixture {
     public static Instant rInstant() {
         // 最近5年
         return Instant.now().minusSeconds(rInt(0, 5 * 365 * 24 * 3600));
+    }
+
+    public static UploadedFile rUploadedFile() {
+        String ossKey = randomAlphanumeric(10) + "/" + randomAlphanumeric(10) + "/" + ".pdf";
+        String fileUrl = "https://my-files-local.oss-cn-hagnzhou.aliyuncs.com/" + ossKey;
+        return UploadedFile.builder()
+                .id(newShortUUID())
+                .name(randomAlphanumeric(10) + "文件")
+                .type("application/pdf")
+                .fileUrl(fileUrl)
+                .ossKey(ossKey)
+                .size(100)
+                .build();
     }
 
     public static String rInputCase(int t) {

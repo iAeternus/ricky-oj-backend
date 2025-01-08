@@ -1,5 +1,7 @@
 package org.ricky.core.problem.domain.setting;
 
+import lombok.Getter;
+
 /**
  * @author Ricky
  * @version 1.0
@@ -7,10 +9,12 @@ package org.ricky.core.problem.domain.setting;
  * @className ProblemStatusEnum
  * @desc 题目状态
  */
+@Getter
 public enum ProblemStatusEnum {
 
     PRIVATE,
     PUBLIC,
     IN_CONTEST,
+    ;
 
 }

@@ -48,7 +48,7 @@ public class Tag extends AggregateRoot {
     /**
      * 团队ID
      */
-    @Id(prefix = GROUP_ID_PREFIX)
+    @Id(prefix = TEAM_ID_PREFIX)
     private String groupId;
 
     public Tag(String name, String color, String oj, String groupId, UserContext userContext) {
