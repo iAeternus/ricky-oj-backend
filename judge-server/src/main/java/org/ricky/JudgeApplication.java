@@ -3,6 +3,7 @@ package org.ricky;
 import org.ricky.config.OpenFeignConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @desc
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 @EnableFeignClients(basePackages = "org.ricky.client", defaultConfiguration = OpenFeignConfiguration.class)
 public class JudgeApplication {
 

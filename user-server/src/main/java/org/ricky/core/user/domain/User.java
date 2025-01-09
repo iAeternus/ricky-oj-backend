@@ -141,7 +141,7 @@ public class User extends AggregateRoot {
         super(newStudentId(), userContext);
         init(nickname, password, email, mobile);
         raiseEvent(new UserCreatedEvent(getId(), userContext));
-        addOpsLog("新建学生", userContext);
+        addOpsLog("新建用户", userContext);
     }
 
     public static String newStudentId() {

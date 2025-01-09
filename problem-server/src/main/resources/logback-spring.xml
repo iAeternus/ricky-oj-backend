@@ -17,7 +17,7 @@
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${APP_NAME}/${LOG_PATH}/${APP_NAME}.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_PATH}/${APP_NAME}.%d{yyyy-MM-dd}.%i.log.gz</FileNamePattern>
+            <FileNamePattern>${APP_NAME}/${LOG_PATH}/${APP_NAME}.%d{yyyy-MM-dd}.%i.log.gz</FileNamePattern>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <MaxFileSize>20MB</MaxFileSize>
             </TimeBasedFileNamingAndTriggeringPolicy>

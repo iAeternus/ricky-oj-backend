@@ -22,6 +22,8 @@
         <module>user-server</module>
         <module>judge-server</module>
         <module>problem-server</module>
+        <module>judger-server</module>
+        <module>sandbox-server</module>
     </modules>
 
     <properties>

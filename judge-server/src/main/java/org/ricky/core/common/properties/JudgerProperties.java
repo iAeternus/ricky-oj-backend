@@ -1,20 +1,12 @@
 package org.ricky.core.common.properties;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import org.ricky.core.common.utils.IPUtils;
 import org.ricky.common.validation.ip.IP;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
-
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.ricky.common.utils.IPUtils.getLocalIpv4Address;
-import static org.ricky.common.utils.IPUtils.getServiceIp;
 
 /**
  * @author Ricky
@@ -35,30 +27,31 @@ public class JudgerProperties {
     public static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();
 
     /**
-     * 评测并发最大数
-     * -1表示最大并行任务数为cpu核心数+1
+     * 是否开启评测机
      */
-    @NotNull
-    private Integer maxTaskCount;
+    private Boolean enabled;
+
+    /**
+     * 评测并发最大数
+     * -1或不配置表示最大并行任务数为cpu核心数+1
+     */
+    private Integer maxTaskCount = CPU_COUNT + 1;
 
     /**
      * localhost表示使用默认本地ipv4，若是部署其它服务器，务必使用公网ip
      */
     @IP
-    @NotBlank
-    private String ip;
+    private String ip = "localhost";
 
     /**
      * 端口号
      */
-    @NotNull
     private Integer port;
 
     /**
      * 评测机名称
      * 唯一不可重复
      */
-    @NotBlank
     private String name;
 
     public int correctMaxTaskCount() {
@@ -70,14 +63,14 @@ public class JudgerProperties {
 
     public String correctIpv4() {
         if ("localhost".equalsIgnoreCase(ip)) {
-            return getLocalIpv4Address();
+            return IPUtils.getLocalIpv4Address();
         }
         return ip;
     }
 
     public String correctServiceIp() {
         if ("localhost".equalsIgnoreCase(ip)) {
-            return getServiceIp();
+            return IPUtils.getServiceIp();
         }
         return ip;
     }
@@ -91,18 +84,16 @@ public class JudgerProperties {
         /**
          * 当前判题服务器是否开启远程虚拟判题功能
          */
-        @NotNull
-        private Boolean enabled;
+        private Boolean enabled = false;
 
         /**
          * 远程评测并发最大数
-         * -1表示最大并行任务数为cpu核心数*2+1
+         * -1或不配置表示最大并行任务数为cpu核心数*2+1
          */
-        @NotNull
-        private Integer maxRemoteTaskCount;
+        private Integer maxRemoteTaskCount = CPU_COUNT * 2 + 1;
 
         public int correctMaxRemoteTaskCount() {
-            if(maxRemoteTaskCount == -1) {
+            if (maxRemoteTaskCount == -1) {
                 return CPU_COUNT * 2 + 1;
             }
             return maxRemoteTaskCount;

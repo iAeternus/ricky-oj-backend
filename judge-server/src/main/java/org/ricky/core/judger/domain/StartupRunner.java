@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.ricky.common.context.UserContext.ADMIN_USER;
-import static org.ricky.common.context.UserContext.NOUSER;
 import static org.ricky.common.utils.ValidationUtils.isNull;
 import static org.ricky.core.common.properties.JudgerProperties.CPU_COUNT;
 

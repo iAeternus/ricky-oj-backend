@@ -8,13 +8,9 @@ import org.ricky.common.domain.AggregateRoot;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
-import java.util.*;
-
 import static org.ricky.common.constants.CommonConstants.JUDGER_COLLECTION;
 import static org.ricky.common.constants.CommonConstants.JUDGER_ID_PREFIX;
 import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
-import static org.ricky.core.common.properties.JudgerProperties.CPU_COUNT;
 import static org.ricky.core.judger.domain.JudgerStatusEnum.DISABLE;
 
 /**

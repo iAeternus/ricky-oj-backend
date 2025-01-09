@@ -3,15 +3,13 @@ package org.ricky.common.nacos;
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import lombok.RequiredArgsConstructor;
 import org.ricky.core.common.properties.JudgerProperties;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.ricky.common.utils.IPUtils.getServiceIp;
-import static org.ricky.core.common.properties.JudgerProperties.CPU_COUNT;
 
 /**
  * @author Ricky
@@ -22,6 +20,7 @@ import static org.ricky.core.common.properties.JudgerProperties.CPU_COUNT;
  */
 @Configuration
 @RequiredArgsConstructor
+@ConditionalOnProperty("my.roj-judger-server.enabled")
 public class NacosConfiguration {
 
     private final JudgerProperties judgerProperties;
@@ -40,19 +39,13 @@ public class NacosConfiguration {
 
     private Map<String, String> getMetaData() {
         Map<String, String> meta = new HashMap<>();
-        int max = CPU_COUNT * 2 + 1;
-        if (judgerProperties.getMaxTaskCount() != -1) {
-            max = judgerProperties.getMaxTaskCount();
-        }
-        meta.put("maxTaskNum", String.valueOf(max));
+        int maxTaskCount = judgerProperties.correctMaxTaskCount();
+        meta.put("maxTaskCount", String.valueOf(maxTaskCount));
         if (remoteJudgeProperties.getEnabled()) {
-            max = (CPU_COUNT * 2 + 1) * 2;
-            if (remoteJudgeProperties.getMaxRemoteTaskCount() != -1) {
-                max = remoteJudgeProperties.getMaxRemoteTaskCount();
-            }
-            meta.put("maxRemoteTaskNum", String.valueOf(max));
+            int remoteMaxTaskCount = remoteJudgeProperties.correctMaxRemoteTaskCount();
+            meta.put("maxRemoteTaskCount", String.valueOf(remoteMaxTaskCount));
         }
-        meta.put("name", judgerProperties.getName()); // TODO judgeName
+        meta.put("name", judgerProperties.getName());
         return meta;
     }
 

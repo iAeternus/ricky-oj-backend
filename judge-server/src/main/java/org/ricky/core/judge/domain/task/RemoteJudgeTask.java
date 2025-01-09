@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  * @date 2025/1/8
  * @className RemoteJudgeTask
- * @desc
+ * @desc 远程评测，允许重试
  */
 @Slf4j
 @Component
