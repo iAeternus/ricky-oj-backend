@@ -29,4 +29,9 @@ public class MongoJudgeRepository extends MongoBaseRepository<Judge> implements 
     public Judge cachedById(String judgeId) {
         return cachedJudgeRepository.cachedById(judgeId);
     }
+
+    @Override
+    public Judge byId(String id) {
+        return super.byId(id);
+    }
 }

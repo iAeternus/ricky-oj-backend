@@ -84,7 +84,7 @@ public class ProblemSetting {
     /**
      * 是否开启该题目的测试样例结果查看
      */
-    boolean openCaseResult;
+    private Boolean openCaseResult;
 
     /**
      * 申请公开的进度

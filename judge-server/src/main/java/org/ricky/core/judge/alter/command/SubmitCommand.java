@@ -1,6 +1,8 @@
 package org.ricky.core.judge.alter.command;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -8,8 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 import org.ricky.common.domain.marker.Command;
-import org.ricky.common.validation.id.Id;
 import org.ricky.common.domain.program.Program;
+import org.ricky.common.validation.id.Id;
 
 import static org.ricky.common.constants.CommonConstants.PROBLEM_ID_PREFIX;
 
@@ -47,6 +49,8 @@ public class SubmitCommand implements Command {
     /**
      * 提交类型 0=比赛提交 1=普通提交 2=自测提交
      */
+    @Min(0)
+    @Max(2)
     @NotNull
     Short submitType;
 

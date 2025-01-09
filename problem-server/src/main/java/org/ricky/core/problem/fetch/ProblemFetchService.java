@@ -56,7 +56,7 @@ public class ProblemFetchService {
                 .memoryLimit(problem.getSetting().getLimit().getMemoryLimit())
                 .stackLimit(problem.getSetting().getLimit().getStackLimit())
                 .languages(problem.getSetting().getLanguages())
-                .openCaseResult(problem.getSetting().isOpenCaseResult())
+                .openCaseResult(problem.getSetting().getOpenCaseResult())
                 .applyPublicProgress(problem.getSetting().getApplyPublicProgress())
                 .isRemote(problem.getSetting().getVjSetting().isRemote())
                 .source(problem.getSetting().getVjSetting().getSource())

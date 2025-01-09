@@ -8,14 +8,14 @@ import org.ricky.common.domain.AggregateRoot;
 import org.ricky.core.judge.domain.event.SubmittedEvent;
 import org.ricky.core.judge.domain.result.JudgeResult;
 import org.ricky.core.judge.domain.submit.Submit;
-import org.ricky.core.judge.domain.submit.SubmitTypeEnum;
+import org.ricky.core.user.domain.User;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 
 import static org.ricky.common.constants.CommonConstants.JUDGE_COLLECTION;
-import static org.ricky.common.constants.CommonConstants.SUBMIT_ID_PREFIX;
+import static org.ricky.common.constants.CommonConstants.JUDGE_ID_PREFIX;
 import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
 import static org.ricky.core.judge.domain.JudgeStatusEnum.*;
 
@@ -64,7 +64,7 @@ public class Judge extends AggregateRoot {
     }
 
     public static String newJudgeId() {
-        return SUBMIT_ID_PREFIX + newSnowflakeId();
+        return JUDGE_ID_PREFIX + newSnowflakeId();
     }
 
     public void onSubmit(UserContext userContext) {
@@ -72,14 +72,21 @@ public class Judge extends AggregateRoot {
         addOpsLog("已提交，等待评测", userContext);
     }
 
-    public void submitFailed() {
-        this.status = SUBMITTED_FAILED;
-        this.result = JudgeResult.submitFailed();
+    public void modifyStatus(JudgeStatusEnum newStatus, UserContext userContext) {
+        this.status = newStatus;
+        addOpsLog("修改评测状态", userContext);
     }
 
-    public void judgeFailed() {
+    public void submitFailed(UserContext userContext) {
+        this.status = SUBMITTED_FAILED;
+        this.result = JudgeResult.submitFailed();
+        addOpsLog("提交失败", userContext);
+    }
+
+    public void judgeFailed(UserContext userContext) {
         this.status = SYSTEM_ERROR;
         this.result = JudgeResult.judgeFailed();
+        addOpsLog("评测失败", userContext);
     }
 
     private void init(Submit submit, String ip) {

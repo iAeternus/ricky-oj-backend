@@ -42,6 +42,11 @@ public class UserContext {
      */
     public static final UserContext ADMIN_USER = new UserContext(ROJ_USER_UID, ADMIN_NICKNAME, SYSTEM_ADMIN);
 
+    /**
+     * 测试用户
+     */
+    public static final UserContext TEST_USER = ADMIN_USER;
+
     @Schema(name = "用户ID")
     private final String userId;
 

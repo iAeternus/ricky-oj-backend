@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @className ProblemApplication
  * @desc
  */
-@SpringBootApplication
+// @SpringBootApplication
 public class ProblemApplication {
 
     public static void main(String[] args) {

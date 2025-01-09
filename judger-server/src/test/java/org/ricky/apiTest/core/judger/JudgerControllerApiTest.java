@@ -6,7 +6,6 @@ import org.ricky.apiTest.BaseApiTest;
 import org.ricky.common.domain.LoginResponse;
 import org.ricky.core.judger.fetch.response.FetchJudgerInfoResponse;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.ricky.common.utils.ValidationUtils.isNotEmpty;
 

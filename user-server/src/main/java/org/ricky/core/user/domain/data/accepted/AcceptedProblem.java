@@ -39,7 +39,7 @@ public class AcceptedProblem implements Identified {
      * 提交ID
      */
     @NotBlank
-    @Id(prefix = SUBMIT_ID_PREFIX)
+    @Id(prefix = JUDGE_ID_PREFIX)
     private final String submitId;
 
     public AcceptedProblem(String problemId, String submitId) {

@@ -1,13 +1,13 @@
-package org.ricky.core.judger.alter.command;
+package org.ricky.core.judge.alter.command;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
-import org.ricky.common.constants.CommonConstants;
 import org.ricky.common.domain.marker.Command;
 import org.ricky.common.validation.id.Id;
+import org.ricky.core.judge.domain.JudgeStatusEnum;
 
 import static org.ricky.common.constants.CommonConstants.JUDGE_ID_PREFIX;
 
@@ -15,19 +15,18 @@ import static org.ricky.common.constants.CommonConstants.JUDGE_ID_PREFIX;
  * @author Ricky
  * @version 1.0
  * @date 2025/1/9
- * @className JudgeCommand
+ * @className ModifyStatusCommand
  * @desc
  */
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class JudgeCommand implements Command {
+public class ModifyStatusCommand implements Command {
 
-    @NotBlank
     @Id(prefix = JUDGE_ID_PREFIX)
     String judgeId;
 
-    @NotBlank
-    String token;
+    @NotNull
+    JudgeStatusEnum newStatus;
 
 }

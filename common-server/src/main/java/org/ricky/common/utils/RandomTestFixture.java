@@ -4,7 +4,9 @@ import com.apifan.common.random.source.AreaSource;
 import com.apifan.common.random.source.OtherSource;
 import com.apifan.common.random.source.PersonInfoSource;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.ricky.common.domain.LanguageEnum;
 import org.ricky.common.domain.UploadedFile;
+import org.ricky.common.domain.program.Program;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +20,7 @@ import static com.google.common.collect.ImmutableList.toImmutableList;
 import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.apache.commons.lang3.RandomUtils.*;
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ricky.common.domain.LanguageEnum.CPP_23;
 import static org.ricky.common.utils.UUIDGenerator.newShortUUID;
 
 public class RandomTestFixture {
@@ -131,6 +134,10 @@ public class RandomTestFixture {
         return nextInt(minInclusive, maxInclusive + 1);
     }
 
+    public static short rShort(int minInclusive, int maxInclusive) {
+        return (short) rInt(minInclusive, maxInclusive);
+    }
+
     public static double rDouble(double minInclusive, double maxExclusive) {
         return nextDouble(minInclusive, maxExclusive);
     }
@@ -205,6 +212,39 @@ public class RandomTestFixture {
 
     public static <T> List<T> rDistinctList(int size, Supplier<T> randomConstructor) {
         return rList(size, randomConstructor).stream().distinct().collect(toImmutableList());
+    }
+
+    public static final String CODE = """
+                #include <bits/stdc++.h>
+                                        
+                using i64 = long long;
+                                        
+                void solve() {
+                    std::cout << "This is a C++ test code." << std::endl;
+                }
+                                        
+                int main() {
+                    std::ios::sync_with_stdio(false);
+                    std::cin.tie(nullptr);
+                    std::cout.tie(nullptr);
+                                        
+                    int t;
+                    std::cin >> t;
+                                        
+                    while(t--) {
+                        solve();
+                    }
+                                        
+                    return 0;
+                }
+                """;
+
+    public static Program rProgram() {
+        return Program.builder()
+                .length(CODE.length())
+                .code(CODE)
+                .language(CPP_23)
+                .build();
     }
 
     public static void main(String[] args) {

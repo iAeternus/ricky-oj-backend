@@ -1,9 +1,6 @@
 package org.ricky.common.domain.program;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +25,7 @@ public class Program implements ValueObject {
     /**
      * 代码长度
      */
+    @Min(1)
     @NotNull
     @Max(MAX_CODE_LENGTH)
     Integer length;

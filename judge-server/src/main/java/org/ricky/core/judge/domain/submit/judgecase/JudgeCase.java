@@ -83,18 +83,6 @@ public class JudgeCase implements Identified {
     @NotNull
     private Integer seq;
 
-    public JudgeCase(String caseId, UploadedFile input, UploadedFile output, Integer seq) {
-        this.id = newJudgeCaseId();
-        this.caseId = caseId;
-        this.time = null;
-        this.memory = null;
-        this.status = PENDING;
-        this.input = input;
-        this.output = output;
-        this.userOutput = null;
-        this.seq = seq;
-    }
-
     public static String newJudgeCaseId() {
         return JUDGE_CASE_ID_PREFIX + newSnowflakeId();
     }

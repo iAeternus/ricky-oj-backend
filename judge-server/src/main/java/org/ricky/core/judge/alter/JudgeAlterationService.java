@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.ricky.client.ProblemClient;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.ratelimit.RateLimiter;
+import org.ricky.core.judge.alter.command.ModifyStatusCommand;
 import org.ricky.core.judge.alter.command.SubmitCommand;
 import org.ricky.core.judge.alter.response.SubmitResponse;
 import org.ricky.core.judge.domain.Judge;
@@ -15,6 +16,7 @@ import org.ricky.dto.fetch.response.FetchSettingByIdResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.ricky.common.ratelimit.TPSConstants.HIGH_TPS;
 import static org.ricky.common.ratelimit.TPSConstants.NORMAL_TPS;
 
 /**
@@ -53,4 +55,15 @@ public class JudgeAlterationService {
                 .build();
     }
 
+    @Transactional
+    public void modifyStatus(ModifyStatusCommand command, UserContext userContext) {
+        rateLimiter.applyFor(userContext.getUserId(), "Judge:ModifyStatus", HIGH_TPS);
+
+        Judge judge = judgeRepository.cachedById(command.getJudgeId());
+        if(judge.getStatus() == command.getNewStatus()) {
+            return;
+        }
+        judge.modifyStatus(command.getNewStatus(), userContext);
+        judgeRepository.save(judge);
+    }
 }

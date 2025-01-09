@@ -14,6 +14,7 @@ public interface CommonConstants {
     String AUTHORIZATION = "Authorization";
     String BEARER = "Bearer ";
     String NO_USER_ID = "NO_USER_ID";
+    String SUBMIT_TOKEN = "NO_SUBMIT_TOKEN";
 
     String EVENT_COLLECTION = "event";
     String SHEDLOCK_COLLECTION = "shedlock";
@@ -33,8 +34,8 @@ public interface CommonConstants {
     String TAG_ID_PREFIX = "TAG";
     String TEAM_ID_PREFIX = "TEM";
     String PROBLEM_ID_PREFIX = "PRO";
-    String SUBMIT_ID_PREFIX = "SMT";
-    String JUDGER_ID_PREFIX = "JDG";
+    String JUDGE_ID_PREFIX = "JDG";
+    String JUDGER_ID_PREFIX = "JGR";
     String JUDGE_CASE_ID_PREFIX = "JGC";
 
     String INCORRECT_ID_MESSAGE = " ID format is incorrect.";

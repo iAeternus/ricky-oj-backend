@@ -11,4 +11,6 @@ public interface JudgeRepository {
     void save(Judge judge);
 
     Judge cachedById(String judgeId);
+
+    Judge byId(String judgeId);
 }

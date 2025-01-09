@@ -3,6 +3,7 @@ package org.ricky.apiTest.utils;
 import org.ricky.common.domain.program.Program;
 import org.ricky.common.utils.RandomTestFixture;
 import org.ricky.core.problem.alter.command.CreateProblemCommand;
+import org.ricky.core.problem.domain.Problem;
 import org.ricky.core.problem.domain.answer.Answer;
 import org.ricky.core.problem.domain.casegroup.CaseGroup;
 import org.ricky.core.problem.domain.casegroup.cases.Case;
@@ -14,6 +15,7 @@ import org.ricky.core.tag.alter.command.UpdateTagInfoCommand;
 import java.util.List;
 
 import static org.ricky.common.constants.CommonConstants.*;
+import static org.ricky.common.context.UserContext.TEST_USER;
 import static org.ricky.common.domain.LanguageEnum.CPP_23;
 import static org.ricky.core.problem.domain.casegroup.CaseGroup.newCaseGroupId;
 import static org.ricky.core.problem.domain.casegroup.cases.Case.newCaseId;
@@ -81,35 +83,12 @@ public class ProblemRandomTestFixture extends RandomTestFixture {
     }
 
     public static Answer rAnswer() {
-        String code = """
-                #include <bits/stdc++.h>
-                                        
-                using i64 = long long;
-                                        
-                void solve() {
-                    std::cout << "This is a C++ test code." << std::endl;
-                }
-                                        
-                int main() {
-                    std::ios::sync_with_stdio(false);
-                    std::cin.tie(nullptr);
-                    std::cout.tie(nullptr);
-                                        
-                    int t;
-                    std::cin >> t;
-                                        
-                    while(t--) {
-                        solve();
-                    }
-                                        
-                    return 0;
-                }
-                """;
+
         return Answer.builder()
                 .enable(rBool())
                 .program(Program.builder()
-                        .length(code.length())
-                        .code(code)
+                        .length(CODE.length())
+                        .code(CODE)
                         .language(CPP_23)
                         .build())
                 .build();
@@ -158,6 +137,21 @@ public class ProblemRandomTestFixture extends RandomTestFixture {
 
     public static UpdateTagInfoCommand rUpdateTagInfoCommand() {
         return rUpdateTagInfoCommand(rSentence(6));
+    }
+
+    public static Problem rProblem() {
+        return new Problem(
+                rSentence(3),
+                rSentence(6),
+                rSentence(10),
+                rSentence(10),
+                rSentence(10),
+                rSentence(10),
+                List.of(rInputCase(2)),
+                List.of(rOutputCase(2)),
+                rSentence((10)),
+                TEST_USER
+        );
     }
 
 }

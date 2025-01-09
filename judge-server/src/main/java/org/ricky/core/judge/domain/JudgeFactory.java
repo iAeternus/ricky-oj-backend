@@ -16,6 +16,8 @@ import java.util.List;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
 import static org.ricky.core.common.utils.IPUtils.getUserIpAddr;
+import static org.ricky.core.judge.domain.JudgeStatusEnum.PENDING;
+import static org.ricky.core.judge.domain.submit.judgecase.JudgeCase.newJudgeCaseId;
 
 /**
  * @author Ricky
@@ -30,7 +32,14 @@ public class JudgeFactory {
     public Submit createSubmit(SubmitCommand command, FetchSettingByIdResponse setting, FetchProblemByIdResponse problem, UserContext userContext) {
         List<JudgeCase> judgeCases = setting.getCaseGroups().stream()
                 .flatMap(caseGroup -> caseGroup.getCases().stream())
-                .map(caze -> new JudgeCase(caze.getId(), caze.getInput(), caze.getOutput(), caze.getSeq()))
+                .map(caze -> JudgeCase.builder()
+                        .id(newJudgeCaseId())
+                        .caseId(caze.getId())
+                        .status(PENDING)
+                        .input(caze.getInput())
+                        .output(caze.getOutput())
+                        .seq(caze.getSeq())
+                        .build())
                 .collect(toImmutableList());
         return Submit.builder()
                 .problemId(command.getProblemId())

@@ -12,7 +12,6 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.parallel.Execution;
-import org.ricky.apiTest.utils.SetupApi;
 import org.ricky.common.domain.event.DomainEventDao;
 import org.ricky.common.exception.ErrorCodeEnum;
 import org.ricky.common.exception.ErrorResponse;
@@ -20,10 +19,10 @@ import org.ricky.common.exception.MyError;
 import org.ricky.common.password.MyPasswordEncoder;
 import org.ricky.common.security.jwt.JwtService;
 import org.ricky.common.utils.MyObjectMapper;
-import org.ricky.core.judge.domain.JudgeRepository;
 import org.ricky.core.judger.domain.JudgerRepository;
 import org.ricky.core.user.domain.UserRepository;
 import org.ricky.core.verification.domain.VerificationCodeRepository;
+import org.ricky.apiTest.utils.SetupApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -76,7 +75,7 @@ public class BaseApiTest {
     protected UserRepository userRepository;
 
     @Autowired
-    protected JudgeRepository judgeRepository;
+    protected JudgerRepository judgerRepository;
 
     // TODO add repository here...
 

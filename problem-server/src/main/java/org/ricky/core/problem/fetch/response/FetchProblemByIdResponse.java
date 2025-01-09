@@ -50,7 +50,4 @@ public class FetchProblemByIdResponse implements Response {
     @Schema(name = "备注")
     String hint;
 
-    // @Schema(name = "题目标签ID集合")
-    // List<String> tags;
-
 }
