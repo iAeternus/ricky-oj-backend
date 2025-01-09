@@ -29,16 +29,6 @@
             <version>${project.version}</version>
         </dependency>
 
-        <!--Others-->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.oshi</groupId>
-            <artifactId>oshi-core</artifactId>
-        </dependency>
-
         <!--Test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

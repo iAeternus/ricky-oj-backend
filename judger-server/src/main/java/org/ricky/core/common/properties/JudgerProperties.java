@@ -4,7 +4,6 @@ import lombok.Data;
 import org.ricky.core.common.utils.IPUtils;
 import org.ricky.common.validation.ip.IP;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
