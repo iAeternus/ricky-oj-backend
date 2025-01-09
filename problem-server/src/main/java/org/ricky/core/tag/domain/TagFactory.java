@@ -1,7 +1,7 @@
 package org.ricky.core.tag.domain;
 
 import org.ricky.common.context.UserContext;
-import org.ricky.core.tag.alter.dto.command.CreateProblemTagCommand;
+import org.ricky.core.tag.alter.command.CreateProblemTagCommand;
 import org.springframework.stereotype.Component;
 
 /**

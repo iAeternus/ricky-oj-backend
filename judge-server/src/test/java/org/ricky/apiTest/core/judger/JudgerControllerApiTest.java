@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.common.domain.LoginResponse;
-import org.ricky.core.judger.fetch.dto.response.FetchJudgerInfoResponse;
+import org.ricky.core.judger.fetch.response.FetchJudgerInfoResponse;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

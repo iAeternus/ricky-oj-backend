@@ -5,10 +5,10 @@ import io.restassured.response.Response;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.common.domain.LoginResponse;
 import org.ricky.core.common.domain.ReturnId;
-import org.ricky.core.login.alter.dto.command.MobileOrEmailLoginCommand;
-import org.ricky.core.user.alter.dto.command.RegisterCommand;
-import org.ricky.core.user.alter.dto.response.RegisterResponse;
-import org.ricky.core.verification.alter.dto.command.CreateRegisterVerificationCodeCommand;
+import org.ricky.core.login.alter.command.MobileOrEmailLoginCommand;
+import org.ricky.core.user.alter.command.RegisterCommand;
+import org.ricky.core.user.alter.response.RegisterResponse;
+import org.ricky.core.verification.alter.command.CreateRegisterVerificationCodeCommand;
 import org.ricky.core.verification.domain.VerificationCodeRepository;
 import org.springframework.stereotype.Component;
 

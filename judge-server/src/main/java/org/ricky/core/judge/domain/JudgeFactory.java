@@ -2,7 +2,7 @@ package org.ricky.core.judge.domain;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.ricky.common.context.UserContext;
-import org.ricky.core.judge.alter.dto.command.SubmitCommand;
+import org.ricky.core.judge.alter.command.SubmitCommand;
 import org.ricky.core.judge.domain.submit.Submit;
 import org.ricky.core.judge.domain.submit.SubmitTypeEnum;
 import org.ricky.core.judge.domain.submit.judgecase.JudgeCase;

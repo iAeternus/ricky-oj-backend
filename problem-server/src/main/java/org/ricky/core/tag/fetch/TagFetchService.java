@@ -5,7 +5,7 @@ import org.ricky.common.context.UserContext;
 import org.ricky.common.ratelimit.RateLimiter;
 import org.ricky.core.tag.domain.CachedTag;
 import org.ricky.core.tag.domain.TagRepository;
-import org.ricky.core.tag.fetch.dto.response.FetchAllResponse;
+import org.ricky.core.tag.fetch.response.FetchAllResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

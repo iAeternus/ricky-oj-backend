@@ -2,14 +2,14 @@ package org.ricky.apiTest.utils;
 
 import org.ricky.common.domain.program.Program;
 import org.ricky.common.utils.RandomTestFixture;
-import org.ricky.core.problem.alter.dto.command.CreateProblemCommand;
+import org.ricky.core.problem.alter.command.CreateProblemCommand;
 import org.ricky.core.problem.domain.answer.Answer;
 import org.ricky.core.problem.domain.casegroup.CaseGroup;
 import org.ricky.core.problem.domain.casegroup.cases.Case;
 import org.ricky.core.problem.domain.setting.*;
 import org.ricky.core.problem.domain.setting.limit.Limit;
-import org.ricky.core.tag.alter.dto.command.CreateProblemTagCommand;
-import org.ricky.core.tag.alter.dto.command.UpdateTagInfoCommand;
+import org.ricky.core.tag.alter.command.CreateProblemTagCommand;
+import org.ricky.core.tag.alter.command.UpdateTagInfoCommand;
 
 import java.util.List;
 

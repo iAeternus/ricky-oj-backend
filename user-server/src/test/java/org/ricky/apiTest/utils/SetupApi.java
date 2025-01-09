@@ -4,8 +4,8 @@ import org.ricky.apiTest.core.login.LoginApi;
 import org.ricky.apiTest.core.user.UserApi;
 import org.ricky.apiTest.core.verification.VerificationCodeApi;
 import org.ricky.common.domain.LoginResponse;
-import org.ricky.core.user.alter.dto.command.RegisterCommand;
-import org.ricky.core.user.alter.dto.response.RegisterResponse;
+import org.ricky.core.user.alter.command.RegisterCommand;
+import org.ricky.core.user.alter.response.RegisterResponse;
 import org.ricky.core.verification.domain.VerificationCodeRepository;
 import org.springframework.stereotype.Component;
 

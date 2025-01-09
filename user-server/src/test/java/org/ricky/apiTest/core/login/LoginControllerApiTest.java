@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.apiTest.core.user.UserApi;
 import org.ricky.apiTest.core.verification.VerificationCodeApi;
-import org.ricky.core.login.alter.dto.command.VerificationCodeLoginCommand;
-import org.ricky.core.user.fetch.dto.response.UserInfoResponse;
-import org.ricky.core.verification.alter.dto.command.CreateLoginVerificationCodeCommand;
+import org.ricky.core.login.alter.command.VerificationCodeLoginCommand;
+import org.ricky.core.user.fetch.response.UserInfoResponse;
+import org.ricky.core.verification.alter.command.CreateLoginVerificationCodeCommand;
 import org.ricky.core.verification.domain.VerificationCode;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;

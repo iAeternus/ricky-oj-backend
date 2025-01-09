@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.ricky.common.ratelimit.RateLimiter;
 import org.ricky.core.verification.domain.VerificationCode;
 import org.ricky.core.verification.domain.VerificationCodeRepository;
-import org.ricky.core.verification.fetch.dto.response.FetchVerificationByIdResponse;
+import org.ricky.core.verification.fetch.response.FetchVerificationByIdResponse;
 import org.springframework.stereotype.Service;
 
 import static org.ricky.common.ratelimit.TPSConstants.NORMAL_TPS;

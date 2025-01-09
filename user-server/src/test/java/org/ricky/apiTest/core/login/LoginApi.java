@@ -3,8 +3,8 @@ package org.ricky.apiTest.core.login;
 import io.restassured.http.Cookie;
 import io.restassured.response.Response;
 import org.ricky.apiTest.BaseApiTest;
-import org.ricky.core.login.alter.dto.command.MobileOrEmailLoginCommand;
-import org.ricky.core.login.alter.dto.command.VerificationCodeLoginCommand;
+import org.ricky.core.login.alter.command.MobileOrEmailLoginCommand;
+import org.ricky.core.login.alter.command.VerificationCodeLoginCommand;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.ricky.common.constants.CommonConstants.AUTH_COOKIE_NAME;

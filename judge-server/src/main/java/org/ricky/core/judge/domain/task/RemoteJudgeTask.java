@@ -17,7 +17,10 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class RemoteJudgeTask implements RepeatableTask {
+
     public void run(String judgeId, String problemId, String customId, SubmitTypeEnum submitType) {
         log.info("remote judge");
+        // TODO 调用judger-server
     }
+
 }

@@ -3,8 +3,8 @@ package org.ricky.apiTest.core.user;
 import org.junit.jupiter.api.Test;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.apiTest.core.verification.VerificationCodeApi;
-import org.ricky.core.user.alter.dto.command.RegisterCommand;
-import org.ricky.core.user.alter.dto.response.RegisterResponse;
+import org.ricky.core.user.alter.command.RegisterCommand;
+import org.ricky.core.user.alter.response.RegisterResponse;
 import org.ricky.core.user.domain.User;
 import org.ricky.core.user.domain.event.UserCreatedEvent;
 

@@ -18,10 +18,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class JudgeTask implements RepeatableTask {
 
-
-
     public void run(String judgeId, String problemId, SubmitTypeEnum submitType) {
         log.info("judge");
+        // TODO 调用judger-server
     }
 
 }

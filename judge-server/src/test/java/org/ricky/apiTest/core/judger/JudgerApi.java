@@ -1,7 +1,7 @@
 package org.ricky.apiTest.core.judger;
 
 import org.ricky.apiTest.BaseApiTest;
-import org.ricky.core.judger.fetch.dto.response.FetchJudgerInfoResponse;
+import org.ricky.core.judger.fetch.response.FetchJudgerInfoResponse;
 
 /**
  * @author Ricky

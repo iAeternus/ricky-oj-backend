@@ -5,11 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.ratelimit.RateLimiter;
 import org.ricky.common.utils.ValidationUtils;
-import org.ricky.core.problem.alter.dto.command.CreateProblemCommand;
-import org.ricky.core.problem.alter.dto.command.UpdateProblemSettingCommand;
-import org.ricky.core.problem.alter.dto.command.UpdateProblemTagsCommand;
-import org.ricky.core.problem.alter.dto.response.CreateProblemResponse;
-import org.ricky.core.problem.alter.dto.response.UpdateProblemTagsResponse;
+import org.ricky.core.problem.alter.command.CreateProblemCommand;
+import org.ricky.core.problem.alter.command.UpdateProblemSettingCommand;
+import org.ricky.core.problem.alter.command.UpdateProblemTagsCommand;
+import org.ricky.core.problem.alter.response.CreateProblemResponse;
+import org.ricky.core.problem.alter.response.UpdateProblemTagsResponse;
 import org.ricky.core.problem.domain.Problem;
 import org.ricky.core.problem.domain.ProblemDomainService;
 import org.ricky.core.problem.domain.ProblemFactory;
@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.ricky.common.ratelimit.TPSConstants.EXTREMELY_LOW_TPS;
 import static org.ricky.common.ratelimit.TPSConstants.MIN_TPS;
 import static org.ricky.common.utils.CollectionUtils.listEquals;
-import static org.ricky.core.problem.alter.dto.response.UpdateProblemTagsResponse.noChange;
+import static org.ricky.core.problem.alter.response.UpdateProblemTagsResponse.noChange;
 
 /**
  * @author Ricky

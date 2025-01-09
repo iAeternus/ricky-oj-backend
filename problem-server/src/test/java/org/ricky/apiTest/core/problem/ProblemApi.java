@@ -2,12 +2,12 @@ package org.ricky.apiTest.core.problem;
 
 import io.restassured.response.Response;
 import org.ricky.apiTest.BaseApiTest;
-import org.ricky.core.problem.alter.dto.command.CreateProblemCommand;
-import org.ricky.core.problem.alter.dto.command.UpdateProblemSettingCommand;
-import org.ricky.core.problem.alter.dto.command.UpdateProblemTagsCommand;
-import org.ricky.core.problem.alter.dto.response.CreateProblemResponse;
-import org.ricky.core.problem.alter.dto.response.UpdateProblemResponse;
-import org.ricky.core.problem.alter.dto.response.UpdateProblemTagsResponse;
+import org.ricky.core.problem.alter.command.CreateProblemCommand;
+import org.ricky.core.problem.alter.command.UpdateProblemSettingCommand;
+import org.ricky.core.problem.alter.command.UpdateProblemTagsCommand;
+import org.ricky.core.problem.alter.response.CreateProblemResponse;
+import org.ricky.core.problem.alter.response.UpdateProblemResponse;
+import org.ricky.core.problem.alter.response.UpdateProblemTagsResponse;
 
 /**
  * @author Ricky

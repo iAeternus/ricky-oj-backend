@@ -2,8 +2,8 @@ package org.ricky.apiTest.core.verification;
 
 import org.junit.jupiter.api.Test;
 import org.ricky.apiTest.BaseApiTest;
-import org.ricky.core.verification.alter.dto.command.CreateLoginVerificationCodeCommand;
-import org.ricky.core.verification.alter.dto.command.CreateRegisterVerificationCodeCommand;
+import org.ricky.core.verification.alter.command.CreateLoginVerificationCodeCommand;
+import org.ricky.core.verification.alter.command.CreateRegisterVerificationCodeCommand;
 import org.ricky.core.verification.domain.VerificationCode;
 
 import static org.junit.jupiter.api.Assertions.*;

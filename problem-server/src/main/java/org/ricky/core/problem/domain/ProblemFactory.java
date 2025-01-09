@@ -1,7 +1,7 @@
 package org.ricky.core.problem.domain;
 
 import org.ricky.common.context.UserContext;
-import org.ricky.core.problem.alter.dto.command.CreateProblemCommand;
+import org.ricky.core.problem.alter.command.CreateProblemCommand;
 import org.springframework.stereotype.Component;
 
 /**

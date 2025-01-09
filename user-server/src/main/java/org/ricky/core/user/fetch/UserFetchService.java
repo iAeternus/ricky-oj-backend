@@ -5,7 +5,7 @@ import org.ricky.common.context.UserContext;
 import org.ricky.common.ratelimit.RateLimiter;
 import org.ricky.core.user.domain.User;
 import org.ricky.core.user.domain.UserRepository;
-import org.ricky.core.user.fetch.dto.response.UserInfoResponse;
+import org.ricky.core.user.fetch.response.UserInfoResponse;
 import org.springframework.stereotype.Service;
 
 import static org.ricky.common.ratelimit.TPSConstants.LOW_TPS;

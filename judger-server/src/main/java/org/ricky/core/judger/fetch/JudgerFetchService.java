@@ -3,7 +3,7 @@ package org.ricky.core.judger.fetch;
 import lombok.RequiredArgsConstructor;
 import org.ricky.common.ratelimit.RateLimiter;
 import org.ricky.core.judger.domain.StartupRunner;
-import org.ricky.core.judger.fetch.dto.response.FetchJudgerInfoResponse;
+import org.ricky.core.judger.fetch.response.FetchJudgerInfoResponse;
 import org.springframework.stereotype.Service;
 
 import static org.ricky.common.ratelimit.TPSConstants.EXTREMELY_LOW_TPS;

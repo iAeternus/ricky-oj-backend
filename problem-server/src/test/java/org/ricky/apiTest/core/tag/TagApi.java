@@ -2,9 +2,9 @@ package org.ricky.apiTest.core.tag;
 
 import io.restassured.response.Response;
 import org.ricky.apiTest.BaseApiTest;
-import org.ricky.core.tag.alter.dto.command.CreateProblemTagCommand;
-import org.ricky.core.tag.alter.dto.command.UpdateTagInfoCommand;
-import org.ricky.core.tag.alter.dto.response.CreateProblemTagResponse;
+import org.ricky.core.tag.alter.command.CreateProblemTagCommand;
+import org.ricky.core.tag.alter.command.UpdateTagInfoCommand;
+import org.ricky.core.tag.alter.response.CreateProblemTagResponse;
 
 /**
  * @author Ricky

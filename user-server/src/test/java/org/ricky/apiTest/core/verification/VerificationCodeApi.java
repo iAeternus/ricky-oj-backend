@@ -3,8 +3,8 @@ package org.ricky.apiTest.core.verification;
 import io.restassured.response.Response;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.core.common.domain.ReturnId;
-import org.ricky.core.verification.alter.dto.command.CreateLoginVerificationCodeCommand;
-import org.ricky.core.verification.alter.dto.command.CreateRegisterVerificationCodeCommand;
+import org.ricky.core.verification.alter.command.CreateLoginVerificationCodeCommand;
+import org.ricky.core.verification.alter.command.CreateRegisterVerificationCodeCommand;
 
 /**
  * @author Ricky

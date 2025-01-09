@@ -2,9 +2,9 @@ package org.ricky.apiTest.core.user;
 
 import io.restassured.response.Response;
 import org.ricky.apiTest.BaseApiTest;
-import org.ricky.core.user.alter.dto.command.RegisterCommand;
-import org.ricky.core.user.alter.dto.response.RegisterResponse;
-import org.ricky.core.user.fetch.dto.response.UserInfoResponse;
+import org.ricky.core.user.alter.command.RegisterCommand;
+import org.ricky.core.user.alter.response.RegisterResponse;
+import org.ricky.core.user.fetch.response.UserInfoResponse;
 
 /**
  * @author Ricky

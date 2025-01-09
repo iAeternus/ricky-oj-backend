@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.ricky.apiTest.BaseApiTest;
 import org.ricky.apiTest.core.problem.ProblemApi;
 import org.ricky.common.domain.LoginResponse;
-import org.ricky.core.problem.alter.dto.command.UpdateProblemTagsCommand;
+import org.ricky.core.problem.alter.command.UpdateProblemTagsCommand;
 import org.ricky.core.problem.domain.Problem;
-import org.ricky.core.tag.alter.dto.command.CreateProblemTagCommand;
-import org.ricky.core.tag.alter.dto.command.UpdateTagInfoCommand;
-import org.ricky.core.tag.alter.dto.response.CreateProblemTagResponse;
+import org.ricky.core.tag.alter.command.CreateProblemTagCommand;
+import org.ricky.core.tag.alter.command.UpdateTagInfoCommand;
+import org.ricky.core.tag.alter.response.CreateProblemTagResponse;
 import org.ricky.core.tag.domain.Tag;
 
 import java.util.List;
