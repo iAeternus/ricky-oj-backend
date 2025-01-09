@@ -43,7 +43,7 @@ public abstract class SubmittedEventHandler implements DomainEventHandler {
     @Override
     public void handle(DomainEvent domainEvent, TaskRunner taskRunner) {
         SubmittedEvent theEvent = (SubmittedEvent) domainEvent;
-        if(theEvent.getIsRemote()) {
+        if (theEvent.getIsRemote()) {
             taskRunner.run(() -> remoteJudgeTask.run(theEvent.getJudgeId(), theEvent.getProblemId(), theEvent.getCustomId(), theEvent.getSubmitType()));
         } else {
             taskRunner.run(() -> judgeTask.run(theEvent.getJudgeId(), theEvent.getProblemId(), theEvent.getSubmitType()));

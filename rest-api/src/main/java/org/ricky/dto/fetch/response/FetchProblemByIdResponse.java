@@ -6,12 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 import org.ricky.common.domain.marker.Response;
-import org.ricky.common.exception.MyException;
 
 import java.util.List;
-
-import static org.ricky.common.exception.ErrorCodeEnum.PROBLEM_STATUS_FORBIDDEN;
-import static org.ricky.common.utils.CollectionUtils.mapOf;
 
 /**
  * @author Ricky

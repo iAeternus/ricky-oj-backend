@@ -12,7 +12,6 @@ import org.ricky.core.judge.domain.JudgeStatusEnum;
 import static org.ricky.common.constants.CommonConstants.CASE_ID_PREFIX;
 import static org.ricky.common.constants.CommonConstants.JUDGE_CASE_ID_PREFIX;
 import static org.ricky.common.utils.SnowflakeIdGenerator.newSnowflakeId;
-import static org.ricky.core.judge.domain.JudgeStatusEnum.PENDING;
 
 /**
  * @author Ricky

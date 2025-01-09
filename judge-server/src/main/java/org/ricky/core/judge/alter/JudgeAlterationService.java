@@ -60,7 +60,7 @@ public class JudgeAlterationService {
         rateLimiter.applyFor(userContext.getUserId(), "Judge:ModifyStatus", HIGH_TPS);
 
         Judge judge = judgeRepository.cachedById(command.getJudgeId());
-        if(judge.getStatus() == command.getNewStatus()) {
+        if (judge.getStatus() == command.getNewStatus()) {
             return;
         }
         judge.modifyStatus(command.getNewStatus(), userContext);

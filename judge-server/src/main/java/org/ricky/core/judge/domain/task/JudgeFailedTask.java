@@ -2,12 +2,10 @@ package org.ricky.core.judge.domain.task;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ricky.common.context.UserContext;
 import org.ricky.common.domain.task.RepeatableTask;
 import org.ricky.core.judge.domain.Judge;
 import org.ricky.core.judge.domain.JudgeRepository;
 import org.ricky.core.judge.domain.submit.SubmitTypeEnum;
-import org.ricky.management.SystemManager;
 import org.springframework.stereotype.Component;
 
 import static org.ricky.common.context.UserContext.ADMIN_USER;

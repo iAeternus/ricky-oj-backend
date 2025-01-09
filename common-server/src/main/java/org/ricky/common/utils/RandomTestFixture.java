@@ -4,7 +4,6 @@ import com.apifan.common.random.source.AreaSource;
 import com.apifan.common.random.source.OtherSource;
 import com.apifan.common.random.source.PersonInfoSource;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.ricky.common.domain.LanguageEnum;
 import org.ricky.common.domain.UploadedFile;
 import org.ricky.common.domain.program.Program;
 
@@ -215,29 +214,29 @@ public class RandomTestFixture {
     }
 
     public static final String CODE = """
-                #include <bits/stdc++.h>
-                                        
-                using i64 = long long;
-                                        
-                void solve() {
-                    std::cout << "This is a C++ test code." << std::endl;
+            #include <bits/stdc++.h>
+                                    
+            using i64 = long long;
+                                    
+            void solve() {
+                std::cout << "This is a C++ test code." << std::endl;
+            }
+                                    
+            int main() {
+                std::ios::sync_with_stdio(false);
+                std::cin.tie(nullptr);
+                std::cout.tie(nullptr);
+                                    
+                int t;
+                std::cin >> t;
+                                    
+                while(t--) {
+                    solve();
                 }
-                                        
-                int main() {
-                    std::ios::sync_with_stdio(false);
-                    std::cin.tie(nullptr);
-                    std::cout.tie(nullptr);
-                                        
-                    int t;
-                    std::cin >> t;
-                                        
-                    while(t--) {
-                        solve();
-                    }
-                                        
-                    return 0;
-                }
-                """;
+                                    
+                return 0;
+            }
+            """;
 
     public static Program rProgram() {
         return Program.builder()

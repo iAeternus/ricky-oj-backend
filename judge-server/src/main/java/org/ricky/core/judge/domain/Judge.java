@@ -8,7 +8,6 @@ import org.ricky.common.domain.AggregateRoot;
 import org.ricky.core.judge.domain.event.SubmittedEvent;
 import org.ricky.core.judge.domain.result.JudgeResult;
 import org.ricky.core.judge.domain.submit.Submit;
-import org.ricky.core.user.domain.User;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 

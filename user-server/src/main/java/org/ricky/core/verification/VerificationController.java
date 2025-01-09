@@ -53,7 +53,7 @@ public class VerificationController {
     @Operation(summary = "根据ID获取验证码")
     @GetMapping("/fetch/{verificationCodeId}")
     public FetchVerificationByIdResponse fetchById(@PathVariable("verificationCodeId")
-                                       @Id(prefix = VERIFICATION_ID_PREFIX) String verificationCodeId) {
+                                                   @Id(prefix = VERIFICATION_ID_PREFIX) String verificationCodeId) {
         return verificationCodeFetchService.fetchById(verificationCodeId);
     }
 

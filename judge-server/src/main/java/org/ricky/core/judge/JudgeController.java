@@ -3,7 +3,6 @@ package org.ricky.core.judge;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.ricky.common.context.UserContext;
 import org.ricky.common.validation.id.Id;

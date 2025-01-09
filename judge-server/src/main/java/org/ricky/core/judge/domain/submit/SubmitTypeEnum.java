@@ -1,7 +1,6 @@
 package org.ricky.core.judge.domain.submit;
 
 import lombok.Getter;
-import org.ricky.common.exception.ErrorCodeEnum;
 import org.ricky.common.exception.MyException;
 
 import static org.ricky.common.exception.ErrorCodeEnum.INVALID_SUBMIT_TYPE;
@@ -30,7 +29,7 @@ public enum SubmitTypeEnum {
 
     public static SubmitTypeEnum of(short key) {
         for (SubmitTypeEnum type : values()) {
-            if(type.getKey() == key) {
+            if (type.getKey() == key) {
                 return type;
             }
         }

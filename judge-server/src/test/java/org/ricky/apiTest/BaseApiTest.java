@@ -21,7 +21,6 @@ import org.ricky.common.password.MyPasswordEncoder;
 import org.ricky.common.security.jwt.JwtService;
 import org.ricky.common.utils.MyObjectMapper;
 import org.ricky.core.judge.domain.JudgeRepository;
-import org.ricky.core.judger.domain.JudgerRepository;
 import org.ricky.core.user.domain.UserRepository;
 import org.ricky.core.verification.domain.VerificationCodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

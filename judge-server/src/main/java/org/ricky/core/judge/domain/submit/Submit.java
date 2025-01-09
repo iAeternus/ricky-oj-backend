@@ -9,10 +9,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 import org.ricky.common.domain.marker.ValueObject;
+import org.ricky.common.domain.program.Program;
 import org.ricky.common.validation.collection.NoNullElement;
 import org.ricky.common.validation.id.Id;
 import org.ricky.core.judge.domain.submit.judgecase.JudgeCase;
-import org.ricky.common.domain.program.Program;
 
 import java.util.List;
 

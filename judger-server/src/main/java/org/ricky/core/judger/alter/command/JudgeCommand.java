@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
-import org.ricky.common.constants.CommonConstants;
 import org.ricky.common.domain.marker.Command;
 import org.ricky.common.validation.id.Id;
 

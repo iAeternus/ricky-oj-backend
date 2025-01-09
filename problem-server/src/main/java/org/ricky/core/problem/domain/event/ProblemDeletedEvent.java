@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.ricky.common.context.UserContext;
-import org.ricky.common.domain.event.DomainEventTypeEnum;
 import org.ricky.common.json.JsonTypeDefine;
 import org.springframework.data.annotation.TypeAlias;
 

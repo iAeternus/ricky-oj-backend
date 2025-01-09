@@ -3,14 +3,12 @@ package org.ricky.core.judge.infrastructure;
 import lombok.extern.slf4j.Slf4j;
 import org.ricky.common.mongo.MongoBaseRepository;
 import org.ricky.core.judge.domain.Judge;
-import org.ricky.core.user.domain.User;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Repository;
 
 import static org.ricky.common.constants.CommonConstants.JUDGE_CACHE;
-import static org.ricky.common.constants.CommonConstants.USER_CACHE;
 import static org.ricky.common.utils.ValidationUtils.requireNonBlank;
 
 /**

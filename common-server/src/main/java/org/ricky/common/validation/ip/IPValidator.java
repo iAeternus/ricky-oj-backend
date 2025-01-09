@@ -21,7 +21,7 @@ public class IPValidator implements ConstraintValidator<IP, String> {
 
     @Override
     public boolean isValid(String ip, ConstraintValidatorContext constraintValidatorContext) {
-        if(isBlank(ip)) {
+        if (isBlank(ip)) {
             return true;
         }
         return isIP(ip);

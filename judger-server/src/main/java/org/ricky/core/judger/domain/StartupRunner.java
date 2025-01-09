@@ -47,13 +47,13 @@ public class StartupRunner implements CommandLineRunner {
 
         // 刷新评测机
         Judger judger = judgerRepository.byUrl(ipv4, judgerProperties.getPort());
-        if(isNull(judger)) {
+        if (isNull(judger)) {
             judger = judgerFactory.createByPrototype(prototype, ADMIN_USER);
         }
         judgerRepository.save(judgerFactory.updateByPrototype(judger, prototype, ADMIN_USER));
 
         // 初始化远程评测机
-        if(remoteJudgeProperties.getEnabled()) {
+        if (remoteJudgeProperties.getEnabled()) {
             int maxRemoteTaskCount = remoteJudgeProperties.correctMaxRemoteTaskCount();
             Judger remoteJudger = judgerFactory.createRemoteJudger(name, ipv4, port, CPU_COUNT, maxRemoteTaskCount, ADMIN_USER);
             judgerRepository.save(remoteJudger);

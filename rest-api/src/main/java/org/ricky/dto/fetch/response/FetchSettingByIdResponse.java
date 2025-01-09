@@ -13,7 +13,6 @@ import org.ricky.common.exception.MyException;
 import java.util.List;
 
 import static org.ricky.common.exception.ErrorCodeEnum.PROBLEM_STATUS_FORBIDDEN;
-import static org.ricky.common.utils.CollectionUtils.mapOf;
 import static org.ricky.dto.fetch.response.FetchSettingByIdResponse.ProblemStatusEnum.PRIVATE;
 
 /**
@@ -86,7 +85,7 @@ public class FetchSettingByIdResponse implements Response {
     List<Answer> answers;
 
     public void checkStatus() {
-        if(status == PRIVATE) {
+        if (status == PRIVATE) {
             throw new MyException(PROBLEM_STATUS_FORBIDDEN, "The current problem cannot be submitted!");
         }
     }
