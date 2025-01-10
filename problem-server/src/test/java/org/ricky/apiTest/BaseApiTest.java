@@ -81,7 +81,7 @@ public class BaseApiTest {
     @Autowired
     protected TagRepository tagRepository;
 
-    // TODO add repository here...
+    // add repository here...
 
     @LocalServerPort
     protected int port;

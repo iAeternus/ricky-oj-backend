@@ -73,7 +73,7 @@ public class BaseApiTest {
     @Autowired
     protected UserRepository userRepository;
 
-    // TODO add repository here...
+    // add repository here...
 
     @LocalServerPort
     protected int port;

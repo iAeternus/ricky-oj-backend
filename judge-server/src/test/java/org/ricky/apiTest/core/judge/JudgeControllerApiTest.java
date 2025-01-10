@@ -20,6 +20,7 @@ import static org.ricky.core.judge.domain.JudgeStatusEnum.PENDING;
  * @className JudgeControllerApiTest
  * @desc 这个测试类无法使用，因为spring启动类重复
  */
+@Deprecated(forRemoval = true)
 public class JudgeControllerApiTest extends BaseApiTest {
 
     @Test

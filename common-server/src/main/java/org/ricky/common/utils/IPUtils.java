@@ -1,4 +1,4 @@
-package org.ricky.core.common.utils;
+package org.ricky.common.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

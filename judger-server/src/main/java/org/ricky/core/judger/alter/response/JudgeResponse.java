@@ -17,4 +17,7 @@ import org.ricky.common.domain.marker.Response;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class JudgeResponse implements Response {
+
+    // TODO
+
 }

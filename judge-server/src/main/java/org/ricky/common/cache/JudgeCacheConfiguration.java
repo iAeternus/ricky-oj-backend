@@ -1,7 +1,8 @@
 package org.ricky.common.cache;
 
 import org.ricky.common.utils.MyObjectMapper;
-import org.ricky.core.problem.domain.Problem;
+import org.ricky.core.judge.domain.Judge;
+import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.boot.autoconfigure.cache.RedisCacheManagerBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +21,11 @@ import static org.springframework.data.redis.serializer.RedisSerializationContex
  * @author Ricky
  * @version 1.0
  * @date 2025/1/2
- * @className ProblemCacheConfiguration
+ * @className JudgeCacheConfiguration
  * @desc
  */
 @Configuration
-public class ProblemCacheConfiguration {
+public class JudgeCacheConfiguration {
 
     @Bean("problemRedisBuilderCustomizer")
     public RedisCacheManagerBuilderCustomizer redisBuilderCustomizer(MyObjectMapper objectMapper) {
@@ -32,20 +33,12 @@ public class ProblemCacheConfiguration {
         defaultObjectMapper.activateDefaultTyping(defaultObjectMapper.getPolymorphicTypeValidator(), NON_FINAL, PROPERTY);
         GenericJackson2JsonRedisSerializer defaultSerializer = new GenericJackson2JsonRedisSerializer(defaultObjectMapper);
 
-        var problemSerializer = new Jackson2JsonRedisSerializer<>(objectMapper, Problem.class);
+        var judgeSerializer = new Jackson2JsonRedisSerializer<>(objectMapper, Judge.class);
         // TODO add here...
 
-        return builder -> builder.withCacheConfiguration(PROBLEMS_CACHE, defaultCacheConfig()
+        return builder -> builder.withCacheConfiguration(JUDGE_CACHE, defaultCacheConfig()
                         .prefixCacheNameWith(CACHE_PREFIX)
-                        .serializeValuesWith(fromSerializer(defaultSerializer))
-                        .entryTtl(ofDays(7)))
-                .withCacheConfiguration(TAGS_CACHE, defaultCacheConfig()
-                        .prefixCacheNameWith(CACHE_PREFIX)
-                        .serializeValuesWith(fromSerializer(defaultSerializer))
-                        .entryTtl(ofDays(7)))
-                .withCacheConfiguration(PROBLEM_CACHE, defaultCacheConfig()
-                        .prefixCacheNameWith(CACHE_PREFIX)
-                        .serializeValuesWith(fromSerializer(problemSerializer))
+                        .serializeValuesWith(fromSerializer(judgeSerializer))
                         .entryTtl(ofDays(7)));
     }
 

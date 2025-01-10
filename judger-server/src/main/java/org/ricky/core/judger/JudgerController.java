@@ -4,10 +4,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.ricky.common.context.UserContext;
+import org.ricky.core.judger.alter.JudgerAlterationService;
 import org.ricky.core.judger.alter.command.JudgeCommand;
 import org.ricky.core.judger.alter.response.JudgeResponse;
 import org.ricky.core.judger.fetch.JudgerFetchService;
 import org.ricky.core.judger.fetch.response.FetchJudgerInfoResponse;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,12 +28,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/judger")
 public class JudgerController {
 
+    private final JudgerAlterationService judgerAlterationService;
     private final JudgerFetchService judgerFetchService;
 
     @PostMapping("/judge")
     @Operation(summary = "评测")
-    public JudgeResponse judge(@RequestBody @Valid JudgeCommand command) {
-        return null;
+    public JudgeResponse judge(@RequestBody @Valid JudgeCommand command,
+                               @AuthenticationPrincipal UserContext userContext) {
+        return judgerAlterationService.judge(command, userContext);
     }
 
     @GetMapping("/version")

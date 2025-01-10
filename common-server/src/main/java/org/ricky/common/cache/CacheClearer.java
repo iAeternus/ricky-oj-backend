@@ -6,8 +6,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Component;
 
-import static org.ricky.common.constants.CommonConstants.PROBLEMS_CACHE;
-import static org.ricky.common.constants.CommonConstants.USER_CACHE;
+import static org.ricky.common.constants.CommonConstants.*;
 
 
 /**
@@ -25,6 +24,9 @@ public class CacheClearer {
     @Caching(evict = {
             @CacheEvict(value = USER_CACHE, allEntries = true),
             @CacheEvict(value = PROBLEMS_CACHE, allEntries = true),
+            @CacheEvict(value = PROBLEM_CACHE, allEntries = true),
+            @CacheEvict(value = TAGS_CACHE, allEntries = true),
+            @CacheEvict(value = JUDGE_CACHE, allEntries = true),
             // TODO add here...
     })
     public void evictAllCache() {

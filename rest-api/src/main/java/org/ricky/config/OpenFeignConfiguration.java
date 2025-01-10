@@ -3,6 +3,7 @@ package org.ricky.config;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import jakarta.servlet.http.HttpServletRequest;
+import org.ricky.client.fallback.JudgeClientFallbackFactory;
 import org.ricky.client.fallback.ProblemClientFallbackFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +34,11 @@ public class OpenFeignConfiguration implements RequestInterceptor {
     @Bean
     public ProblemClientFallbackFactory problemClientFallbackFactory() {
         return new ProblemClientFallbackFactory();
+    }
+
+    @Bean
+    public JudgeClientFallbackFactory judgeClientFallbackFactory() {
+        return new JudgeClientFallbackFactory();
     }
 
 }

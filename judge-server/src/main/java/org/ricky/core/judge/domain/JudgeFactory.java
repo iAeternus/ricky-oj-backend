@@ -15,7 +15,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.util.List;
 
 import static com.google.common.collect.ImmutableList.toImmutableList;
-import static org.ricky.core.common.utils.IPUtils.getUserIpAddr;
+import static org.ricky.common.utils.IPUtils.getUserIpAddr;
 import static org.ricky.core.judge.domain.JudgeStatusEnum.PENDING;
 import static org.ricky.core.judge.domain.submit.judgecase.JudgeCase.newJudgeCaseId;
 

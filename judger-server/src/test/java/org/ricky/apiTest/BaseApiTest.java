@@ -77,7 +77,7 @@ public class BaseApiTest {
     @Autowired
     protected JudgerRepository judgerRepository;
 
-    // TODO add repository here...
+    // add repository here...
 
     @LocalServerPort
     protected int port;

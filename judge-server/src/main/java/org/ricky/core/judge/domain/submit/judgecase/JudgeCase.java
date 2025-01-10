@@ -88,6 +88,6 @@ public class JudgeCase implements Identified {
 
     @Override
     public String getIdentifier() {
-        return null;
+        return id;
     }
 }
