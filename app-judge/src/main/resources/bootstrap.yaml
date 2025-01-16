@@ -1,6 +1,6 @@
 spring:
   application:
-    name: judge-server
+    name: app-judge
   profiles:
     active: ci
   cloud:

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: problem-server
+    name: app-problem
   profiles:
     active: ci
   cloud:

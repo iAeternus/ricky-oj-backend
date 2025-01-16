@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-server
+    name: app-user
   profiles:
     active: ci
   cloud:

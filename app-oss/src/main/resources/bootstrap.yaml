@@ -1,6 +1,6 @@
 spring:
   application:
-    name: oss-server
+    name: app-oss
   profiles:
     active: ci
   cloud:

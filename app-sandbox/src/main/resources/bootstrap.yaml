@@ -1,6 +1,6 @@
 spring:
   application:
-    name: sandbox-server
+    name: app-sandbox
   profiles:
     active: ci
   cloud:
