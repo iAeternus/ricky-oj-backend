@@ -1,0 +1,19 @@
+TestCaseInfo:
+
+judgeMode
+version
+judgeCaseMode
+testCases.size()
+testCases
+
+
+testCase
+	 caseId
+	groupNum
+	score
+	inputName
+	outputName
+	outputMd5
+	outputSize
+	allStrippedOutputMd5
+	EOFStrippedOutputMd5

@@ -1,0 +1,39 @@
+server:
+  port: 8005
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/roj_ci_db
+    redis:
+      database: 4
+      host: localhost
+      port: 6379
+      password: 123456
+      timeout: 10000
+  cache:
+    type: redis
+
+my:
+  common:
+    httpsEnabled: false
+    baseDomainName: org.ricky
+    limitRate: false
+  redis:
+    domainEventStream: DomainEvent.LOCAL
+    notificationStream: Notification.LOCAL
+    webhookStream: Webhook.LOCAL
+  aliyun:
+    ak: your-aliyun-access-key
+    aks: your-aliyun-access-key-secret
+    role: your-aliyun-ram-role
+    sms:
+      sms-sign-name: notapplicable
+      sms-template-code: notapplicable
+
+
+
