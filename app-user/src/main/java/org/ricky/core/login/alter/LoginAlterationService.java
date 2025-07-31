@@ -44,10 +44,10 @@ public class LoginAlterationService {
             return token;
         } catch (Throwable t) {
             // 401或409时直接抛出异常
-            if (t instanceof MyException mryException &&
-                    (mryException.getCode().getStatus() == 401 || mryException.getCode().getStatus() == 409)) {
+            if (t instanceof MyException exception &&
+                    (exception.getCode().getStatus() == 401 || exception.getCode().getStatus() == 409)) {
                 log.warn("Password login failed for [{}].", maskMobileOrEmail(mobileOrEmail));
-                throw mryException;
+                throw exception;
             }
 
             // 其他情况直接一个笼统的异常
@@ -66,10 +66,10 @@ public class LoginAlterationService {
             return token;
         } catch (Throwable t) {
             // 401或409时直接抛出异常
-            if (t instanceof MyException mryException &&
-                    (mryException.getCode().getStatus() == 401 || mryException.getCode().getStatus() == 409)) {
+            if (t instanceof MyException exception &&
+                    (exception.getCode().getStatus() == 401 || exception.getCode().getStatus() == 409)) {
                 log.warn("Verification code login failed for [{}].", maskMobileOrEmail(mobileOrEmail));
-                throw mryException;
+                throw exception;
             }
 
             // 其他情况直接一个笼统的异常
